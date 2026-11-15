@@ -15,14 +15,15 @@ file only says where to get the data and how to deliver the report.
 
 ## 1. Odds (FanDuel first)
 
-Run `python3 fetch_odds.py --out reports/` (stdlib only). It needs
-`ODDS_API_KEY` in the environment. It pulls FanDuel, DraftKings and BetMGM
+Run `python3 fetch_odds.py --out reports/` (stdlib only). The Odds API key is saved as a network secret on
+this environment and injected by the proxy into the `x-api-key` header, so no
+variable is needed. Each run costs about 12 credits per game, and each re-run costs the same again. It pulls FanDuel, DraftKings and BetMGM
 prices for passing/rushing/receiving yards, receptions, rushing attempts and
 passing attempts, plus alternates, for every game that has not kicked off.
 It writes a CSV with the book, the market, the player, the side, the line, the
 American odds and the book's own `last_update` time.
 
-* If the script exits saying that the key is missing or was rejected, or that the quota was hit,
+* If the script exits saying that the key was rejected (401), or that the quota was hit,
   **every candidate is Research Only**. Say so in section H. Never fill in
   prices from memory or from articles.
 * Treat only rows with `book == fanduel` as FanDuel prices. DK/BetMGM rows are

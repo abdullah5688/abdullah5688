@@ -2,7 +2,11 @@
 """Pull today's NFL player-prop prices (FanDuel first, DK/BetMGM for comparison)
 from The Odds API and save them as JSON + CSV.
 
-Usage:  ODDS_API_KEY=... python3 fetch_odds.py [--out DIR] [--date YYYY-MM-DD]
+Usage:  python3 fetch_odds.py [--out DIR] [--date YYYY-MM-DD]
+
+The key is sent in the `x-api-key` header. In the cloud environment the network
+proxy injects the saved key into that header, so no variable is needed; set
+ODDS_API_KEY only when running somewhere without that proxy.
 
 Only standard-library modules are used. Every price written out carries the
 bookmaker key and the bookmaker's own `last_update` timestamp so the report
@@ -38,9 +42,9 @@ remaining = {"value": "?"}
 
 
 def get(path, **params):
-    params["apiKey"] = os.environ["ODDS_API_KEY"]
     url = f"{API}{path}?{urllib.parse.urlencode(params)}"
-    req = urllib.request.Request(url, headers={"User-Agent": "nfl-prop-research/1.0"})
+    key = os.environ.get("ODDS_API_KEY", "proxy-injected")  # proxy overwrites this header
+    req = urllib.request.Request(url, headers={"User-Agent": "nfl-prop-research/1.0", "x-api-key": key})
     with urllib.request.urlopen(req, timeout=30) as r:
         remaining["value"] = r.headers.get("x-requests-remaining", "?")
         return json.load(r)
@@ -81,9 +85,6 @@ def main():
     ap.add_argument("--out", default=".")
     ap.add_argument("--date", help="ET date to pull (default: today in ET)")
     args = ap.parse_args()
-
-    if not os.environ.get("ODDS_API_KEY"):
-        sys.exit("ODDS_API_KEY is not set: odds cannot be verified. Mark every candidate 'Research Only'.")
 
     now = datetime.now(timezone.utc)
     day = datetime.strptime(args.date, "%Y-%m-%d").date() if args.date else now.astimezone(ET).date()
@@ -139,7 +140,7 @@ if __name__ == "__main__":
         main()
     except urllib.error.HTTPError as e:
         if e.code == 401:
-            sys.exit("The Odds API rejected ODDS_API_KEY (401). Odds are unverified: mark candidates 'Research Only'.")
+            sys.exit("The Odds API rejected the API key (401) — missing or invalid. Odds are unverified: mark candidates 'Research Only'.")
         if e.code == 429:
             sys.exit("The Odds API quota/rate limit reached (429). Odds are unverified: mark candidates 'Research Only'.")
         raise
