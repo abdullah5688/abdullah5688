@@ -4,13 +4,9 @@ This is the procedure the scheduled agent follows. The analysis rules are in
 `ENGINE_PROMPT.md` and still apply in full. How the model works is in
 `README_MODEL.md`. This file says **what to run, in what order, and how to deliver it**.
 
-There are three kinds of run, and the scheduled task tells you which one this is:
-
-| Run | When (ET) | Purpose |
-|---|---|---|
-| **FULL** | Sun 8:47 AM · Thu & Mon 6:50 PM · Sat 12:10 PM (Dec–Jan) | Research, model, picks, report |
-| **REFRESH** | Sun 12:05, 3:05, 7:05 PM | Inactives and news check, closing prices, update picks if something changed |
-| **GRADE** | Tue 1:23 PM | Settle last week's picks, update the ledger, refresh the calibration |
+There is **one scheduled run: Sunday at 8:47 AM ET**. It covers that day's games.
+Thursday, Saturday and Monday games aren't covered. There are no pre-kickoff refresh
+runs, so the user rechecks inactives themselves, and the report must remind them when.
 
 Setup for every run: `cd nfl-agent`. Every script uses only Python plus numpy and pandas.
 nflverse data downloads into `cache/`, which is gitignored.
@@ -24,6 +20,23 @@ nflverse data downloads into `cache/`, which is gitignored.
 ---
 
 ## FULL run
+
+### 0a. Grade last week first (always, even if there are no games today)
+1. `python3 ledger.py grade`. This settles every finished pick and parlay and rewrites
+   `ledger/summary.md`.
+2. Refresh the calibration with the latest completed weeks:
+
+   ```
+   python3 backtest.py --raw --season <current> --weeks 4-<last completed week> \
+     --season2 <previous> --weeks2 4-18 --out cache/bt_raw.json
+   python3 fit_calibration.py cache/bt_raw.csv
+   ```
+
+   This takes about 3 minutes. Keep the new `engine/calibration.json` only if every
+   market's `brier_fit_cal` is at or below its `brier_fit_raw`. Otherwise run
+   `git checkout engine/calibration.json`.
+3. Put last week's record, units, ROI and season totals from `ledger/summary.md` at the top
+   of section A of today's report, and include them in the final message.
 
 ### 0. Is there anything to do?
 1. Check the time: `TZ=America/New_York date`.
@@ -98,10 +111,10 @@ then re-run step 3 on the new odds file. Report any line or price that moved, an
 links only from this final pull.
 
 ### 6. Ledger
-```
-python3 ledger.py add reports/YYYY-MM-DD-picks.json
-python3 ledger.py snapshot --date YYYY-MM-DD
-```
+`python3 ledger.py add reports/YYYY-MM-DD-picks.json`
+
+There are no pre-kickoff refresh runs, so closing prices aren't captured and the CLV
+columns stay empty. Results are still graded next Sunday.
 
 ### 7. Write the report: `reports/YYYY-MM-DD-nfl-props.md`, sections A–H from ENGINE_PROMPT.md
 - **B (Top 10).** Paste the model table from `model-tables.md`. Its columns are a superset of
@@ -161,49 +174,6 @@ Commit to branch `claude/optimistic-shannon-1lv1ia` and push:
 - `ledger/*`.
 
 The raw `odds-*` files stay gitignored.
-
----
-
-## REFRESH run (Sunday 12:05 / 3:05 / 7:05 PM)
-1. Load today's `reports/YYYY-MM-DD-picks.json` from the repo. If it doesn't exist (no full
-   run today), finish with "No picks to refresh."
-2. Inactives and news: for every game that **hasn't kicked off** and has a pick or parlay leg,
-   check the ESPN injury list (`summary?event=`), the NFL inactives news on WebSearch, and the
-   QB status.
-3. `python3 ledger.py snapshot --date YYYY-MM-DD`. This records the closing prices.
-4. **If anything changed** for a pick (a player inactive or limited, a QB change, the line
-   moved past the model's fair price):
-   1. Update `context.json`.
-   2. Re-pull only those games:
-      `fetch_odds.py --events ... --markets ...`.
-   3. Re-run `run_model.py` on that odds file with `--out reports/refresh-HHMM/`.
-   4. Append a `## Refresh HH:MM ET` section to the summary file, listing dropped picks,
-      replacements and new prices. A replacement must come from the new model output.
-   5. `ledger.py add` the new picks.json.
-
-   Then commit and push, and send a final message listing the changes.
-5. If nothing changed, commit the snapshot data. Final message: "Refresh HH:MM — no changes."
-
-## GRADE run (Tuesday 1:23 PM)
-1. `python3 ledger.py grade`. This settles all finished picks and rewrites
-   `ledger/summary.md`. Picks not yet available stay open and are retried next week.
-2. Refresh the calibration with the latest completed weeks:
-
-   ```
-   python3 backtest.py --raw --season <current> --weeks 4-<last completed week> \
-     --season2 <previous> --weeks2 4-18 --out cache/bt_raw.json
-   python3 fit_calibration.py cache/bt_raw.csv
-   ```
-
-   This takes about 3 minutes. Commit `engine/calibration.json` only if every market's
-   `brier_fit_cal` is at or below its `brier_fit_raw`.
-3. Commit and push `ledger/*` and the calibration.
-4. Final message:
-   - last week's record, units and ROI;
-   - average CLV;
-   - season totals;
-   - the model-vs-market Brier line from `summary.md`;
-   - one sentence on what the numbers say, cautious about small samples.
 
 ---
 

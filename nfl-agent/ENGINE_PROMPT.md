@@ -432,8 +432,8 @@ Everything above still applies. Version 2.1 adds a calibrated projection model
 * Parlay B's probability comes from the joint simulation (correlation-aware). Each parlay
   gets a fair price and a minimum acceptable FanDuel price. A combined price is never
   called a FanDuel quote.
-* Every pick is logged and graded in `ledger/`, with closing line value. The model is
-  judged on CLV and calibration first and profit last. Its weight vs the market changes
+* Every pick is logged in `ledger/`, and graded at the start of the next Sunday run. The
+  model is judged on calibration and the model-vs-market comparison first, and profit last. Its weight vs the market changes
   only on ledger evidence.
 * Analyst judgement enters only through `context.json` (QB, out, questionable, exclude),
   with written reasons. Never hand-edit numbers.

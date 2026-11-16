@@ -12,9 +12,9 @@ been calibrated against past results, compared with FanDuel's own prices. The an
 | 1 | `fetch_odds.py` | FanDuel, DraftKings and BetMGM prices from The Odds API for all six prop types, including every alt-ladder rung, with betslip links |
 | 2 | analyst | News pass. Writes `reports/DATE-context.json` with confirmed QB starters, players ruled out and exclusions |
 | 3 | `run_model.py` | Simulates every game, prices every FanDuel line and rung on both sides, and outputs the top 10, Parlay A, Parlay B and the long shots |
-| 4 | `ledger.py add` / `snapshot` | Logs the picks and records FanDuel prices before kickoff (closing line value) |
-| 5 | `ledger.py grade` | Settles picks from nflverse or ESPN box scores and updates `ledger/summary.md` |
-| — | `backtest.py` + `fit_calibration.py` | Walk-forward calibration test, refit weekly |
+| 4 | `ledger.py add` | Logs the picks. (`ledger.py snapshot` can record pre-kickoff prices for closing line value, but no scheduled run uses it.) |
+| 5 | `ledger.py grade` | Run at the start of each Sunday run. Settles last week's picks from nflverse or ESPN box scores and updates `ledger/summary.md` |
+| — | `backtest.py` + `fit_calibration.py` | Walk-forward calibration test, refit at the start of each Sunday run |
 
 Data comes from nflverse (weekly player and team stats, snap counts, the schedule with
 spreads, totals and starting QBs, updated nightly) and ESPN (injury lists, scoreboard,
@@ -109,7 +109,8 @@ grading run. The full reliability tables are in `engine/calibration.json`.
 **What this does and doesn't show.** The model's probabilities are honest to within a
 few points. It has **not** yet been shown to beat FanDuel's prices, because there are no
 historical prop lines to test against. The ledger measures that from now on, using
-closing line value and a model-vs-market Brier comparison.
+results and a model-vs-market Brier comparison. Closing line value isn't captured,
+because there are no pre-kickoff refresh runs.
 
 ## Known limitations (be honest about these in the report)
 
