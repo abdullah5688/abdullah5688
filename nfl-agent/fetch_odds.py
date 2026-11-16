@@ -85,6 +85,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default=".")
     ap.add_argument("--date", help="ET date to pull (default: today in ET)")
+    ap.add_argument("--events", help="comma-separated Odds API event ids (targeted re-pull)")
+    ap.add_argument("--markets", help="comma-separated market keys (default: all twelve)")
     args = ap.parse_args()
 
     now = datetime.now(timezone.utc)
@@ -96,12 +98,16 @@ def main():
     events = get(f"/sports/{SPORT}/events",
                  commenceTimeFrom=frm.strftime("%Y-%m-%dT%H:%M:%SZ"),
                  commenceTimeTo=end.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"))
+    if args.events:
+        keep = set(args.events.split(","))
+        events = [e for e in events if e["id"] in keep]
+    markets = args.markets.split(",") if args.markets else MARKETS
     print(f"{len(events)} upcoming NFL events on {day} (ET) not yet started")
 
     os.makedirs(args.out, exist_ok=True)
     rows, raw = [], []
     for ev in events:
-        data, rejected = event_odds(ev["id"], MARKETS)
+        data, rejected = event_odds(ev["id"], markets)
         data["rejected_markets"] = rejected
         raw.append(data)
         kick = datetime.fromisoformat(ev["commence_time"].replace("Z", "+00:00")).astimezone(ET)

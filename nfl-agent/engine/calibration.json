@@ -1,0 +1,381 @@
+{
+ "fitted": "2026-11-16",
+ "source": "backtest.py --raw, 2025 wk4-18 + 2026 wk4-10 (walk-forward)",
+ "holdout_season": null,
+ "markets": {
+  "pass_attempts": {
+   "scale": 0.96,
+   "spread": 1.15,
+   "nonneg": true
+  },
+  "pass_yds": {
+   "scale": 0.98,
+   "spread": 1.0,
+   "nonneg": true
+  },
+  "reception_yds": {
+   "scale": 0.92,
+   "spread": 1.0,
+   "nonneg": true
+  },
+  "receptions": {
+   "scale": 0.88,
+   "spread": 1.05,
+   "nonneg": true
+  },
+  "rush_attempts": {
+   "scale": 0.92,
+   "spread": 1.1,
+   "nonneg": true
+  },
+  "rush_yds": {
+   "scale": 0.9,
+   "spread": 1.1,
+   "nonneg": true
+  }
+ },
+ "report": {
+  "pass_attempts": {
+   "n_fit": 609,
+   "brier_fit_raw": 0.2135,
+   "brier_fit_cal": 0.2098
+  },
+  "pass_yds": {
+   "n_fit": 609,
+   "brier_fit_raw": 0.2032,
+   "brier_fit_cal": 0.2025
+  },
+  "reception_yds": {
+   "n_fit": 2439,
+   "brier_fit_raw": 0.1988,
+   "brier_fit_cal": 0.1977
+  },
+  "receptions": {
+   "n_fit": 2728,
+   "brier_fit_raw": 0.194,
+   "brier_fit_cal": 0.1912
+  },
+  "rush_attempts": {
+   "n_fit": 1309,
+   "brier_fit_raw": 0.208,
+   "brier_fit_cal": 0.206
+  },
+  "rush_yds": {
+   "n_fit": 1238,
+   "brier_fit_raw": 0.2094,
+   "brier_fit_cal": 0.2068
+  }
+ },
+ "holdout_test": {
+  "note": "Same method fitted on 2025 only and scored on unseen 2026 games",
+  "report": {
+   "pass_attempts": {
+    "n_fit": 438,
+    "brier_fit_raw": 0.2139,
+    "brier_fit_cal": 0.2093,
+    "n_holdout": 171,
+    "brier_holdout_raw": 0.2125,
+    "brier_holdout_cal": 0.2111,
+    "reliability_holdout_cal": {
+     "0.1-0.2": [
+      0.177,
+      0.175,
+      171
+     ],
+     "0.2-0.3": [
+      0.277,
+      0.295,
+      166
+     ],
+     "0.3-0.4": [
+      0.38,
+      0.395,
+      43
+     ],
+     "0.4-0.5": [
+      0.422,
+      0.448,
+      134
+     ],
+     "0.5-0.6": [
+      0.547,
+      0.588,
+      170
+     ],
+     "0.6-0.7": [
+      0.676,
+      0.719,
+      139
+     ],
+     "0.7-0.8": [
+      0.709,
+      0.625,
+      32
+     ]
+    }
+   },
+   "pass_yds": {
+    "n_fit": 438,
+    "brier_fit_raw": 0.2024,
+    "brier_fit_cal": 0.2014,
+    "n_holdout": 171,
+    "brier_holdout_raw": 0.2052,
+    "brier_holdout_cal": 0.2063,
+    "reliability_holdout_cal": {
+     "0.1-0.2": [
+      0.162,
+      0.181,
+      171
+     ],
+     "0.2-0.3": [
+      0.297,
+      0.31,
+      71
+     ],
+     "0.3-0.4": [
+      0.304,
+      0.37,
+      100
+     ],
+     "0.4-0.5": [
+      0.449,
+      0.509,
+      171
+     ],
+     "0.5-0.6": [
+      0.598,
+      0.704,
+      27
+     ],
+     "0.6-0.7": [
+      0.606,
+      0.625,
+      144
+     ],
+     "0.7-0.8": [
+      0.768,
+      0.784,
+      171
+     ]
+    }
+   },
+   "reception_yds": {
+    "n_fit": 1727,
+    "brier_fit_raw": 0.1977,
+    "brier_fit_cal": 0.1963,
+    "n_holdout": 712,
+    "brier_holdout_raw": 0.2014,
+    "brier_holdout_cal": 0.2014,
+    "reliability_holdout_cal": {
+     "0.1-0.2": [
+      0.157,
+      0.185,
+      712
+     ],
+     "0.2-0.3": [
+      0.291,
+      0.296,
+      358
+     ],
+     "0.3-0.4": [
+      0.308,
+      0.359,
+      354
+     ],
+     "0.4-0.5": [
+      0.452,
+      0.486,
+      712
+     ],
+     "0.5-0.6": [
+      0.593,
+      0.628,
+      113
+     ],
+     "0.6-0.7": [
+      0.618,
+      0.646,
+      599
+     ],
+     "0.7-0.8": [
+      0.779,
+      0.81,
+      688
+     ],
+     "0.8-0.9": [
+      0.802,
+      0.75,
+      24
+     ]
+    }
+   },
+   "receptions": {
+    "n_fit": 1950,
+    "brier_fit_raw": 0.1949,
+    "brier_fit_cal": 0.1915,
+    "n_holdout": 778,
+    "brier_holdout_raw": 0.1917,
+    "brier_holdout_cal": 0.1904,
+    "reliability_holdout_cal": {
+     "0.0-0.1": [
+      0.088,
+      0.097,
+      310
+     ],
+     "0.1-0.2": [
+      0.15,
+      0.162,
+      761
+     ],
+     "0.2-0.3": [
+      0.247,
+      0.263,
+      525
+     ],
+     "0.3-0.4": [
+      0.342,
+      0.335,
+      547
+     ],
+     "0.4-0.5": [
+      0.453,
+      0.508,
+      413
+     ],
+     "0.5-0.6": [
+      0.549,
+      0.573,
+      543
+     ],
+     "0.6-0.7": [
+      0.643,
+      0.702,
+      449
+     ],
+     "0.7-0.8": [
+      0.752,
+      0.778,
+      342
+     ]
+    }
+   },
+   "rush_attempts": {
+    "n_fit": 950,
+    "brier_fit_raw": 0.209,
+    "brier_fit_cal": 0.2079,
+    "n_holdout": 359,
+    "brier_holdout_raw": 0.2054,
+    "brier_holdout_cal": 0.2011,
+    "reliability_holdout_cal": {
+     "0.1-0.2": [
+      0.145,
+      0.134,
+      351
+     ],
+     "0.2-0.3": [
+      0.255,
+      0.252,
+      301
+     ],
+     "0.3-0.4": [
+      0.354,
+      0.372,
+      266
+     ],
+     "0.4-0.5": [
+      0.443,
+      0.433,
+      208
+     ],
+     "0.5-0.6": [
+      0.539,
+      0.522,
+      268
+     ],
+     "0.6-0.7": [
+      0.66,
+      0.654,
+      260
+     ],
+     "0.7-0.8": [
+      0.726,
+      0.735,
+      132
+     ]
+    }
+   },
+   "rush_yds": {
+    "n_fit": 905,
+    "brier_fit_raw": 0.2082,
+    "brier_fit_cal": 0.2069,
+    "n_holdout": 333,
+    "brier_holdout_raw": 0.2124,
+    "brier_holdout_cal": 0.2077,
+    "reliability_holdout_cal": {
+     "0.1-0.2": [
+      0.177,
+      0.15,
+      333
+     ],
+     "0.3-0.4": [
+      0.319,
+      0.279,
+      323
+     ],
+     "0.4-0.5": [
+      0.463,
+      0.393,
+      333
+     ],
+     "0.5-0.6": [
+      0.594,
+      0.517,
+      58
+     ],
+     "0.6-0.7": [
+      0.617,
+      0.567,
+      275
+     ],
+     "0.7-0.8": [
+      0.769,
+      0.703,
+      333
+     ]
+    }
+   }
+  },
+  "params_2025_only": {
+   "pass_attempts": {
+    "scale": 0.96,
+    "spread": 1.2,
+    "nonneg": true
+   },
+   "pass_yds": {
+    "scale": 0.96,
+    "spread": 1.0,
+    "nonneg": true
+   },
+   "reception_yds": {
+    "scale": 0.9,
+    "spread": 1.0,
+    "nonneg": true
+   },
+   "receptions": {
+    "scale": 0.88,
+    "spread": 1.05,
+    "nonneg": true
+   },
+   "rush_attempts": {
+    "scale": 0.92,
+    "spread": 1.1,
+    "nonneg": true
+   },
+   "rush_yds": {
+    "scale": 0.94,
+    "spread": 1.05,
+    "nonneg": true
+   }
+  }
+ }
+}

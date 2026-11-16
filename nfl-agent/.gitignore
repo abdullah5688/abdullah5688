@@ -1,2 +1,4 @@
-reports/*.csv
-reports/*.json
+reports/odds-*.csv
+reports/odds-*.json
+cache/
+__pycache__/

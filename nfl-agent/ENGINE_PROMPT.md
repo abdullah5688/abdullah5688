@@ -406,3 +406,34 @@ DEFAULT EXECUTION COMMAND
 When I say "Run today's NFL builder", immediately perform the complete research workflow with these saved defaults. Do not ask me to restate my settings.
 
 If the available evidence does not support an actionable recommendation, provide the best-supported research watchlist and explain what is missing.
+
+---
+
+14. VERSION 2.1 ADDENDUM (model-driven workflow)
+
+Everything above still applies. Version 2.1 adds a calibrated projection model
+(README_MODEL.md) and a results ledger, and changes how picks are made:
+
+* Probabilities come from `run_model.py`. It runs a Monte Carlo projection calibrated on
+  walk-forward backtests, blended 50/50 with FanDuel's no-vig price. These are the only
+  probabilities and edges that may be reported. Historical hit counts are still shown, as
+  context only.
+* Every FanDuel line and every alt-ladder rung is priced on both sides. The report must
+  show the best over vs the best under for each top-10 player.
+* Role-change gate: when a team's QB has changed, usage comes only from games with the
+  current QB. A QB with no meaningful NFL sample blocks every pass-game prop for that team.
+  When key teammates are out, their usage is redistributed and the pick is flagged.
+* Game script: the spread and total drive the projected pass/run volume. Rushing overs on
+  underdogs and passing overs on big favourites are penalised automatically.
+* Thin cushions are handled by probability, not by hit counts: each rung's probability
+  is computed directly.
+* Picks need a blended probability of at least 45% (balanced style). Positive-EV long
+  shots are listed separately and never used as parlay legs.
+* Parlay B's probability comes from the joint simulation (correlation-aware). Each parlay
+  gets a fair price and a minimum acceptable FanDuel price. A combined price is never
+  called a FanDuel quote.
+* Every pick is logged and graded in `ledger/`, with closing line value. The model is
+  judged on CLV and calibration first and profit last. Its weight vs the market changes
+  only on ledger evidence.
+* Analyst judgement enters only through `context.json` (QB, out, questionable, exclude),
+  with written reasons. Never hand-edit numbers.
