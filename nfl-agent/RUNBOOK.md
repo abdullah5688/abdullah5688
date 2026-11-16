@@ -78,3 +78,38 @@ defaults. Produce sections A–H in that order.
 * End the session with a short summary as the final message: the number of games, the
   top 3 props with FanDuel odds, the Parlay A and B legs, and whether the odds were verified.
   That summary is what the push notification shows.
+
+## 5. Quick-read summary file (required every run)
+
+Besides the full report, write `reports/YYYY-MM-DD-nfl-props-summary.md`.
+Keep it short and easy to copy. Use exactly this layout:
+
+1. `# NFL Props — <Day Mon D, YYYY>`, then a single line saying whether FanDuel odds were
+   verified (and the final pull time), the inactive-list recheck times (~90 min before each kickoff),
+   and "Research only, not a guarantee."
+2. `## Copy list (Top N)`: a fenced code block with one line per pick:
+   `N. Player Over/Under LINE Market (FanDuel odds)`, or `N. Player 60+ Rush Yds (odds)` for alt
+   ladders. Mark unverified picks `(Research Only)`.
+3. `## Parlays`: Parlay A and Parlay B, each in its own fenced code block, with one leg per line.
+   Put the multiplied price beside Parlay A and label it "not a FanDuel quote".
+   For Parlay B, say to get the real price from FanDuel's SGP builder.
+   Under each code block: `👉 **[Open Parlay X in FanDuel](URL)**` (see FanDuel links below).
+4. `## Pick details`: for each pick, a `### N. Player — Selection (odds)` heading, then
+   `[➕ Add to FanDuel betslip](<betslip_link>)`, then an italic `matchup · kickoff ET` line, then a
+   one-row table `| Season | Last 5 | Median | Last 5 games |` (computed in Python from the ESPN logs;
+   the last column lists the actual values), then exactly two bullets:
+   `- ✅ **Why:** <one sentence with the key data>` and `- ⚠️ **Risk:** <one sentence>`.
+5. `## Avoided`: at most 5 one-line bullets covering the notable props that were skipped and why.
+6. Last line: `Full research: \`YYYY-MM-DD-nfl-props.md\``.
+
+No other prose. Every number must match the full report. If the run has no pregame games,
+skip this file.
+
+**FanDuel links.** The odds CSV has a `betslip_link` column (FanDuel `addToBetslip`
+URLs). Use only links from the **final** odds pull, and never make up an ID. A parlay link
+joins its legs' IDs:
+`https://sportsbook.fanduel.com/addToBetslip?marketId[0]=..&selectionId[0]=..&marketId[1]=..&selectionId[1]=..`
+(one index per leg, with the values taken from each leg's own link). Put this line above the parlays:
+"_The links open FanDuel with the legs already in your betslip. Check every leg and the price before
+placing the bet. If a link only adds one leg, use the single-bet links under Pick details._"
+If a leg has no link, leave that parlay's link out and say why.

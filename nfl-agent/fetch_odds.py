@@ -53,7 +53,8 @@ def get(path, **params):
 def event_odds(event_id, markets):
     """Fetch markets for one event; if the API rejects the combined request
     (e.g. one market key is unsupported), retry market by market."""
-    common = dict(bookmakers=BOOKS, oddsFormat="american", dateFormat="iso")
+    common = dict(bookmakers=BOOKS, oddsFormat="american", dateFormat="iso",
+                  includeLinks="true", includeSids="true")  # betslip deep links + book IDs
     try:
         return get(f"/sports/{SPORT}/events/{event_id}/odds", markets=",".join(markets), **common), []
     except urllib.error.HTTPError as e:
@@ -118,6 +119,7 @@ def main():
                         "side": o.get("name"),
                         "line": o.get("point"),
                         "american_odds": o.get("price"),
+                        "betslip_link": o.get("link"),
                     })
         print(f"  {ev['away_team']} @ {ev['home_team']} {kick:%a %H:%M} ET: "
               f"{sum(len(b.get('markets', [])) for b in data.get('bookmakers', []))} book-markets"
