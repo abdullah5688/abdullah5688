@@ -33,6 +33,21 @@ American odds and the book's own `last_update` time.
 * The Odds API does not price parlays/SGPs, so combined quotes are always
   **Provisional / unverified**: state that.
 
+### FanDuel "X+" alternate ladders (Alt Rushing / Alt Receiving / Alt Passing, etc.)
+
+The `*_alternate` markets are FanDuel's "X+" ladders as the app shows them.
+The API returns each rung as an `Over` at `X - 0.5` (Over 59.5 = "60+").
+For every candidate player:
+
+* Evaluate **every rung** of the ladder, not just the main O/U line, and
+  compute the season / last-5 / last-10 hit counts at each rung.
+* Write selections the way FanDuel shows them ("Derrick Henry 60+ rush yds, -300").
+* The -350 price cap still applies. Rungs priced shorter than -350 (e.g. 40+ at
+  -1100) are ineligible, but you can mention them as context.
+* For each player, pick the rung with the best balance of hit rate and price, and show
+  the rungs on either side of it in the alternate-line comparison.
+* Ladders are overs only. Unders come only from the main O/U markets.
+
 ## 2. Stats, injuries, weather (sources reachable from this environment)
 
 | Need | Source |
