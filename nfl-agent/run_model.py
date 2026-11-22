@@ -16,7 +16,8 @@ context.json (written by the agent from news before running; every key is option
   {"qb": {"ARI": "Carson Beck"},             # confirmed starters (nflverse abbreviations)
    "out": {"LA": ["Puka Nacua"]},            # extra players ruled out (ESPN list is automatic)
    "questionable": {"SF": ["Trent Williams"]},
-   "exclude": {"Brock Bowers": "reason"},    # never pick this player today
+   "exclude": {"Brock Bowers": "reason",     # never pick this player today
+               "Justin Jefferson|receptions": "reason"},  # or just one of his markets
    "notes": {"Jaylen Warren": "text shown in the output"}}
 """
 import argparse
@@ -217,7 +218,8 @@ def main():
             flags += [f for f in pr["flags"] if f not in flags]
             if r.nname in quest.get(team, set()):
                 flags.append("questionable")
-            if r.player in ctx.get("exclude", {}):
+            # exclude a whole player ("Name") or one market ("Name|receptions")
+            if r.player in ctx.get("exclude", {}) or f"{r.player}|{r.mkt}" in ctx.get("exclude", {}):
                 flags.append("excluded")
             if r.american_odds < PRICE_CAP:
                 flags.append("price_cap")

@@ -1,0 +1,36 @@
+{
+ "qb": {
+  "MIN": "Kirk Cousins",
+  "SF": "Brock Purdy",
+  "CIN": "Joe Burrow",
+  "WAS": "Jayden Daniels"
+ },
+ "out": {
+  "MIN": [
+   "Kyler Murray",
+   "Jordan Addison"
+  ],
+  "CIN": [
+   "Dalton Risner",
+   "Oren Burks"
+  ]
+ },
+ "questionable": {
+  "SF": [
+   "Mike Evans",
+   "Mac Jones"
+  ],
+  "WAS": [
+   "Jacory Croskey-Merritt"
+  ]
+ },
+ "exclude": {
+  "Justin Jefferson|receptions": "role/QB change: Kirk Cousins has one MIN start (Wk10: Jefferson 13 tgt, 9 rec with Addison and Hockenson out). The model's catch rate comes from the previous QB's games, so it can't price receptions with Cousins yet; FanDuel prices Over 6.5 at -172.",
+  "T.J. Hockenson|receptions": "role/QB change: Hockenson missed Cousins's only MIN start, so there is no data with this QB, and Addison (WR2) is out tonight, which frees targets.",
+  "Brock Purdy|pass_yds": "model limitation: projects ~6.8 yds/att vs Purdy's 9.0 this season with the same starter; receiver-level shrinkage pulls an elite-efficiency QB down. Median 197 vs his season median 264."
+ },
+ "notes": {
+  "_game_MIN_SF": "Played in Mexico City (Estadio Banorte, altitude); model has no venue/altitude adjustment.",
+  "_weather_WAS": "Mon 8:15 PM Landover: ~52F, 9 mph wind, 8% rain - no weather exclusion."
+ }
+}

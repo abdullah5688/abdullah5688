@@ -40,9 +40,10 @@ def kick(k):
     return t.strftime("%-I:%M %p").replace(":00 ", " ")
 
 
-def recheck(k):
+def recheck(k, first=None):
     t = datetime.strptime(k, "%Y-%m-%d %H:%M") - pd.Timedelta(minutes=90)
-    return t.strftime("%-I:%M %p")
+    day = "" if first is None or k[:10] == first[:10] else t.strftime("%a ")
+    return day + t.strftime("%-I:%M %p")
 
 
 def record(date):
@@ -85,8 +86,13 @@ def parlay_card(key, title, tag, p, warn=None):
         return f'<section class="parlay" id="{key}"><h3>{title}</h3><p class="muted">No qualifying combination today.</p></section>'
     extra = key.startswith("parlay-c")
     value = p["ev_if_priced_as_product"]
-    verdict = ("good", "Model sees value at FanDuel's typical price") if value > 0 else \
-        ("bad", "Model sees negative value at FanDuel's typical price")
+    if value > 0 and p["product_of_leg_prices"] >= p["min_acceptable_odds"]:
+        verdict = ("good", "Model sees value at FanDuel's typical price")
+    elif value > 0:
+        verdict = ("bad", f"Thin value: FanDuel's typical {am(p['product_of_leg_prices'])} is below the "
+                          f"{am(p['min_acceptable_odds'])} safety price. Pass unless FanDuel pays that.")
+    else:
+        verdict = ("bad", "Model sees negative value at FanDuel's typical price")
     corr = f'<div class="kv"><span>Correlation</span><b class="num">{p["correlation_factor"]}</b></div>' \
         if p.get("correlation_factor") else ""
     w = f'<p class="note warn">{warn}</p>' if warn else ""
@@ -117,7 +123,7 @@ def main():
     top, games = b["top"], b["games"]
     day = datetime.strptime(D, "%Y-%m-%d")
     pulled = datetime.fromisoformat(b["generated_at"]).strftime("%-I:%M %p")
-    odds_t = os.path.basename(b["odds_file"]).replace("odds-", "").replace(".csv", "")
+    odds_t = os.path.basename(b["odds_file"]).replace("odds-", "")[:13]  # YYYYMMDD-HHMM
     odds_time = datetime.strptime(odds_t, "%Y%m%d-%H%M").strftime("%-I:%M %p ET")
     rec = record(D)
     kicks = sorted({g["kickoff"] for g in games.values()})
@@ -244,7 +250,7 @@ ul.plain {{ margin:0; padding-left:18px; display:flex; flex-direction:column; ga
 <h1>{day.strftime('%A, %B %-d')}</h1>
 <div class="status"><span class="chip ok">FanDuel odds verified · {odds_time}</span><span class="chip">{len(games)} games</span>
 <span class="chip">Research only, not a guarantee</span></div>
-<div class="stats">{rec_html}<div class="stat wide"><span>Recheck inactives</span><b class="num">{recheck(kicks[0])}</b><small>{' · '.join(recheck(k) for k in kicks[1:]) and 'then ' + ' · '.join(recheck(k) for k in kicks[1:])} · 90 min before each kickoff</small></div></div>
+<div class="stats">{rec_html}<div class="stat wide"><span>Recheck inactives</span><b class="num">{recheck(kicks[0])}</b><small>{' · '.join(recheck(k, kicks[0]) for k in kicks[1:]) and 'then ' + ' · '.join(recheck(k, kicks[0]) for k in kicks[1:])} · 90 min before each kickoff</small></div></div>
 </header>
 
 <section id="copy"><div class="row"><h2>Top {len(top)}</h2><button class="btn ghost small" id="copy-btn" type="button">Copy list</button></div>
