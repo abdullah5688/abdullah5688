@@ -1,11 +1,11 @@
 {
- "fitted": "2026-11-16",
- "source": "backtest.py --raw, 2025 wk4-18 + 2026 wk4-10 (walk-forward)",
+ "fitted": "2026-11-22",
+ "source": "backtest.py --raw (model v2.2, role_reset=2), 2025 wk4-18 + 2026 wk4-10 (walk-forward)",
  "holdout_season": null,
  "markets": {
   "pass_attempts": {
    "scale": 0.96,
-   "spread": 1.15,
+   "spread": 1.25,
    "nonneg": true
   },
   "pass_yds": {
@@ -20,7 +20,7 @@
   },
   "receptions": {
    "scale": 0.88,
-   "spread": 1.05,
+   "spread": 1.1,
    "nonneg": true
   },
   "rush_attempts": {
@@ -36,34 +36,34 @@
  },
  "report": {
   "pass_attempts": {
-   "n_fit": 609,
-   "brier_fit_raw": 0.2135,
-   "brier_fit_cal": 0.2098
+   "n_fit": 630,
+   "brier_fit_raw": 0.2146,
+   "brier_fit_cal": 0.2106
   },
   "pass_yds": {
-   "n_fit": 609,
-   "brier_fit_raw": 0.2032,
-   "brier_fit_cal": 0.2025
+   "n_fit": 630,
+   "brier_fit_raw": 0.204,
+   "brier_fit_cal": 0.2034
   },
   "reception_yds": {
-   "n_fit": 2439,
-   "brier_fit_raw": 0.1988,
-   "brier_fit_cal": 0.1977
+   "n_fit": 2546,
+   "brier_fit_raw": 0.1993,
+   "brier_fit_cal": 0.1982
   },
   "receptions": {
-   "n_fit": 2728,
-   "brier_fit_raw": 0.194,
-   "brier_fit_cal": 0.1912
+   "n_fit": 2846,
+   "brier_fit_raw": 0.1941,
+   "brier_fit_cal": 0.1911
   },
   "rush_attempts": {
-   "n_fit": 1309,
-   "brier_fit_raw": 0.208,
-   "brier_fit_cal": 0.206
+   "n_fit": 1358,
+   "brier_fit_raw": 0.2072,
+   "brier_fit_cal": 0.2052
   },
   "rush_yds": {
-   "n_fit": 1238,
-   "brier_fit_raw": 0.2094,
-   "brier_fit_cal": 0.2068
+   "n_fit": 1293,
+   "brier_fit_raw": 0.2082,
+   "brier_fit_cal": 0.2055
   }
  },
  "holdout_test": {

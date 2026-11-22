@@ -44,6 +44,11 @@ DEFAULTS = dict(
     k_vol=4.0,           # shrinkage of team volume factors (games)
     qb_gate_min=3,       # starts needed to estimate shares from that QB's games only
     prev_weight=0.5,     # weight of a prior-season opportunity vs a current one
+    k_qb=150.0,          # pseudo-attempts of league-average YPA added to a QB's history
+    qb_anchor=0.0,       # 0 = QB yards are the plain sum of receivers; 1 = receivers' yards/target
+                         # rescaled so the team's yards/attempt matches the expected QB's own YPA
+    role_reset=2.0,      # 1 = players whose snap share moved >=15 pts use a short half-life; 2 = carries only
+    hl_fast=1.5,         # half-life (games) used for those players
 )
 POS_GROUP = {"WR": "WR", "TE": "TE", "RB": "RB", "FB": "RB", "QB": "QB"}
 
@@ -212,7 +217,8 @@ class Model:
         x = P[(P.nname == qb_norm) & (P.position == "QB")]
         att, yds = float(x.attempts.sum()), float(x.passing_yards.sum())
         prior = self.lg_ypa if att >= 50 else self.lg_ypa - 0.6  # debut QBs start below average
-        ypa = (yds + 150 * prior) / (att + 150)
+        k = self.p["k_qb"]
+        ypa = (yds + k * prior) / (att + k)
         return dict(att=att, ypa=ypa, debut=att < 50)
 
     def player_pool(self, team, expected_qb, out_set, must_include=()):
@@ -262,12 +268,24 @@ class Model:
             if not use_w:
                 continue
             w = self._weights(len(use_w))
+            w_c = None
+            if p["role_reset"]:
+                sn0 = [played.get(nm, {}).get(wk) for wk in wk_played]
+                sn0 = [v for v in sn0 if v == v and v is not None]
+                if len(sn0) >= 4 and abs(np.mean(sn0[-2:]) - np.mean(sn0[:-2])) >= 0.15:
+                    age = np.arange(len(use_w))[::-1]
+                    wf = 0.5 ** (age / p["hl_fast"])
+                    if p["role_reset"] >= 2:   # carries only
+                        w_c = wf
+                    else:
+                        w = wf
             pt = np.array([x.targets.get(wk, 0) if wk in x.index else 0 for wk in use_w], float)
             pc = np.array([x.carries.get(wk, 0) if wk in x.index else 0 for wk in use_w], float)
             T = tt.loc[use_w, "targets"].values.astype(float)
             C = tt.loc[use_w, "carries"].values.astype(float)
             ts = float(np.sum(w * pt) / max(1e-9, np.sum(w * T)))
-            cs = float(np.sum(w * pc) / max(1e-9, np.sum(w * C)))
+            wc = w if w_c is None else w_c
+            cs = float(np.sum(wc * pc) / max(1e-9, np.sum(wc * C)))
             # light shrink toward the player's prior-season share (same team) for small samples
             if len(prev) and len(use_w) < 4:
                 pv = prev[(prev.nname == nm) & (prev.team == team)]
@@ -374,6 +392,16 @@ class Model:
             cars = rng.multinomial(car, cshares)
             team_rec_yds = np.zeros(N)
             dr = self.def_rush.get(opp, 1.0)
+            eff_f = pp["qb_factor"]
+            if p["qb_anchor"]:
+                tsn = ts  # normalised shares incl. 'other'
+                ypts = np.array([r["ypt"] for r in pool] + [self.pos_mean["WR"]["ypt"]])
+                team_ypt = float(np.sum(tsn * ypts))
+                qbp = self.qb_profile(pp["qb"]) if pp["qb"] else dict(ypa=self.lg_ypa - 0.6)
+                target = qbp["ypa"] / self.tgt_ratio
+                f = float(np.clip(target / max(team_ypt, 1e-6), 0.75, 1.3))
+                eff_f = 1.0 + p["qb_anchor"] * (f - 1.0)
+            info[team]["eff_factor"] = eff_f
             for j, r in enumerate(pool + [None]):
                 if r is None:
                     pm = self.pos_mean["WR"]
@@ -381,7 +409,7 @@ class Model:
                 else:
                     ypt, cr, ypc, grp = r["ypt"], r["cr"], r["ypc"], r["grp"]
                 dgrp = grp if grp in ("WR", "TE", "RB") else "WR"
-                ypt_adj = ypt * self.def_rec.get((opp, dgrp), 1.0) * pp["qb_factor"]
+                ypt_adj = ypt * self.def_rec.get((opp, dgrp), 1.0) * eff_f
                 ypr = ypt_adj / max(cr, 0.2)
                 noise = np.exp(rng.normal(0, p["eff_noise"], N))
                 t = tgts[:, j]

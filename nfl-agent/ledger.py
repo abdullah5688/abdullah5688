@@ -74,7 +74,8 @@ def cmd_add(a):
     have = set(df.pick_id) if len(df) else set()
     new = []
     for src, rows in (("top", o.get("top", [])), ("longshot", o.get("longshots", [])),
-                      ("avoid", o.get("avoid", []))):
+                      ("avoid", o.get("avoid", [])),
+                      ("streak", (o.get("parlay_c") or {}).get("legs", []))):
         for i, r in enumerate(rows, 1):
             pid = pick_id(date, r)
             if pid in have:
@@ -88,7 +89,7 @@ def cmd_add(a):
         df.to_csv(PICKS, index=False)
     pl = load(PARLAYS)
     rows = []
-    for kind in ("parlay_a", "parlay_b"):
+    for kind in ("parlay_a", "parlay_b", "parlay_c"):
         p = o.get(kind)
         if not p:
             continue
@@ -280,7 +281,8 @@ def cmd_summary(a):
            "implied probability (positive = beat the close). Small samples are noise: judge the model on "
            "CLV and calibration first, profit last.", "", "## Overall", "", H,
            block(g[g.source == "top"], "Top picks"), block(g[g.source == "longshot"], "Long shots"),
-           block(g[g.source == "avoid"], "Avoided (not bet)"), "", "## Top picks by tier", "", H]
+           block(g[g.source == "avoid"], "Avoided (not bet)"),
+           block(g[g.source == "streak"], "Parlay C streak legs"), "", "## Top picks by tier", "", H]
     t = g[g.source == "top"]
     for k, x in t.groupby(t.tier.fillna("v1 (pre-model)")):
         out.append(block(x, k))

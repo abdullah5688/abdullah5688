@@ -11,7 +11,7 @@ been calibrated against past results, compared with FanDuel's own prices. The an
 |---|---|---|
 | 1 | `fetch_odds.py` | FanDuel, DraftKings and BetMGM prices from The Odds API for all six prop types, including every alt-ladder rung, with betslip links |
 | 2 | analyst | News pass. Writes `reports/DATE-context.json` with confirmed QB starters, players ruled out and exclusions |
-| 3 | `run_model.py` | Simulates every game, prices every FanDuel line and rung on both sides, and outputs the top 10, Parlay A, Parlay B and the long shots |
+| 3 | `run_model.py` | Simulates every game, prices every FanDuel line and rung on both sides, and outputs the top 10, Parlay C and the long shots |
 | 4 | `ledger.py add` | Logs the picks. (`ledger.py snapshot` can record pre-kickoff prices for closing line value, but no scheduled run uses it.) |
 | 5 | `ledger.py grade` | Run at the start of each Sunday run. Settles last week's picks from nflverse or ESPN box scores and updates `ledger/summary.md` |
 | — | `backtest.py` + `fit_calibration.py` | Walk-forward calibration test, refit at the start of each Sunday run |
@@ -77,11 +77,12 @@ Each game is simulated 20,000 times:
   least 45%. Positive-EV long shots are listed separately.
 - **Evidence score (0–100).** Your weights: consistency 20, workload 25, matchup 20,
   value 25, data quality 10. It ranks Bets ahead of Leans. **It is not a probability.**
-- **Parlay A.** Bet-tier legs from different games. Its probability is the product of the
-  leg probabilities (different games are treated as independent).
-- **Parlay B (SGP).** All 2–5 leg combinations within each game are scored on the
-  **joint simulation**, so correlation is measured rather than assumed.
-- **Minimum acceptable odds.** Each parlay comes with fair odds and a minimum acceptable
+- **Parlay C (the only parlay).** Up to 5 legs, one per game. Each leg cleared its exact
+  line in all of the player's last 5 games, passes the status and role checks, has a blended
+  probability of at least 50%, and is within the -350 cap. Different games are treated as
+  independent, so its probability is the product of the leg probabilities. (Parlays A and B
+  were retired on 2026-11-22.)
+- **Minimum acceptable odds.** The parlay comes with fair odds and a minimum acceptable
   price (fair odds plus 5%). Only take FanDuel's quote if it is at or above that.
 
 ## Backtest evidence (walk-forward, no future data)
@@ -123,8 +124,25 @@ because there are no pre-kickoff refresh runs.
 - Injury-shortened games are in the data, so their risk is priced in, but a player's
   *specific* injury risk isn't.
 - Projections for teammates of a QB making his debut are deliberately blocked, not modeled.
-- Parlay and SGP prices aren't in the odds feed. Compare the minimum acceptable odds with
+- Parlay prices aren't in the odds feed. Compare the minimum acceptable odds with
   FanDuel's quote in the app.
 - The 50/50 model–market blend is a judgement call. Change it only on ledger evidence:
   150+ graded picks where the model beats the market on Brier score and closing line value
   is positive.
+
+## v2.2 changes (2026-11-22, walk-forward tested)
+
+Tested on ~9,300 player-games (2025 wks 4-18, 2026 wks 4-10); a change is kept only if calibrated Brier improves.
+
+| Change | Result | Status |
+|---|---|---|
+| Carry shares use a 1.5-game half-life when a player's snap share moves ≥15 pts (`role_reset=2`) | rush_attempts Brier 0.2065→0.2049, rush_yds 0.2068→0.2059, passing unchanged | **On** |
+| Same fast re-weighting for target shares too (`role_reset=1`) | receiving slightly worse | Off |
+| QB yards anchored to the QB's own shrunk YPA (`qb_anchor=1`) | pass_yds 0.2041→0.2054, reception_yds 0.1980→0.1991 (worse) | Off |
+| `line_gap` flag: model median >30% from the main line → Research Only | automates RUNBOOK step 4.4 | **On** |
+| Hit counts restricted to offensive skill positions | fixes same-name collisions | **On** |
+
+Tier check (backtest grouped by each player's season-to-date median): after calibration, top-20% players beat the
+projected median ~50-53% of the time in every market, so the model does **not** systematically under-project
+stars. Players on hot streaks regress: top-20% receivers beat their own season median only 37% of the time.
+Remaining known gap: newly acquired players are projected from very few games with their new team.

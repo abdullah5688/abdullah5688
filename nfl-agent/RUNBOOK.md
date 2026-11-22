@@ -129,11 +129,20 @@ columns stay empty. Results are still graded next Sunday.
     `games` block.
 - **Best over vs best under.** Use the `over_under` block. This is required for every
   top-10 player, so it's clear an under was considered.
-- **D/E (Parlays).**
-  - The legs.
+- **D (Parlay C — last-5 streak; the only parlay).** Parlays A and B were retired on
+  2026-11-22 at the user's request; never build them. Use the `parlay_c` and `streak` blocks
+  in picks.json.
+  - Rule (user request): every leg cleared its exact threshold in each of the player's last 5
+    games; the hardest such rung is used; -350 cap; no status/role blocks; blend p >= 50%; no
+    under while snaps rise or over while snaps fall; one leg per game. It is independent of the
+    top 10.
+  - Show each leg's last-5 values, L10 and season counts, FanDuel's approximate payout (product of
+    leg prices), the model fair odds and the "bet only at" price.
   - Model joint probability, fair odds and **minimum acceptable odds**. Tell the user to
     place the bet only if FanDuel's quote is at or better than that.
-  - For the SGP: the correlation factor and what sinks several legs at once.
+  - Always state plainly whether the model rates it positive or negative value at FanDuel's price.
+  - Because Parlay C can use any game, step 5's final re-pull must include Parlay C's games
+    (re-pulling all games is simplest).
 - **F (Alternatives and rejections).**
   - The `longshots` (positive EV but under 45% to hit, not this style).
   - The `avoid` list (popular props that are -EV).
@@ -149,13 +158,14 @@ Use exactly this layout:
    - "Research only, not a guarantee."
 2. `## Copy list (Top N)`: a fenced code block, one line per pick:
    `N. Player Selection (FanDuel odds) · Tier`. Alt rungs are written FanDuel-style, e.g. `Derrick Henry 60+ Rush Yds (-300)`.
-3. `## Parlays`:
-   - Above the parlays: "_The links open FanDuel with the legs already in your betslip.
-     Check every leg and the price before placing the bet. If a link only adds one leg, use
-     the single-bet links under Pick details._"
-   - Each parlay in its own code block, one leg per line.
-   - Then `Fair odds X · bet only at Y or better`.
-   - Then `👉 **[Open Parlay X in FanDuel](betslip_url)**`.
+3. `## Parlay C (last-5 streak)`:
+   - Above it: "_The link opens FanDuel with the legs already in your betslip. Check every
+     leg and the price before placing the bet._"
+   - The legs in a code block, one per line, each with `· last 5: …`.
+   - Then `FanDuel pays ≈X · model fair odds Y · bet only at Z or better`, plus a one-line
+     value warning when the model rates it negative value.
+   - Then `👉 **[Open Parlay C in FanDuel](betslip_url)**`.
+   - If fewer than 2 legs qualify: "No Parlay C today: not enough streak legs passed the checks."
 4. `## Pick details`: for each pick:
    - a `### N. Player — Selection (odds)` heading;
    - `[➕ Add to FanDuel betslip](betslip_link)`;
@@ -167,10 +177,19 @@ Use exactly this layout:
 
 Every number must match picks.json. Links come only from the final pull. Never make up an ID.
 
+### 8b. Phone page and PDF
+1. Write `reports/YYYY-MM-DD-notes.json`: `{"Player": {"why": "...", "risk": "..."}}` for every top-10
+   player, the same two sentences used in the summary.
+2. `python3 make_report_html.py YYYY-MM-DD` writes `reports/YYYY-MM-DD-nfl-props.html` (every number
+   comes from picks.json; the record line from ledger/picks.csv).
+3. `node make_pdf.js reports/YYYY-MM-DD-nfl-props.html` writes the PDF with every pick expanded.
+4. Publish the HTML with the Artifact tool (icon "football") and send the PDF with SendUserFile.
+   Put the artifact link in the final message.
+
 ### 9. Commit and push
 Commit to branch `claude/optimistic-shannon-1lv1ia` and push:
 - the report and summary `.md` files;
-- `picks.json`, `candidates.csv`, `model-tables.md` and `context.json`;
+- `picks.json`, `candidates.csv`, `model-tables.md`, `context.json`, `notes.json`, the `.html` and `.pdf`;
 - `ledger/*`.
 
 The raw `odds-*` files stay gitignored.

@@ -8,7 +8,7 @@ Usage:
 Outputs (in --out):
   YYYY-MM-DD-candidates.csv  every FanDuel line/rung, both sides, with model / market /
                              blended probability, EV, flags, sample hit counts
-  YYYY-MM-DD-picks.json      top 10, Parlay A, Parlay B (SGP), best over vs best under per
+  YYYY-MM-DD-picks.json      top 10, Parlay C (last-5 streak), best over vs best under per
                              player, popular props to avoid, game inputs. grade.py reads this.
   YYYY-MM-DD-model-tables.md markdown tables to paste into the report.
 
@@ -38,7 +38,8 @@ PRICE_CAP = -350          # user rule: nothing shorter than -350
 MIN_TOP_PROB = 0.45       # balanced style: top-10 / parlay legs need >= 45% blended chance
 BET_EV, LEAN_EV = 0.04, 0.015
 BLOCKING = {"qb_debut", "qb_unknown", "questionable", "excluded", "small_sample", "no_projection",
-            "price_cap", "outside_calibrated_range"}
+            "price_cap", "outside_calibrated_range", "line_gap"}
+LINE_GAP = 0.30           # model median this far (fraction) from the main line -> Research Only
 DEFAULT_HOLD = 0.07       # assumed bookmaker margin when no two-sided main line exists
 SOFT_PENALTY = {"qb_change": 25, "teammate_out": 10, "snap_decline": 20, "no_market_ref": 25,
                 "role_sample_short": 15}
@@ -222,13 +223,19 @@ def main():
                 flags.append("price_cap")
             if float(np.median(sims)) < MIN_ROLE[r.mkt]:
                 flags.append("outside_calibrated_range")
+            # sanity rule (RUNBOOK step 4.4), automated: a projection far from the market's main
+            # line usually means a role change the data hasn't caught yet
+            if ref and ref[0] > 0 and abs(float(np.median(sims)) - ref[0]) / ref[0] > LINE_GAP:
+                flags.append("line_gap")
             if pr["sample_games"] < 4 and "small_sample" not in flags:
                 flags.append("role_sample_short")
             # passing-game flags only matter for pass-catchers / QB markets
             if r.mkt in ("rush_yds", "rush_attempts") and pr["pos"] == "RB":
                 flags = [f for f in flags if f not in ("qb_change", "qb_debut")]
             # historical results at this exact line (all games this season)
-            hist = D.player[(D.player.nname == r.nname)].sort_values("week")
+            # same name AND an offensive skill position (a CLE linebacker shares a WR's name)
+            hist = D.player[(D.player.nname == r.nname) &
+                            D.player.position.isin(["QB", "RB", "WR", "TE", "FB"])].sort_values("week")
             vals = hist[NFLV_COL[r.mkt]].astype(float).tolist()
             won = [v > L if r.side == "Over" else v < L for v in vals]
             push = [v == L for v in vals]
@@ -300,44 +307,45 @@ def main():
                        best_over=None if not len(bo) else f"{bo.selection.iloc[0]} {fmt(int(bo.odds.iloc[0]))} EV {bo.ev.iloc[0]:+.1%}",
                        best_under=None if not len(bu) else f"{bu.selection.iloc[0]} {fmt(int(bu.odds.iloc[0]))} EV {bu.ev.iloc[0]:+.1%}"))
 
-    # Parlay A: one leg per game from the top list, legs must be +EV, Bets first
-    legsA, used = [], set()
-    for r in sorted(top, key=lambda r: (r["tier_rank"], -r["ev"])):
-        if r["game"] in used or r["ev"] <= 0 or r["p_blend"] < 0.5 or r["tier"] != "Bet":
-            continue
-        legsA.append(r)
-        used.add(r["game"])
-        if len(legsA) == 5:
-            break
-    # a 1-leg "parlay" is just a single bet
-    parlayA = parlay_summary(legsA, joint=float(np.prod([r["p_blend"] for r in legsA]))) if len(legsA) >= 2 else None
+    # Parlay C ("streak" parlay, user rule) - the ONLY parlay (Parlays A and B were retired
+    # 2026-11-22 at the user's request). Independent of the top 10.
+    # A leg qualifies when the player cleared that exact threshold in ALL of his last 5 games
+    # (over: every game above the line; under: every game below it). For each player-market-side
+    # the hardest such rung is used (best price), within the -350 cap. Model checks still apply:
+    # no status/role blocks and a blended probability of at least 50%. One leg per game, up to 5.
+    # also skipped: lines the model can't vouch for (outside_calibrated_range, line_gap) and a
+    # streak running against a role change (under while snaps rise / over while snaps fall)
+    STREAK_BLOCK = {"qb_debut", "qb_unknown", "questionable", "excluded", "small_sample",
+                    "no_projection", "price_cap", "outside_calibrated_range", "line_gap"}
+    sc = C[(C.last5 == "5/5") & C.p_blend.notna()].copy() if "last5" in C else C.iloc[0:0]
+    if len(sc):
+        sc = sc[sc["flags"].fillna("").map(lambda f: not (set(f.split(",")) & STREAK_BLOCK))]
+        fl = sc["flags"].fillna("")
+        sc = sc[~(((sc.side == "Under") & fl.str.contains("snap_rise")) |
+                  ((sc.side == "Over") & fl.str.contains("snap_decline")))]
+        sc = sc[(sc.p_blend >= 0.5) & (sc.odds >= PRICE_CAP)]
 
-    # Parlay B: best same-game combination using the joint simulation
-    sgp = None
-    for game, x in ok.groupby("game"):
-        x = x[(x.p_blend >= MIN_TOP_PROB) & (x.tier == "Bet")]
-        x = x.sort_values("ev", ascending=False).groupby("nname").head(1).head(8).to_dict("records")
-        for k in (5, 4, 3, 2):
-            for combo in itertools.combinations(x, k):
-                masks = [sims_store[(c["game"], c["nname"], c["market"], c["side"], c["line"])] for c in combo]
-                jm = float(np.mean(np.logical_and.reduce(masks)))
-                adj = np.prod([c["p_blend"] / max(c["p_model"], 1e-6) for c in combo])
-                joint = jm * adj
-                indep = float(np.prod([c["p_blend"] for c in combo]))
-                prod_dec = float(np.prod([dec(c["odds"]) for c in combo]))
-                if joint < 0.15:
-                    continue
-                score = joint * prod_dec - 1
-                if sgp is None or score > sgp["ev_at_product_price"]:
-                    sgp = dict(game=game, legs=list(combo), joint=joint, indep=indep, corr_factor=joint / indep,
-                               ev_at_product_price=score)
-    parlayB = None
-    if sgp:
-        parlayB = parlay_summary(sgp["legs"], joint=sgp["joint"])
-        parlayB.update(game=sgp["game"], correlation_factor=round(sgp["corr_factor"], 3),
-                       independent_prob=round(sgp["indep"], 4),
-                       note="FanDuel prices SGPs itself (correlation-adjusted). Only place it if FanDuel's SGP "
-                            "quote is at or above min_acceptable_odds.")
+        def rate(t):
+            a, b = str(t).split(" ")[0].split("/")
+            return int(a) / int(b) if int(b) else 0.0
+        sc["l10_rate"] = sc.last10.map(rate)
+        sc["season_rate"] = sc.season_hits.map(rate)
+        # hardest rung he still cleared 5/5 = the best-priced one
+        sc = sc.sort_values("odds", ascending=False).groupby(["nname", "market", "side"]).head(1)
+        sc = sc.sort_values(["l10_rate", "season_rate", "p_blend", "odds"], ascending=False) \
+            .groupby("nname").head(1)
+    streak = [clean(r) for r in sc.head(15).to_dict("records")] if len(sc) else []
+    legsC, usedC = [], set()
+    for r in sc.to_dict("records") if len(sc) else []:
+        if r["game"] in usedC:
+            continue
+        legsC.append(r)
+        usedC.add(r["game"])
+        if len(legsC) == 5:
+            break
+    parlayC = parlay_summary(legsC, joint=float(np.prod([r["p_blend"] for r in legsC]))) if len(legsC) >= 2 else None
+    if parlayC:
+        parlayC["rule"] = "every leg hit in each of the player's last 5 games"
 
     # popular props to avoid: highest-volume players whose main line is clearly -EV both ways
     avoid = []
@@ -353,7 +361,7 @@ def main():
 
     out = dict(date=run_date, generated_at=datetime.now().isoformat(timespec="seconds"), odds_file=a.odds,
                model_weight=a.model_weight, games=games_info, top=[clean(r) for r in top],
-               parlay_a=parlayA, parlay_b=parlayB, over_under=ou, avoid=avoid,
+               parlay_c=parlayC, streak=streak, over_under=ou, avoid=avoid,
                longshots=[clean(r) for r in longshots.to_dict("records")],
                counts=dict(candidates=len(C), bets=int((C.tier == "Bet").sum()), leans=int((C.tier == "Lean").sum()),
                            research_only=int((C.tier == "Research Only").sum())))
@@ -407,13 +415,14 @@ def tables(o):
         L.append(f"| {i} | {r['player']} | {r['game']} | {r['selection']} | {fmt(r['odds'])} | {r['proj_median']:g} | "
                  f"{r['p_model']:.0%} | {mp} | {r['p_blend']:.0%} | {r['breakeven']:.0%} | {r['ev']:+.1%} | "
                  f"{r['season_hits']} | {r['last5']} | {r['last10']} | {r['evidence_score']:.0f} | {r['tier']} | {r['flags'] or '—'} |")
-    for name, p in (("Parlay A (multi-game)", o["parlay_a"]), ("Parlay B (same game)", o["parlay_b"])):
+    for name, p in (("Parlay C (last-5 streak, multi-game)", o.get("parlay_c")),):
         L += ["", f"**{name}**" + (f" — {p['game']}" if p and p.get("game") else "")]
         if not p:
             L.append("No qualifying combination.")
             continue
         for r in p["legs"]:
-            L.append(f"- {r['player']} {r['selection']} ({fmt(r['odds'])}) · blend p {r['p_blend']:.0%}")
+            L.append(f"- {r['player']} {r['selection']} ({fmt(r['odds'])}) · blend p {r['p_blend']:.0%}"
+                     + (f" · last 5: {r['last5_values']} · L10 {r['last10']}" if name.startswith("Parlay C") else ""))
         L.append(f"- Model joint probability **{p['model_joint_prob']:.1%}** → fair odds **{fmt(p['fair_odds'])}**; "
                  f"only bet at **{fmt(p['min_acceptable_odds'])} or better**. Product of leg prices "
                  f"{fmt(p['product_of_leg_prices'])} (not a FanDuel quote)."

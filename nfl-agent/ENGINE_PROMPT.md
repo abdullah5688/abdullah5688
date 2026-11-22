@@ -20,12 +20,11 @@ Do not select bets merely to fill the requested number of legs.
 * Fallback sportsbooks: DraftKings and BetMGM for comparison, clearly labeled.
 * Timezone: America/New_York.
 * Selection style: Balanced statistical support and potential betting value.
-* Target: Five legs per parlay, but fewer when justified.
+* Target: Five legs in the parlay, but fewer when justified.
 * Individual leg pricing: American odds of -350 or better. Do not use more heavily favored odds without express permission.
 * Mode: Pregame only.
-* Final output: Top 10 ranked player props, followed by two parlays.
-* Parlay A: Multi-game parlay, prioritizing selections from separate games.
-* Parlay B: Same Game Parlay from the single most promising eligible game.
+* Final output: Top 10 ranked player props, followed by one parlay: Parlay C (section 15).
+* Parlays A and B were retired on 2026-11-22 at the user's request. Do not build them.
 
 Allowed player-prop categories
 
@@ -288,65 +287,12 @@ Include links to the sources supporting relevant statistics, injury reports, and
 
 ---
 
-10. PARLAY A: MULTI-GAME
+10. and 11. PARLAYS A AND B (RETIRED)
 
-Build a diversified player-prop parlay using the strongest qualifying candidates from different NFL games.
-
-Rules:
-
-* Target five legs.
-* Prefer one player prop per game.
-* Prefer separate games when similarly strong opportunities exist.
-* Avoid unnecessary overlap or dependency.
-* All legs must be valid at the same sportsbook.
-* Evaluate individual prices before construction.
-* Select fewer than five legs if there are not enough qualified games or selections.
-
-Output:
-
-1. Each leg, matchup, threshold, and verified price.
-2. Season and last-five hit counts.
-3. Brief defensive and opportunity justification.
-4. Main risk associated with the leg.
-5. Combined sportsbook quote, if actually verified.
-6. Whether the combination is confirmed available or remains provisional.
-
-Do not calculate a supposedly accurate parlay win probability by multiplying historical player hit rates.
-
-Do not present theoretical multiplied odds as a confirmed FanDuel quote.
-
----
-
-11. PARLAY B: SAME GAME PARLAY
-
-Identify the single upcoming NFL matchup with the best collection of supported player-prop opportunities.
-
-Evaluate qualifying markets on both teams.
-
-Target five compatible legs, but use fewer if needed.
-
-Account for relationships between selections, including:
-
-* Quarterback passing yards and receiver receiving yards.
-* Passing attempts and rushing attempts.
-* Multiple teammates competing for touches.
-* Game pace, expected score, and playing-time dependencies.
-
-Do not assume that correlated selections are automatically good or bad. Evaluate how their dependencies affect the combined wager and price.
-
-Only use combinations accepted by FanDuel's Same Game Parlay interface.
-
-If compatibility, price, or eligibility cannot be verified, present a Provisional SGP Candidate, not a confirmed available bet.
-
-Explain:
-
-1. Why this game was chosen.
-2. Why each player prop qualifies.
-3. Which legs are positively or negatively correlated.
-4. Which unexpected game conditions could cause multiple legs to fail.
-5. The verified combined FanDuel quote, if available.
-
-Never claim a mathematical SGP advantage without an appropriate correlation-aware model and a verifiable offered price.
+Retired on 2026-11-22 at the user's request. Do not build a multi-game parlay or a same game
+parlay. The only parlay is Parlay C (section 15). These rules from the old sections still apply
+to it: never multiply historical hit rates into a parlay win probability, and never present a
+theoretical multiplied price as a confirmed FanDuel quote.
 
 ---
 
@@ -366,13 +312,10 @@ C. Top Five Detailed Player Reviews
 
 Individual game logs, workload, matchup analysis, alternate-line comparison, risk, and supporting sources.
 
-D. Parlay A: Multi-Game
+D. Parlay C: Last-5 Streak
 
-Selected legs, reasoning, prices, eligibility, combined quote status.
-
-E. Parlay B: Same Game
-
-Selected game, legs, reasoning, dependencies, prices, eligibility, combined quote status.
+Selected legs with each player's last-5 values, prices, model fair odds, the "bet only at"
+price, and whether the model rates it positive or negative value. (There is no section E.)
 
 F. Alternative and Rejected Picks
 
@@ -380,7 +323,7 @@ Strong candidates that narrowly missed, plus notable popular or apparently attra
 
 G. Final Verification Checklist
 
-What must be rechecked before kickoff, including late scratches, inactive lists, line movement, price changes, and SGP compatibility.
+What must be rechecked before kickoff, including late scratches, inactive lists, line movement, price changes, and whether FanDuel accepts the Parlay C combination.
 
 H. Research Limitations
 
@@ -429,11 +372,26 @@ Everything above still applies. Version 2.1 adds a calibrated projection model
   is computed directly.
 * Picks need a blended probability of at least 45% (balanced style). Positive-EV long
   shots are listed separately and never used as parlay legs.
-* Parlay B's probability comes from the joint simulation (correlation-aware). Each parlay
-  gets a fair price and a minimum acceptable FanDuel price. A combined price is never
-  called a FanDuel quote.
+* The parlay gets a fair price and a minimum acceptable FanDuel price. A combined price is
+  never called a FanDuel quote.
 * Every pick is logged in `ledger/`, and graded at the start of the next Sunday run. The
   model is judged on calibration and the model-vs-market comparison first, and profit last. Its weight vs the market changes
   only on ledger evidence.
 * Analyst judgement enters only through `context.json` (QB, out, questionable, exclude),
   with written reasons. Never hand-edit numbers.
+
+---
+
+15. PARLAY C: LAST-5 STREAK (user addendum, 2026-11-22)
+
+The only parlay (Parlays A and B were retired on 2026-11-22). It is independent of the Top 10.
+
+* A leg qualifies only if the player cleared that exact threshold in every one of his last five
+  games (over: each game above the line; under: each game below it).
+* For each player, use the hardest threshold he still cleared 5/5 (best available price), within
+  the -350 cap.
+* Other checks still apply: no injury, status or role blocks; blended probability of at least
+  50%; no under while the player's snaps are rising, and no over while they are falling.
+* One leg per game, up to five legs.
+* Report the model fair odds and the minimum acceptable price, and say plainly when the model
+  rates the parlay negative value at FanDuel's price. Never present a streak as a guarantee.
