@@ -20,10 +20,10 @@ Do not select bets merely to fill the requested number of legs.
 * Fallback sportsbooks: DraftKings and BetMGM for comparison, clearly labeled.
 * Timezone: America/New_York.
 * Selection style: Balanced statistical support and potential betting value.
-* Target: Five legs in the parlay, but fewer when justified.
+* Target: Five legs per parlay, but fewer when justified.
 * Individual leg pricing: American odds of -350 or better. Do not use more heavily favored odds without express permission.
 * Mode: Pregame only.
-* Final output: Top 10 ranked player props, followed by one parlay: Parlay C (section 15).
+* Final output: Top 10 ranked player props, followed by the Parlay C set (section 15): C1, C2, C3... of up to five legs each.
 * Parlays A and B were retired on 2026-11-22 at the user's request. Do not build them.
 
 Allowed player-prop categories
@@ -290,7 +290,7 @@ Include links to the sources supporting relevant statistics, injury reports, and
 10. and 11. PARLAYS A AND B (RETIRED)
 
 Retired on 2026-11-22 at the user's request. Do not build a multi-game parlay or a same game
-parlay. The only parlay is Parlay C (section 15). These rules from the old sections still apply
+parlay. The only parlays are the Parlay C set (section 15). These rules from the old sections still apply
 to it: never multiply historical hit rates into a parlay win probability, and never present a
 theoretical multiplied price as a confirmed FanDuel quote.
 
@@ -312,10 +312,11 @@ C. Top Five Detailed Player Reviews
 
 Individual game logs, workload, matchup analysis, alternate-line comparison, risk, and supporting sources.
 
-D. Parlay C: Last-5 Streak
+D. Parlay C: Last-5 Streak (C1, C2, C3...)
 
-Selected legs with each player's last-5 values, prices, model fair odds, the "bet only at"
-price, and whether the model rates it positive or negative value. (There is no section E.)
+Every Parlay C, each with its legs, each player's last-5 values, prices, model fair odds, the
+"bet only at" price, and whether the model rates it positive or negative value. Then any
+leftover qualifying legs. (There is no section E.)
 
 F. Alternative and Rejected Picks
 
@@ -384,7 +385,7 @@ Everything above still applies. Version 2.1 adds a calibrated projection model
 
 15. PARLAY C: LAST-5 STREAK (user addendum, 2026-11-22)
 
-The only parlay (Parlays A and B were retired on 2026-11-22). It is independent of the Top 10.
+The only parlay type (Parlays A and B were retired on 2026-11-22). It is independent of the Top 10.
 
 * A leg qualifies only if the player cleared that exact threshold in every one of his last five
   games (over: each game above the line; under: each game below it).
@@ -392,6 +393,10 @@ The only parlay (Parlays A and B were retired on 2026-11-22). It is independent 
   the -350 cap.
 * Other checks still apply: no injury, status or role blocks; blended probability of at least
   50%; no under while the player's snaps are rising, and no over while they are falling.
-* One leg per game, up to five legs.
+* Use EVERY qualifying leg. If more than five qualify, split them into separate parlays
+  (Parlay C1, C2, C3...) of up to five legs each, e.g. 15 qualifying players = three 5-leg
+  parlays. Legs go in rank order into the first parlay that has room and no leg from the same
+  game; a new parlay opens when none fits. Never two legs from one game in the same parlay, and
+  each player appears once. A single leg that fits nowhere is listed as a leftover, not a parlay.
 * Report the model fair odds and the minimum acceptable price, and say plainly when the model
   rates the parlay negative value at FanDuel's price. Never present a streak as a guarantee.

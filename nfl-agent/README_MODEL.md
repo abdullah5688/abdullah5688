@@ -77,7 +77,9 @@ Each game is simulated 20,000 times:
   least 45%. Positive-EV long shots are listed separately.
 - **Evidence score (0–100).** Your weights: consistency 20, workload 25, matchup 20,
   value 25, data quality 10. It ranks Bets ahead of Leans. **It is not a probability.**
-- **Parlay C (the only parlay).** Up to 5 legs, one per game. Each leg cleared its exact
+- **Parlay C (the only parlay type).** Every qualifying leg is used. They are split into
+  Parlay C1, C2, C3... of up to 5 legs each, never two legs from one game in the same parlay.
+  Each leg cleared its exact
   line in all of the player's last 5 games, passes the status and role checks, has a blended
   probability of at least 50%, and is within the -350 cap. Different games are treated as
   independent, so its probability is the product of the leg probabilities. (Parlays A and B

@@ -83,7 +83,7 @@ def leg_rows(legs, extra=False):
 def parlay_card(key, title, tag, p, warn=None):
     if not p:
         return f'<section class="parlay" id="{key}"><h3>{title}</h3><p class="muted">No qualifying combination today.</p></section>'
-    extra = key == "parlay-c"
+    extra = key.startswith("parlay-c")
     value = p["ev_if_priced_as_product"]
     verdict = ("good", "Model sees value at FanDuel's typical price") if value > 0 else \
         ("bad", "Model sees negative value at FanDuel's typical price")
@@ -153,12 +153,12 @@ def main():
     copy_text = "\n".join(f"{i}. {p['player']} {p['selection']} ({am(p['odds'])}) · {p['tier']}" for i, p in enumerate(top, 1))
 
     # ---- parlays
-    pc = b.get("parlay_c")
-    parlays = "\n".join([
-        parlay_card("parlay-c", "Parlay C", "Last-5 streak", pc,
-                    "Every leg hit in each of the player's last 5 games. Books price streaks steeply, so keep stakes small."
-                    if pc and pc["ev_if_priced_as_product"] <= 0 else None),
-    ])
+    pcs = b.get("parlays_c") or ([b["parlay_c"]] if b.get("parlay_c") else [])
+    warn_c = "Every leg hit in each of the player's last 5 games. Books price streaks steeply, so keep stakes small."
+    parlays = "\n".join(
+        parlay_card(f"parlay-c{i}", p.get("name") or f"Parlay C{i}", "Last-5 streak", p,
+                    warn_c if p["ev_if_priced_as_product"] <= 0 else None)
+        for i, p in enumerate(pcs, 1)) or parlay_card("parlay-c", "Parlay C", "Last-5 streak", None)
 
     # ---- avoided & exclusions
     avoid = "".join(f"<li><b>{E(x['player'])}</b> {E(x['selection'])} <span class=num>({am(x['odds'])})</span>"

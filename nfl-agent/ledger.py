@@ -75,7 +75,8 @@ def cmd_add(a):
     new = []
     for src, rows in (("top", o.get("top", [])), ("longshot", o.get("longshots", [])),
                       ("avoid", o.get("avoid", [])),
-                      ("streak", (o.get("parlay_c") or {}).get("legs", []))):
+                      ("streak", [l for pc in (o.get("parlays_c") or ([o["parlay_c"]] if o.get("parlay_c") else []))
+                                  for l in pc.get("legs", [])])):
         for i, r in enumerate(rows, 1):
             pid = pick_id(date, r)
             if pid in have:
@@ -89,8 +90,9 @@ def cmd_add(a):
         df.to_csv(PICKS, index=False)
     pl = load(PARLAYS)
     rows = []
-    for kind in ("parlay_a", "parlay_b", "parlay_c"):
-        p = o.get(kind)
+    named = [(k, o.get(k)) for k in ("parlay_a", "parlay_b", "parlay_c")]
+    named += [(f"parlay_c{i}", p) for i, p in enumerate(o.get("parlays_c") or [], 1)]
+    for kind, p in named:
         if not p:
             continue
         pid = f"{date}|{kind}"
@@ -282,7 +284,7 @@ def cmd_summary(a):
            "CLV and calibration first, profit last.", "", "## Overall", "", H,
            block(g[g.source == "top"], "Top picks"), block(g[g.source == "longshot"], "Long shots"),
            block(g[g.source == "avoid"], "Avoided (not bet)"),
-           block(g[g.source == "streak"], "Parlay C streak legs"), "", "## Top picks by tier", "", H]
+           block(g[g.source == "streak"], "Parlay C legs"), "", "## Top picks by tier", "", H]
     t = g[g.source == "top"]
     for k, x in t.groupby(t.tier.fillna("v1 (pre-model)")):
         out.append(block(x, k))

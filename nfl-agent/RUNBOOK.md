@@ -129,13 +129,15 @@ columns stay empty. Results are still graded next Sunday.
     `games` block.
 - **Best over vs best under.** Use the `over_under` block. This is required for every
   top-10 player, so it's clear an under was considered.
-- **D (Parlay C — last-5 streak; the only parlay).** Parlays A and B were retired on
-  2026-11-22 at the user's request; never build them. Use the `parlay_c` and `streak` blocks
-  in picks.json.
+- **D (Parlay C set — last-5 streak; the only parlays).** Parlays A and B were retired on
+  2026-11-22 at the user's request; never build them. Use the `parlays_c` list (C1, C2, C3...),
+  `streak` and `streak_leftover` blocks in picks.json. Every qualifying leg is used: more than
+  five legs are split into separate parlays of up to five, never two legs from one game in the
+  same parlay. Show every parlay, then any leftover single legs.
   - Rule (user request): every leg cleared its exact threshold in each of the player's last 5
     games; the hardest such rung is used; -350 cap; no status/role blocks; blend p >= 50%; no
-    under while snaps rise or over while snaps fall; one leg per game. It is independent of the
-    top 10.
+    under while snaps rise or over while snaps fall; one leg per game within each parlay; split into C1, C2... of up to five legs. It is
+    independent of the top 10.
   - Show each leg's last-5 values, L10 and season counts, FanDuel's approximate payout (product of
     leg prices), the model fair odds and the "bet only at" price.
   - Model joint probability, fair odds and **minimum acceptable odds**. Tell the user to
@@ -159,12 +161,14 @@ Use exactly this layout:
 2. `## Copy list (Top N)`: a fenced code block, one line per pick:
    `N. Player Selection (FanDuel odds) · Tier`. Alt rungs are written FanDuel-style, e.g. `Derrick Henry 60+ Rush Yds (-300)`.
 3. `## Parlay C (last-5 streak)`:
-   - Above it: "_The link opens FanDuel with the legs already in your betslip. Check every
-     leg and the price before placing the bet._"
+   - Above them: "_Each link opens FanDuel with that parlay's legs already in your betslip.
+     Check every leg and the price before placing the bet._"
+   - For EVERY parlay in `parlays_c`, a `### Parlay C1` (C2, C3...) heading, then:
    - The legs in a code block, one per line, each with `· last 5: …`.
    - Then `FanDuel pays ≈X · model fair odds Y · bet only at Z or better`, plus a one-line
      value warning when the model rates it negative value.
-   - Then `👉 **[Open Parlay C in FanDuel](betslip_url)**`.
+   - Then `👉 **[Open Parlay C1 in FanDuel](betslip_url)**` (C2, C3... likewise).
+   - After the last parlay, any `streak_leftover` legs as single bets with their own betslip links.
    - If fewer than 2 legs qualify: "No Parlay C today: not enough streak legs passed the checks."
 4. `## Pick details`: for each pick:
    - a `### N. Player — Selection (odds)` heading;

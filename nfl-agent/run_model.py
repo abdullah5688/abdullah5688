@@ -8,7 +8,7 @@ Usage:
 Outputs (in --out):
   YYYY-MM-DD-candidates.csv  every FanDuel line/rung, both sides, with model / market /
                              blended probability, EV, flags, sample hit counts
-  YYYY-MM-DD-picks.json      top 10, Parlay C (last-5 streak), best over vs best under per
+  YYYY-MM-DD-picks.json      top 10, Parlays C1, C2... (last-5 streak, 5 legs each), best over vs best under per
                              player, popular props to avoid, game inputs. grade.py reads this.
   YYYY-MM-DD-model-tables.md markdown tables to paste into the report.
 
@@ -334,18 +334,28 @@ def main():
         sc = sc.sort_values("odds", ascending=False).groupby(["nname", "market", "side"]).head(1)
         sc = sc.sort_values(["l10_rate", "season_rate", "p_blend", "odds"], ascending=False) \
             .groupby("nname").head(1)
-    streak = [clean(r) for r in sc.head(15).to_dict("records")] if len(sc) else []
-    legsC, usedC = [], set()
+    streak = [clean(r) for r in sc.to_dict("records")] if len(sc) else []
+    # Split ALL qualifying legs into as many parlays as needed (user rule, 2026-11-22): up to 5
+    # legs each, never two legs from the same game in one parlay, each player used once. Legs go,
+    # in rank order, into the first parlay that has room and no leg from that game; a new parlay
+    # opens when none fits. A group left with a single leg is reported as a leftover, not a parlay.
+    groups = []
     for r in sc.to_dict("records") if len(sc) else []:
-        if r["game"] in usedC:
+        for g in groups:
+            if len(g) < 5 and r["game"] not in {x["game"] for x in g}:
+                g.append(r)
+                break
+        else:
+            groups.append([r])
+    parlays_c, streak_leftover = [], []
+    for g in groups:
+        if len(g) < 2:
+            streak_leftover += [clean(x) for x in g]
             continue
-        legsC.append(r)
-        usedC.add(r["game"])
-        if len(legsC) == 5:
-            break
-    parlayC = parlay_summary(legsC, joint=float(np.prod([r["p_blend"] for r in legsC]))) if len(legsC) >= 2 else None
-    if parlayC:
-        parlayC["rule"] = "every leg hit in each of the player's last 5 games"
+        pc = parlay_summary(g, joint=float(np.prod([r["p_blend"] for r in g])))
+        pc["name"] = f"Parlay C{len(parlays_c) + 1}"
+        pc["rule"] = "every leg hit in each of the player's last 5 games"
+        parlays_c.append(pc)
 
     # popular props to avoid: highest-volume players whose main line is clearly -EV both ways
     avoid = []
@@ -361,7 +371,7 @@ def main():
 
     out = dict(date=run_date, generated_at=datetime.now().isoformat(timespec="seconds"), odds_file=a.odds,
                model_weight=a.model_weight, games=games_info, top=[clean(r) for r in top],
-               parlay_c=parlayC, streak=streak, over_under=ou, avoid=avoid,
+               parlays_c=parlays_c, streak=streak, streak_leftover=streak_leftover, over_under=ou, avoid=avoid,
                longshots=[clean(r) for r in longshots.to_dict("records")],
                counts=dict(candidates=len(C), bets=int((C.tier == "Bet").sum()), leans=int((C.tier == "Lean").sum()),
                            research_only=int((C.tier == "Research Only").sum())))
@@ -415,14 +425,15 @@ def tables(o):
         L.append(f"| {i} | {r['player']} | {r['game']} | {r['selection']} | {fmt(r['odds'])} | {r['proj_median']:g} | "
                  f"{r['p_model']:.0%} | {mp} | {r['p_blend']:.0%} | {r['breakeven']:.0%} | {r['ev']:+.1%} | "
                  f"{r['season_hits']} | {r['last5']} | {r['last10']} | {r['evidence_score']:.0f} | {r['tier']} | {r['flags'] or '—'} |")
-    for name, p in (("Parlay C (last-5 streak, multi-game)", o.get("parlay_c")),):
-        L += ["", f"**{name}**" + (f" — {p['game']}" if p and p.get("game") else "")]
-        if not p:
-            L.append("No qualifying combination.")
-            continue
+    pcs = o.get("parlays_c") or []
+    if not pcs:
+        L += ["", "**Parlay C (last-5 streak)**", "No Parlay C today: fewer than 2 streak legs passed the checks."]
+    for p in pcs:
+        name = f"{p['name']} (last-5 streak, multi-game)"
+        L += ["", f"**{name}**"]
         for r in p["legs"]:
             L.append(f"- {r['player']} {r['selection']} ({fmt(r['odds'])}) · blend p {r['p_blend']:.0%}"
-                     + (f" · last 5: {r['last5_values']} · L10 {r['last10']}" if name.startswith("Parlay C") else ""))
+                     + f" · last 5: {r['last5_values']} · L10 {r['last10']}")
         L.append(f"- Model joint probability **{p['model_joint_prob']:.1%}** → fair odds **{fmt(p['fair_odds'])}**; "
                  f"only bet at **{fmt(p['min_acceptable_odds'])} or better**. Product of leg prices "
                  f"{fmt(p['product_of_leg_prices'])} (not a FanDuel quote)."
