@@ -124,6 +124,52 @@ def leg_rows(legs, extra=False):
     return "\n".join(out)
 
 
+def hist_table(l):
+    line, over = float(l["line"]), l["side"] == "Over"
+    hist = list(reversed(l.get("history") or []))
+    if not hist:
+        return f"<p class=muted>Last 5: {E(l['last5_values'])}</p>"
+    rows = "".join(
+        f"<tr class=\"{'l5' if i < 5 else ''}\"><td class=num>Wk {h['wk']}</td><td>{E(h['opp'])}</td><td class=num>{h['v']:g}</td>"
+        f"<td class=\"{'hit' if ((h['v'] > line) if over else (h['v'] < line)) else 'miss'}\">"
+        f"{'Hit' if ((h['v'] > line) if over else (h['v'] < line)) else 'Miss'}</td></tr>" for i, h in enumerate(hist))
+    return (f"<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs {line:g}</th></tr></thead>"
+            f"<tbody>{rows}</tbody></table><p class=\"muted small\">Newest first. Shaded rows = last 5.</p>")
+
+
+def streak_rows(items):
+    out = []
+    for l in items:
+        st = l["status"]
+        cls = "good" if (st.startswith("Parlay") or st.startswith("Single") or st.startswith("Qualifies")) else "bad"
+        day = "" if DAY0[0] is None or l["kickoff_et"][:10] == DAY0[0] else \
+            datetime.strptime(l["kickoff_et"][:10], "%Y-%m-%d").strftime("%a ")
+        checks = "".join(f"<li class=\"{'ok' if c['ok'] else 'no'}\"><span>{'✓' if c['ok'] else '✗'}</span> {E(c['label'])}"
+                         f"{'' if c['detail'] == 'ok' else ' <span class=muted>· ' + E(c['detail']) + '</span>'}</li>"
+                         for c in l["checks"])
+        others = ", ".join(f"{E(o['selection'])} ({am(o['odds'])})" for o in l.get("other_lines", []))
+        link = f'<a class="btn small" href="{E(l["betslip_link"])}" target="_blank" rel="noopener">Bet this line in FanDuel</a>' \
+            if l.get("betslip_link") else ""
+        p_b = pct(l["p_blend"]) if l.get("p_blend") is not None else "–"
+        ev = evs(l["ev"]) if l.get("ev") is not None else "–"
+        out.append(f"""<li><details class="leg"><summary><span class="leg-main"><span class="leg-name">{E(l['player'])}</span>
+<span class="leg-sel">{E(l['selection'])}</span><span class="leg-sub">{E(short_game(l['game']))} · {day}{kick(l['kickoff_et'])}</span>
+<span class="status {cls}">{E(st)}</span></span>
+<span class="leg-right"><span class="odds">{am(l['odds'])}</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<ul class="checks">{checks}</ul>
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">{p_b}</b></div>
+<div class="kv"><span>Projection</span><b class="num">{l['proj_median'] if l.get('proj_median') is not None else '–'}</b></div>
+<div class="kv"><span>Value alone</span><b class="num">{ev}</b></div>
+<div class="kv"><span>Season</span><b class="num">{E(str(l['season_hits']))}</b></div>
+<div class="kv"><span>Last 10</span><b class="num">{E(str(l['last10']))}</b></div></div>
+{hist_table(l)}
+{('<p class="small"><b>Other lines he cleared all 5:</b> ' + others + '</p>') if others else ''}
+{link}
+</div></details></li>""")
+    return "\n".join(out)
+
+
 def parlay_card(key, title, tag, p, warn=None):
     if not p:
         return f'<section class="parlay" id="{key}"><h3>{title}</h3><p class="muted">No qualifying combination today.</p></section>'
@@ -191,6 +237,19 @@ def main():
     leftover = (f'<section id="singles"><h2>Streak legs that didn\'t fit a parlay</h2>'
                 f'<p class="muted">They qualify by streak, but every parlay already has a player from that game. '
                 f'Tap for the data.</p><ul class="legs card">{leg_rows(left, True)}</ul></section>') if left else ""
+    sa = b.get("streak_all") or []
+    by_game = {}
+    for r in sa:
+        by_game.setdefault(r["game"], []).append(r)
+    n_pass = sum(1 for r in sa if r["passes"])
+    allstreaks = "".join(
+        f'<h3 class="game-h">{E(short_game(g))} · {kick(rs[0]["kickoff_et"])}</h3><ul class="legs card">{streak_rows(rs)}</ul>'
+        for g, rs in sorted(by_game.items(), key=lambda kv: kv[1][0]["kickoff_et"]))
+    allstreaks = (f'<section id="all-streaks"><h2>All last-5 streaks</h2>'
+                  f'<p class="muted">Every player who cleared a FanDuel line in each of his last 5 games: {len(sa)} lines, '
+                  f'{n_pass} pass every Parlay C check. Green = passes (or already in a parlay); red = the checks it failed. '
+                  f'Tap for the checklist and game-by-game data, then bet it straight or build your own parlay.</p>'
+                  f'{allstreaks}</section>') if sa else ""
     copy_text = "\n\n".join(
         f"{p.get('name') or 'Parlay C'} (bet only at {am(p['min_acceptable_odds'])} or better)\n" +
         "\n".join(f"- {l['player']} {l['selection']} ({am(l['odds'])})" for l in p["legs"]) for p in pcs) \
@@ -256,6 +315,11 @@ table.hist td {{ padding:4px 6px; border-bottom:1px solid var(--line) }}
 table.hist tr.l5 td {{ background:var(--chip) }}
 td.hit {{ color:var(--good); font-weight:600 }} td.miss {{ color:var(--bad); font-weight:600 }}
 .small {{ font-size:.78rem }}
+.status {{ font-size:.75rem; font-weight:600; margin-top:2px }} .status.good {{ color:var(--good) }} .status.bad {{ color:var(--bad) }}
+ul.checks {{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:3px; font-size:.85rem }}
+ul.checks li span:first-child {{ display:inline-block; width:1.1em; font-weight:700 }}
+ul.checks li.ok span:first-child {{ color:var(--good) }} ul.checks li.no {{ color:var(--bad) }}
+.game-h {{ font-size:1.1rem; margin-top:6px }}
 .leg-name {{ font-weight:600 }} .leg-sel {{ }} .leg-sub {{ font-size:.8rem; color:var(--muted) }}
 .odds {{ font-family:var(--display); font-size:1.3rem; font-weight:700; font-variant-numeric:tabular-nums; white-space:nowrap }}
 .minbox {{ display:flex; align-items:baseline; gap:8px; justify-content:center; background:var(--chip); border-radius:10px; padding:10px }}
@@ -297,6 +361,7 @@ ul.plain {{ margin:0; padding-left:18px; display:flex; flex-direction:column; ga
 <p class="muted">Every leg cleared its line in each of the player's last 5 games. Tap a player for his game-by-game data. Each button opens FanDuel with that parlay's legs in your betslip; check every leg and the price before you bet.</p>
 {parlays}</section>
 {leftover}
+{allstreaks}
 <section id="copy"><div class="row"><h2>Copy list</h2><button class="btn ghost small" id="copy-btn" type="button">Copy</button></div>
 <div class="copy"><pre id="copy-text">{E(copy_text)}</pre></div></section>
 

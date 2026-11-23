@@ -403,3 +403,7 @@ The only parlay type (Parlays A and B were retired on 2026-11-22). It is indepen
   each player appears once. A single leg that fits nowhere is listed as a leftover, not a parlay.
 * Report the model fair odds and the minimum acceptable price, and say plainly when the model
   rates the parlay negative value at FanDuel's price. Never present a streak as a guarantee.
+* Also list ALL last-5 streaks (user request, 2026-11-23): every player and line that cleared its
+  threshold in each of the last five games, including the ones that fail a check. Show each one's
+  pass/fail result on every condition above, so the user can bet any of them straight or build a
+  manual parlay. The automatic parlays still use only lines that pass every check.

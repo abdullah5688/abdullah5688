@@ -179,8 +179,12 @@ Use exactly this layout:
    - exactly two bullets, written for THIS bet (not another market for the same player):
      `- ✅ **Why:** …` and `- ⚠️ **Risk:** …`;
    - `[➕ This leg alone in FanDuel](betslip_link)`.
-4. `## Removed today`: every `exclude` from context.json that affected a streak leg, with its reason.
-5. Last line: `Full research: \`YYYY-MM-DD-nfl-props.md\``.
+4. `## All last-5 streaks`: from `streak_all` in picks.json, grouped by game. One line per entry:
+   `Player Selection (odds) · status`, where status is the parlay name, "Single", "Qualifies", or
+   "Doesn't pass: <failed checks>". This lets the user build a manual parlay or bet straight.
+   The phone page shows the full ✓/✗ checklist, history and other 5/5 lines for each one.
+5. `## Removed today`: every `exclude` from context.json that affected a streak leg, with its reason.
+6. Last line: `Full research: \`YYYY-MM-DD-nfl-props.md\``.
 
 Every number must match picks.json. Links come only from the final pull. Never make up an ID.
 
@@ -190,7 +194,8 @@ Every number must match picks.json. Links come only from the final pull. Never m
    every Parlay C leg and leftover leg. Use the same two sentences as the summary. A note keyed by
    player alone is ignored, because it could describe a different bet on the same player.
 2. `python3 make_report_html.py YYYY-MM-DD` writes `reports/YYYY-MM-DD-nfl-props.html`. It shows only
-   Parlay C. Each leg expands to its game-by-game history, numbers and note.
+   Parlay C, then "All last-5 streaks" (every 5/5 line with its ✓/✗ checklist). Each player expands
+   to his game-by-game history, numbers and note.
 3. `node make_pdf.js reports/YYYY-MM-DD-nfl-props.html` writes the PDF with every leg expanded.
 4. Publish the HTML with the Artifact tool (icon "football") and send the PDF with SendUserFile.
    Put the artifact link in the final message.

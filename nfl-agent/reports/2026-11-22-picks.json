@@ -1854,5 +1854,5170 @@
   "bets": 13,
   "leans": 20,
   "research_only": 37
- }
+ },
+ "streak_all": [
+  {
+   "game": "Cincinnati Bengals @ Washington Commanders",
+   "kickoff_et": "2026-11-23 20:15",
+   "event_id": "3a60ed1d20004aa4d4772b2c1a2272e7",
+   "player": "Stefon Diggs",
+   "team": "WAS",
+   "opp": "CIN",
+   "pos": "WR",
+   "market": "reception_yds",
+   "alt": true,
+   "side": "Over",
+   "line": 29.5,
+   "selection": "30+ Rec Yds",
+   "odds": -320,
+   "book_last_update": "2026-11-22T23:03:47Z",
+   "betslip_link": "https://sportsbook.fanduel.com/addToBetslip?marketId=42.626338357&selectionId=73565848",
+   "proj_median": 46.4,
+   "proj_mean": 53.1,
+   "p_model": 0.6968,
+   "p_market": 0.7151,
+   "market_ref_book": "fanduel",
+   "p_blend": 0.706,
+   "breakeven": 0.7619,
+   "edge": -0.0559,
+   "ev": -0.0734,
+   "tier": "Pass",
+   "flags": "teammate_out",
+   "evidence_score": 57.8,
+   "score_parts": null,
+   "season_hits": "8/8",
+   "last5": "5/5",
+   "last10": "8/8",
+   "last5_values": "35 44 38 51 83",
+   "def_factor": 0.971,
+   "target_share": 0.217,
+   "carry_share": 0.0,
+   "history": [
+    {
+     "wk": 1,
+     "opp": "PHI",
+     "v": 55.0
+    },
+    {
+     "wk": 2,
+     "opp": "DAL",
+     "v": 47.0
+    },
+    {
+     "wk": 3,
+     "opp": "SEA",
+     "v": 33.0
+    },
+    {
+     "wk": 4,
+     "opp": "IND",
+     "v": 35.0
+    },
+    {
+     "wk": 6,
+     "opp": "SF",
+     "v": 44.0
+    },
+    {
+     "wk": 8,
+     "opp": "PHI",
+     "v": 38.0
+    },
+    {
+     "wk": 9,
+     "opp": "LA",
+     "v": 51.0
+    },
+    {
+     "wk": 10,
+     "opp": "NYG",
+     "v": 83.0
+    }
+   ],
+   "status": "Parlay C1",
+   "passes": true,
+   "checks": [
+    {
+     "label": "Odds -350 or better",
+     "ok": true,
+     "detail": "-320"
+    },
+    {
+     "label": "Model chance 50%+",
+     "ok": true,
+     "detail": "71%"
+    },
+    {
+     "label": "Not questionable",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "4+ games with his team",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "QB situation known",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection near FanDuel's line",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection in the model's tested range",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Snap trend not against it",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Not removed after news check",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Has a model projection",
+     "ok": true,
+     "detail": "ok"
+    }
+   ],
+   "other_lines": [
+    {
+     "selection": "25+ Rec Yds",
+     "odds": -470
+    },
+    {
+     "selection": "20+ Rec Yds",
+     "odds": -750
+    },
+    {
+     "selection": "15+ Rec Yds",
+     "odds": -1450
+    }
+   ]
+  },
+  {
+   "game": "Minnesota Vikings @ San Francisco 49ers",
+   "kickoff_et": "2026-11-22 20:20",
+   "event_id": "60e1d27b083a335b722c2c852ea85612",
+   "player": "Justin Jefferson",
+   "team": "MIN",
+   "opp": "SF",
+   "pos": "WR",
+   "market": "reception_yds",
+   "alt": false,
+   "side": "Under",
+   "line": 84.5,
+   "selection": "Under 84.5 Rec Yds",
+   "odds": -113,
+   "book_last_update": "2026-11-22T23:03:44Z",
+   "betslip_link": "https://sportsbook.fanduel.com/addToBetslip?marketId=42.626101285&selectionId=36057837",
+   "proj_median": 64.4,
+   "proj_mean": 71.4,
+   "p_model": 0.6705,
+   "p_market": 0.5,
+   "market_ref_book": "fanduel",
+   "p_blend": 0.5853,
+   "breakeven": 0.5305,
+   "edge": 0.0547,
+   "ev": 0.1032,
+   "tier": "Bet",
+   "flags": "qb_change,teammate_out",
+   "evidence_score": 77.6,
+   "score_parts": null,
+   "season_hits": "7/8",
+   "last5": "5/5",
+   "last10": "7/8",
+   "last5_values": "79 44 33 58 74",
+   "def_factor": 0.964,
+   "target_share": 0.33,
+   "carry_share": 0.004,
+   "history": [
+    {
+     "wk": 1,
+     "opp": "GB",
+     "v": 92.0
+    },
+    {
+     "wk": 2,
+     "opp": "CHI",
+     "v": 55.0
+    },
+    {
+     "wk": 3,
+     "opp": "TB",
+     "v": 32.0
+    },
+    {
+     "wk": 5,
+     "opp": "NO",
+     "v": 79.0
+    },
+    {
+     "wk": 7,
+     "opp": "IND",
+     "v": 44.0
+    },
+    {
+     "wk": 8,
+     "opp": "DET",
+     "v": 33.0
+    },
+    {
+     "wk": 9,
+     "opp": "BUF",
+     "v": 58.0
+    },
+    {
+     "wk": 10,
+     "opp": "GB",
+     "v": 74.0
+    }
+   ],
+   "status": "Parlay C1",
+   "passes": true,
+   "checks": [
+    {
+     "label": "Odds -350 or better",
+     "ok": true,
+     "detail": "-113"
+    },
+    {
+     "label": "Model chance 50%+",
+     "ok": true,
+     "detail": "59%"
+    },
+    {
+     "label": "Not questionable",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "4+ games with his team",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "QB situation known",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection near FanDuel's line",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection in the model's tested range",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Snap trend not against it",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Not removed after news check",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Has a model projection",
+     "ok": true,
+     "detail": "ok"
+    }
+   ],
+   "other_lines": []
+  },
+  {
+   "game": "Cincinnati Bengals @ Washington Commanders",
+   "kickoff_et": "2026-11-23 20:15",
+   "event_id": "3a60ed1d20004aa4d4772b2c1a2272e7",
+   "player": "Chase Brown",
+   "team": "CIN",
+   "opp": "WAS",
+   "pos": "RB",
+   "market": "rush_yds",
+   "alt": true,
+   "side": "Over",
+   "line": 29.5,
+   "selection": "30+ Rush Yds",
+   "odds": -350,
+   "book_last_update": "2026-11-22T23:03:47Z",
+   "betslip_link": "https://sportsbook.fanduel.com/addToBetslip?marketId=42.626338355&selectionId=73619978",
+   "proj_median": 44.1,
+   "proj_mean": 48.4,
+   "p_model": 0.696,
+   "p_market": 0.73,
+   "market_ref_book": "fanduel",
+   "p_blend": 0.713,
+   "breakeven": 0.7778,
+   "edge": -0.0647,
+   "ev": -0.0832,
+   "tier": "Pass",
+   "flags": null,
+   "evidence_score": 54.7,
+   "score_parts": null,
+   "season_hits": "8/9",
+   "last5": "5/5",
+   "last10": "8/9",
+   "last5_values": "39 39 55 57 44",
+   "def_factor": 0.973,
+   "target_share": 0.173,
+   "carry_share": 0.535,
+   "history": [
+    {
+     "wk": 1,
+     "opp": "TB",
+     "v": 56.0
+    },
+    {
+     "wk": 2,
+     "opp": "HOU",
+     "v": 80.0
+    },
+    {
+     "wk": 3,
+     "opp": "PIT",
+     "v": 61.0
+    },
+    {
+     "wk": 4,
+     "opp": "JAX",
+     "v": 10.0
+    },
+    {
+     "wk": 5,
+     "opp": "MIA",
+     "v": 39.0
+    },
+    {
+     "wk": 7,
+     "opp": "BAL",
+     "v": 39.0
+    },
+    {
+     "wk": 8,
+     "opp": "TEN",
+     "v": 55.0
+    },
+    {
+     "wk": 9,
+     "opp": "ATL",
+     "v": 57.0
+    },
+    {
+     "wk": 10,
+     "opp": "PIT",
+     "v": 44.0
+    }
+   ],
+   "status": "Single (no parlay fit)",
+   "passes": true,
+   "checks": [
+    {
+     "label": "Odds -350 or better",
+     "ok": true,
+     "detail": "-350"
+    },
+    {
+     "label": "Model chance 50%+",
+     "ok": true,
+     "detail": "71%"
+    },
+    {
+     "label": "Not questionable",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "4+ games with his team",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "QB situation known",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection near FanDuel's line",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection in the model's tested range",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Snap trend not against it",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Not removed after news check",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Has a model projection",
+     "ok": true,
+     "detail": "ok"
+    }
+   ],
+   "other_lines": [
+    {
+     "selection": "25+ Rush Yds",
+     "odds": -580
+    },
+    {
+     "selection": "20+ Rush Yds",
+     "odds": -1100
+    }
+   ]
+  },
+  {
+   "game": "Cincinnati Bengals @ Washington Commanders",
+   "kickoff_et": "2026-11-23 20:15",
+   "event_id": "3a60ed1d20004aa4d4772b2c1a2272e7",
+   "player": "Treylon Burks",
+   "team": "WAS",
+   "opp": "CIN",
+   "pos": "WR",
+   "market": "reception_yds",
+   "alt": true,
+   "side": "Over",
+   "line": 24.5,
+   "selection": "25+ Rec Yds",
+   "odds": -166,
+   "book_last_update": "2026-11-22T23:03:47Z",
+   "betslip_link": "https://sportsbook.fanduel.com/addToBetslip?marketId=42.627080997&selectionId=48337167",
+   "proj_median": 25.0,
+   "proj_mean": 33.0,
+   "p_model": 0.5073,
+   "p_market": 0.5857,
+   "market_ref_book": "fanduel",
+   "p_blend": 0.5465,
+   "breakeven": 0.6241,
+   "edge": -0.0775,
+   "ev": -0.1243,
+   "tier": "Pass",
+   "flags": "teammate_out",
+   "evidence_score": 47.2,
+   "score_parts": null,
+   "season_hits": "5/7",
+   "last5": "5/5",
+   "last10": "5/7",
+   "last5_values": "47 26 66 81 27",
+   "def_factor": 0.971,
+   "target_share": 0.13,
+   "carry_share": 0.0,
+   "history": [
+    {
+     "wk": 2,
+     "opp": "DAL",
+     "v": 0.0
+    },
+    {
+     "wk": 3,
+     "opp": "SEA",
+     "v": 13.0
+    },
+    {
+     "wk": 4,
+     "opp": "IND",
+     "v": 47.0
+    },
+    {
+     "wk": 5,
+     "opp": "NYG",
+     "v": 26.0
+    },
+    {
+     "wk": 6,
+     "opp": "SF",
+     "v": 66.0
+    },
+    {
+     "wk": 8,
+     "opp": "PHI",
+     "v": 81.0
+    },
+    {
+     "wk": 10,
+     "opp": "NYG",
+     "v": 27.0
+    }
+   ],
+   "status": "Single (no parlay fit)",
+   "passes": true,
+   "checks": [
+    {
+     "label": "Odds -350 or better",
+     "ok": true,
+     "detail": "-166"
+    },
+    {
+     "label": "Model chance 50%+",
+     "ok": true,
+     "detail": "55%"
+    },
+    {
+     "label": "Not questionable",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "4+ games with his team",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "QB situation known",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection near FanDuel's line",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection in the model's tested range",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Snap trend not against it",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Not removed after news check",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Has a model projection",
+     "ok": true,
+     "detail": "ok"
+    }
+   ],
+   "other_lines": [
+    {
+     "selection": "20+ Rec Yds",
+     "odds": -230
+    },
+    {
+     "selection": "15+ Rec Yds",
+     "odds": -330
+    },
+    {
+     "selection": "10+ Rec Yds",
+     "odds": -550
+    },
+    {
+     "selection": "5+ Rec Yds",
+     "odds": -1100
+    }
+   ]
+  },
+  {
+   "game": "Cincinnati Bengals @ Washington Commanders",
+   "kickoff_et": "2026-11-23 20:15",
+   "event_id": "3a60ed1d20004aa4d4772b2c1a2272e7",
+   "player": "Treylon Burks",
+   "team": "WAS",
+   "opp": "CIN",
+   "pos": "WR",
+   "market": "receptions",
+   "alt": true,
+   "side": "Over",
+   "line": 0.5,
+   "selection": "1+ Receptions",
+   "odds": -1450,
+   "book_last_update": "2026-11-22T23:03:47Z",
+   "betslip_link": "https://sportsbook.fanduel.com/addToBetslip?marketId=42.627080999&selectionId=62364470",
+   "proj_median": 1.8,
+   "proj_mean": 2.3,
+   "p_model": 0.8607,
+   "p_market": 0.8744,
+   "market_ref_book": "fanduel",
+   "p_blend": 0.8676,
+   "breakeven": 0.9355,
+   "edge": -0.0679,
+   "ev": -0.0726,
+   "tier": "Pass",
+   "flags": "teammate_out,price_cap",
+   "evidence_score": 36.3,
+   "score_parts": null,
+   "season_hits": "6/7",
+   "last5": "5/5",
+   "last10": "6/7",
+   "last5_values": "1 2 4 3 2",
+   "def_factor": 0.971,
+   "target_share": 0.13,
+   "carry_share": 0.0,
+   "history": [
+    {
+     "wk": 2,
+     "opp": "DAL",
+     "v": 0.0
+    },
+    {
+     "wk": 3,
+     "opp": "SEA",
+     "v": 2.0
+    },
+    {
+     "wk": 4,
+     "opp": "IND",
+     "v": 1.0
+    },
+    {
+     "wk": 5,
+     "opp": "NYG",
+     "v": 2.0
+    },
+    {
+     "wk": 6,
+     "opp": "SF",
+     "v": 4.0
+    },
+    {
+     "wk": 8,
+     "opp": "PHI",
+     "v": 3.0
+    },
+    {
+     "wk": 10,
+     "opp": "NYG",
+     "v": 2.0
+    }
+   ],
+   "status": "Doesn't pass: odds worse than -350",
+   "passes": false,
+   "checks": [
+    {
+     "label": "Odds -350 or better",
+     "ok": false,
+     "detail": "-1450"
+    },
+    {
+     "label": "Model chance 50%+",
+     "ok": true,
+     "detail": "87%"
+    },
+    {
+     "label": "Not questionable",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "4+ games with his team",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "QB situation known",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection near FanDuel's line",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection in the model's tested range",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Snap trend not against it",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Not removed after news check",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Has a model projection",
+     "ok": true,
+     "detail": "ok"
+    }
+   ],
+   "other_lines": []
+  },
+  {
+   "game": "Cincinnati Bengals @ Washington Commanders",
+   "kickoff_et": "2026-11-23 20:15",
+   "event_id": "3a60ed1d20004aa4d4772b2c1a2272e7",
+   "player": "Ja'Marr Chase",
+   "team": "CIN",
+   "opp": "WAS",
+   "pos": "WR",
+   "market": "receptions",
+   "alt": true,
+   "side": "Over",
+   "line": 4.5,
+   "selection": "5+ Receptions",
+   "odds": -1450,
+   "book_last_update": "2026-11-22T23:03:47Z",
+   "betslip_link": "https://sportsbook.fanduel.com/addToBetslip?marketId=42.626338368&selectionId=61439075",
+   "proj_median": 7.0,
+   "proj_mean": 7.1,
+   "p_model": 0.7388,
+   "p_market": 0.8749,
+   "market_ref_book": "fanduel",
+   "p_blend": 0.8068,
+   "breakeven": 0.9355,
+   "edge": -0.1286,
+   "ev": -0.1375,
+   "tier": "Pass",
+   "flags": "teammate_out,price_cap",
+   "evidence_score": 29.5,
+   "score_parts": null,
+   "season_hits": "7/9",
+   "last5": "5/5",
+   "last10": "7/9",
+   "last5_values": "6 5 11 10 11",
+   "def_factor": 0.97,
+   "target_share": 0.298,
+   "carry_share": 0.0,
+   "history": [
+    {
+     "wk": 1,
+     "opp": "TB",
+     "v": 2.0
+    },
+    {
+     "wk": 2,
+     "opp": "HOU",
+     "v": 7.0
+    },
+    {
+     "wk": 3,
+     "opp": "PIT",
+     "v": 9.0
+    },
+    {
+     "wk": 4,
+     "opp": "JAX",
+     "v": 3.0
+    },
+    {
+     "wk": 5,
+     "opp": "MIA",
+     "v": 6.0
+    },
+    {
+     "wk": 7,
+     "opp": "BAL",
+     "v": 5.0
+    },
+    {
+     "wk": 8,
+     "opp": "TEN",
+     "v": 11.0
+    },
+    {
+     "wk": 9,
+     "opp": "ATL",
+     "v": 10.0
+    },
+    {
+     "wk": 10,
+     "opp": "PIT",
+     "v": 11.0
+    }
+   ],
+   "status": "Doesn't pass: odds worse than -350",
+   "passes": false,
+   "checks": [
+    {
+     "label": "Odds -350 or better",
+     "ok": false,
+     "detail": "-1450"
+    },
+    {
+     "label": "Model chance 50%+",
+     "ok": true,
+     "detail": "81%"
+    },
+    {
+     "label": "Not questionable",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "4+ games with his team",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "QB situation known",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection near FanDuel's line",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection in the model's tested range",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Snap trend not against it",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Not removed after news check",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Has a model projection",
+     "ok": true,
+     "detail": "ok"
+    }
+   ],
+   "other_lines": []
+  },
+  {
+   "game": "Cincinnati Bengals @ Washington Commanders",
+   "kickoff_et": "2026-11-23 20:15",
+   "event_id": "3a60ed1d20004aa4d4772b2c1a2272e7",
+   "player": "Jayden Daniels",
+   "team": "WAS",
+   "opp": "CIN",
+   "pos": "QB",
+   "market": "pass_yds",
+   "alt": true,
+   "side": "Over",
+   "line": 174.5,
+   "selection": "175+ Pass Yds",
+   "odds": -400,
+   "book_last_update": "2026-11-22T23:03:47Z",
+   "betslip_link": "https://sportsbook.fanduel.com/addToBetslip?marketId=42.626338348&selectionId=73379056",
+   "proj_median": 248.4,
+   "proj_mean": 254.3,
+   "p_model": 0.8531,
+   "p_market": 0.7509,
+   "market_ref_book": "fanduel",
+   "p_blend": 0.802,
+   "breakeven": 0.8,
+   "edge": 0.002,
+   "ev": 0.0025,
+   "tier": "Pass",
+   "flags": "teammate_out,price_cap",
+   "evidence_score": 49.9,
+   "score_parts": null,
+   "season_hits": "5/7",
+   "last5": "5/5",
+   "last10": "5/7",
+   "last5_values": "199 300 217 274 249",
+   "def_factor": 0.971,
+   "target_share": 0.0,
+   "carry_share": 0.261,
+   "history": [
+    {
+     "wk": 1,
+     "opp": "PHI",
+     "v": 164.0
+    },
+    {
+     "wk": 2,
+     "opp": "DAL",
+     "v": 96.0
+    },
+    {
+     "wk": 5,
+     "opp": "NYG",
+     "v": 199.0
+    },
+    {
+     "wk": 6,
+     "opp": "SF",
+     "v": 300.0
+    },
+    {
+     "wk": 8,
+     "opp": "PHI",
+     "v": 217.0
+    },
+    {
+     "wk": 9,
+     "opp": "LA",
+     "v": 274.0
+    },
+    {
+     "wk": 10,
+     "opp": "NYG",
+     "v": 249.0
+    }
+   ],
+   "status": "Doesn't pass: odds worse than -350",
+   "passes": false,
+   "checks": [
+    {
+     "label": "Odds -350 or better",
+     "ok": false,
+     "detail": "-400"
+    },
+    {
+     "label": "Model chance 50%+",
+     "ok": true,
+     "detail": "80%"
+    },
+    {
+     "label": "Not questionable",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "4+ games with his team",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "QB situation known",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection near FanDuel's line",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection in the model's tested range",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Snap trend not against it",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Not removed after news check",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Has a model projection",
+     "ok": true,
+     "detail": "ok"
+    }
+   ],
+   "other_lines": [
+    {
+     "selection": "150+ Pass Yds",
+     "odds": -850
+    }
+   ]
+  },
+  {
+   "game": "Cincinnati Bengals @ Washington Commanders",
+   "kickoff_et": "2026-11-23 20:15",
+   "event_id": "3a60ed1d20004aa4d4772b2c1a2272e7",
+   "player": "Chig Okonkwo",
+   "team": "WAS",
+   "opp": "CIN",
+   "pos": "TE",
+   "market": "reception_yds",
+   "alt": true,
+   "side": "Over",
+   "line": 19.5,
+   "selection": "20+ Rec Yds",
+   "odds": -700,
+   "book_last_update": "2026-11-22T23:03:47Z",
+   "betslip_link": "https://sportsbook.fanduel.com/addToBetslip?marketId=42.626338358&selectionId=73608165",
+   "proj_median": 42.9,
+   "proj_mean": 49.9,
+   "p_model": 0.7799,
+   "p_market": 0.8213,
+   "market_ref_book": "fanduel",
+   "p_blend": 0.8006,
+   "breakeven": 0.875,
+   "edge": -0.0744,
+   "ev": -0.0851,
+   "tier": "Pass",
+   "flags": "teammate_out,price_cap",
+   "evidence_score": 43.2,
+   "score_parts": null,
+   "season_hits": "5/7",
+   "last5": "5/5",
+   "last10": "5/7",
+   "last5_values": "60 69 32 57 24",
+   "def_factor": 1.157,
+   "target_share": 0.194,
+   "carry_share": 0.0,
+   "history": [
+    {
+     "wk": 1,
+     "opp": "PHI",
+     "v": 16.0
+    },
+    {
+     "wk": 4,
+     "opp": "IND",
+     "v": 5.0
+    },
+    {
+     "wk": 5,
+     "opp": "NYG",
+     "v": 60.0
+    },
+    {
+     "wk": 6,
+     "opp": "SF",
+     "v": 69.0
+    },
+    {
+     "wk": 8,
+     "opp": "PHI",
+     "v": 32.0
+    },
+    {
+     "wk": 9,
+     "opp": "LA",
+     "v": 57.0
+    },
+    {
+     "wk": 10,
+     "opp": "NYG",
+     "v": 24.0
+    }
+   ],
+   "status": "Doesn't pass: odds worse than -350",
+   "passes": false,
+   "checks": [
+    {
+     "label": "Odds -350 or better",
+     "ok": false,
+     "detail": "-700"
+    },
+    {
+     "label": "Model chance 50%+",
+     "ok": true,
+     "detail": "80%"
+    },
+    {
+     "label": "Not questionable",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "4+ games with his team",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "QB situation known",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection near FanDuel's line",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection in the model's tested range",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Snap trend not against it",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Not removed after news check",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Has a model projection",
+     "ok": true,
+     "detail": "ok"
+    }
+   ],
+   "other_lines": [
+    {
+     "selection": "15+ Rec Yds",
+     "odds": -1400
+    }
+   ]
+  },
+  {
+   "game": "Minnesota Vikings @ San Francisco 49ers",
+   "kickoff_et": "2026-11-22 20:20",
+   "event_id": "60e1d27b083a335b722c2c852ea85612",
+   "player": "Jordan Mason",
+   "team": "MIN",
+   "opp": "SF",
+   "pos": "RB",
+   "market": "rush_yds",
+   "alt": true,
+   "side": "Over",
+   "line": 19.5,
+   "selection": "20+ Rush Yds",
+   "odds": -580,
+   "book_last_update": "2026-11-22T23:03:44Z",
+   "betslip_link": "https://sportsbook.fanduel.com/addToBetslip?marketId=42.626103245&selectionId=73676249",
+   "proj_median": 37.9,
+   "proj_mean": 41.7,
+   "p_model": 0.7671,
+   "p_market": 0.8039,
+   "market_ref_book": "fanduel",
+   "p_blend": 0.7855,
+   "breakeven": 0.8529,
+   "edge": -0.0675,
+   "ev": -0.0791,
+   "tier": "Pass",
+   "flags": "price_cap",
+   "evidence_score": 40.5,
+   "score_parts": null,
+   "season_hits": "5/5",
+   "last5": "5/5",
+   "last10": "5/5",
+   "last5_values": "59 68 20 35 59",
+   "def_factor": 0.886,
+   "target_share": 0.047,
+   "carry_share": 0.478,
+   "history": [
+    {
+     "wk": 1,
+     "opp": "GB",
+     "v": 59.0
+    },
+    {
+     "wk": 7,
+     "opp": "IND",
+     "v": 68.0
+    },
+    {
+     "wk": 8,
+     "opp": "DET",
+     "v": 20.0
+    },
+    {
+     "wk": 9,
+     "opp": "BUF",
+     "v": 35.0
+    },
+    {
+     "wk": 10,
+     "opp": "GB",
+     "v": 59.0
+    }
+   ],
+   "status": "Doesn't pass: odds worse than -350",
+   "passes": false,
+   "checks": [
+    {
+     "label": "Odds -350 or better",
+     "ok": false,
+     "detail": "-580"
+    },
+    {
+     "label": "Model chance 50%+",
+     "ok": true,
+     "detail": "79%"
+    },
+    {
+     "label": "Not questionable",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "4+ games with his team",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "QB situation known",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection near FanDuel's line",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection in the model's tested range",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Snap trend not against it",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Not removed after news check",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Has a model projection",
+     "ok": true,
+     "detail": "ok"
+    }
+   ],
+   "other_lines": [
+    {
+     "selection": "15+ Rush Yds",
+     "odds": -1200
+    }
+   ]
+  },
+  {
+   "game": "Minnesota Vikings @ San Francisco 49ers",
+   "kickoff_et": "2026-11-22 20:20",
+   "event_id": "60e1d27b083a335b722c2c852ea85612",
+   "player": "Kaelon Black",
+   "team": "SF",
+   "opp": "MIN",
+   "pos": "RB",
+   "market": "rush_yds",
+   "alt": true,
+   "side": "Over",
+   "line": 14.5,
+   "selection": "15+ Rush Yds",
+   "odds": -490,
+   "book_last_update": "2026-11-22T23:03:44Z",
+   "betslip_link": "https://sportsbook.fanduel.com/addToBetslip?marketId=42.626123850&selectionId=102880994",
+   "proj_median": 30.2,
+   "proj_mean": 34.6,
+   "p_model": 0.7588,
+   "p_market": 0.7827,
+   "market_ref_book": "fanduel",
+   "p_blend": 0.7707,
+   "breakeven": 0.8305,
+   "edge": -0.0598,
+   "ev": -0.072,
+   "tier": "Pass",
+   "flags": "price_cap",
+   "evidence_score": 46.3,
+   "score_parts": null,
+   "season_hits": "8/9",
+   "last5": "5/5",
+   "last10": "8/9",
+   "last5_values": "16 34 63 70 53",
+   "def_factor": 1.0,
+   "target_share": 0.025,
+   "carry_share": 0.301,
+   "history": [
+    {
+     "wk": 1,
+     "opp": "LA",
+     "v": 65.0
+    },
+    {
+     "wk": 2,
+     "opp": "MIA",
+     "v": 25.0
+    },
+    {
+     "wk": 3,
+     "opp": "ARI",
+     "v": 17.0
+    },
+    {
+     "wk": 4,
+     "opp": "DEN",
+     "v": 13.0
+    },
+    {
+     "wk": 5,
+     "opp": "SEA",
+     "v": 16.0
+    },
+    {
+     "wk": 6,
+     "opp": "WAS",
+     "v": 34.0
+    },
+    {
+     "wk": 7,
+     "opp": "ATL",
+     "v": 63.0
+    },
+    {
+     "wk": 9,
+     "opp": "LV",
+     "v": 70.0
+    },
+    {
+     "wk": 10,
+     "opp": "DAL",
+     "v": 53.0
+    }
+   ],
+   "status": "Doesn't pass: odds worse than -350",
+   "passes": false,
+   "checks": [
+    {
+     "label": "Odds -350 or better",
+     "ok": false,
+     "detail": "-490"
+    },
+    {
+     "label": "Model chance 50%+",
+     "ok": true,
+     "detail": "77%"
+    },
+    {
+     "label": "Not questionable",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "4+ games with his team",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "QB situation known",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection near FanDuel's line",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection in the model's tested range",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Snap trend not against it",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Not removed after news check",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Has a model projection",
+     "ok": true,
+     "detail": "ok"
+    }
+   ],
+   "other_lines": [
+    {
+     "selection": "10+ Rush Yds",
+     "odds": -1200
+    }
+   ]
+  },
+  {
+   "game": "Cincinnati Bengals @ Washington Commanders",
+   "kickoff_et": "2026-11-23 20:15",
+   "event_id": "3a60ed1d20004aa4d4772b2c1a2272e7",
+   "player": "Samaje Perine",
+   "team": "CIN",
+   "opp": "WAS",
+   "pos": "RB",
+   "market": "rush_yds",
+   "alt": true,
+   "side": "Over",
+   "line": 9.5,
+   "selection": "10+ Rush Yds",
+   "odds": -420,
+   "book_last_update": "2026-11-22T23:03:47Z",
+   "betslip_link": "https://sportsbook.fanduel.com/addToBetslip?marketId=42.626338354&selectionId=73526422",
+   "proj_median": 22.4,
+   "proj_mean": 27.1,
+   "p_model": 0.7546,
+   "p_market": 0.7581,
+   "market_ref_book": "fanduel",
+   "p_blend": 0.7563,
+   "breakeven": 0.8077,
+   "edge": -0.0513,
+   "ev": -0.0636,
+   "tier": "Pass",
+   "flags": "price_cap",
+   "evidence_score": 30.3,
+   "score_parts": null,
+   "season_hits": "6/9",
+   "last5": "5/5",
+   "last10": "6/9",
+   "last5_values": "68 16 10 43 14",
+   "def_factor": 0.973,
+   "target_share": 0.046,
+   "carry_share": 0.294,
+   "history": [
+    {
+     "wk": 1,
+     "opp": "TB",
+     "v": 20.0
+    },
+    {
+     "wk": 2,
+     "opp": "HOU",
+     "v": 6.0
+    },
+    {
+     "wk": 3,
+     "opp": "PIT",
+     "v": 9.0
+    },
+    {
+     "wk": 4,
+     "opp": "JAX",
+     "v": 7.0
+    },
+    {
+     "wk": 5,
+     "opp": "MIA",
+     "v": 68.0
+    },
+    {
+     "wk": 7,
+     "opp": "BAL",
+     "v": 16.0
+    },
+    {
+     "wk": 8,
+     "opp": "TEN",
+     "v": 10.0
+    },
+    {
+     "wk": 9,
+     "opp": "ATL",
+     "v": 43.0
+    },
+    {
+     "wk": 10,
+     "opp": "PIT",
+     "v": 14.0
+    }
+   ],
+   "status": "Doesn't pass: odds worse than -350",
+   "passes": false,
+   "checks": [
+    {
+     "label": "Odds -350 or better",
+     "ok": false,
+     "detail": "-420"
+    },
+    {
+     "label": "Model chance 50%+",
+     "ok": true,
+     "detail": "76%"
+    },
+    {
+     "label": "Not questionable",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "4+ games with his team",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "QB situation known",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection near FanDuel's line",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection in the model's tested range",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Snap trend not against it",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Not removed after news check",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Has a model projection",
+     "ok": true,
+     "detail": "ok"
+    }
+   ],
+   "other_lines": [
+    {
+     "selection": "5+ Rush Yds",
+     "odds": -1200
+    }
+   ]
+  },
+  {
+   "game": "Cincinnati Bengals @ Washington Commanders",
+   "kickoff_et": "2026-11-23 20:15",
+   "event_id": "3a60ed1d20004aa4d4772b2c1a2272e7",
+   "player": "Chase Brown",
+   "team": "CIN",
+   "opp": "WAS",
+   "pos": "RB",
+   "market": "reception_yds",
+   "alt": true,
+   "side": "Over",
+   "line": 14.5,
+   "selection": "15+ Rec Yds",
+   "odds": -390,
+   "book_last_update": "2026-11-22T23:03:47Z",
+   "betslip_link": "https://sportsbook.fanduel.com/addToBetslip?marketId=42.626338359&selectionId=73619956",
+   "proj_median": 26.5,
+   "proj_mean": 30.6,
+   "p_model": 0.7457,
+   "p_market": 0.747,
+   "market_ref_book": "fanduel",
+   "p_blend": 0.7463,
+   "breakeven": 0.7959,
+   "edge": -0.0496,
+   "ev": -0.0623,
+   "tier": "Pass",
+   "flags": "price_cap",
+   "evidence_score": 38.6,
+   "score_parts": null,
+   "season_hits": "7/9",
+   "last5": "5/5",
+   "last10": "7/9",
+   "last5_values": "21 19 46 18 39",
+   "def_factor": 0.96,
+   "target_share": 0.173,
+   "carry_share": 0.535,
+   "history": [
+    {
+     "wk": 1,
+     "opp": "TB",
+     "v": 22.0
+    },
+    {
+     "wk": 2,
+     "opp": "HOU",
+     "v": 2.0
+    },
+    {
+     "wk": 3,
+     "opp": "PIT",
+     "v": 8.0
+    },
+    {
+     "wk": 4,
+     "opp": "JAX",
+     "v": 71.0
+    },
+    {
+     "wk": 5,
+     "opp": "MIA",
+     "v": 21.0
+    },
+    {
+     "wk": 7,
+     "opp": "BAL",
+     "v": 19.0
+    },
+    {
+     "wk": 8,
+     "opp": "TEN",
+     "v": 46.0
+    },
+    {
+     "wk": 9,
+     "opp": "ATL",
+     "v": 18.0
+    },
+    {
+     "wk": 10,
+     "opp": "PIT",
+     "v": 39.0
+    }
+   ],
+   "status": "Doesn't pass: odds worse than -350",
+   "passes": false,
+   "checks": [
+    {
+     "label": "Odds -350 or better",
+     "ok": false,
+     "detail": "-390"
+    },
+    {
+     "label": "Model chance 50%+",
+     "ok": true,
+     "detail": "75%"
+    },
+    {
+     "label": "Not questionable",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "4+ games with his team",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "QB situation known",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection near FanDuel's line",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection in the model's tested range",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Snap trend not against it",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Not removed after news check",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Has a model projection",
+     "ok": true,
+     "detail": "ok"
+    }
+   ],
+   "other_lines": [
+    {
+     "selection": "10+ Rec Yds",
+     "odds": -750
+    }
+   ]
+  },
+  {
+   "game": "Cincinnati Bengals @ Washington Commanders",
+   "kickoff_et": "2026-11-23 20:15",
+   "event_id": "3a60ed1d20004aa4d4772b2c1a2272e7",
+   "player": "Ja'Marr Chase",
+   "team": "CIN",
+   "opp": "WAS",
+   "pos": "WR",
+   "market": "reception_yds",
+   "alt": true,
+   "side": "Over",
+   "line": 59.5,
+   "selection": "60+ Rec Yds",
+   "odds": -550,
+   "book_last_update": "2026-11-22T23:03:47Z",
+   "betslip_link": "https://sportsbook.fanduel.com/addToBetslip?marketId=42.626338361&selectionId=40906004",
+   "proj_median": 83.4,
+   "proj_mean": 91.3,
+   "p_model": 0.6975,
+   "p_market": 0.7942,
+   "market_ref_book": "fanduel",
+   "p_blend": 0.7458,
+   "breakeven": 0.8462,
+   "edge": -0.1003,
+   "ev": -0.1185,
+   "tier": "Pass",
+   "flags": "teammate_out,price_cap",
+   "evidence_score": 33.2,
+   "score_parts": null,
+   "season_hits": "7/9",
+   "last5": "5/5",
+   "last10": "7/9",
+   "last5_values": "77 62 141 155 231",
+   "def_factor": 0.97,
+   "target_share": 0.298,
+   "carry_share": 0.0,
+   "history": [
+    {
+     "wk": 1,
+     "opp": "TB",
+     "v": 12.0
+    },
+    {
+     "wk": 2,
+     "opp": "HOU",
+     "v": 75.0
+    },
+    {
+     "wk": 3,
+     "opp": "PIT",
+     "v": 98.0
+    },
+    {
+     "wk": 4,
+     "opp": "JAX",
+     "v": 27.0
+    },
+    {
+     "wk": 5,
+     "opp": "MIA",
+     "v": 77.0
+    },
+    {
+     "wk": 7,
+     "opp": "BAL",
+     "v": 62.0
+    },
+    {
+     "wk": 8,
+     "opp": "TEN",
+     "v": 141.0
+    },
+    {
+     "wk": 9,
+     "opp": "ATL",
+     "v": 155.0
+    },
+    {
+     "wk": 10,
+     "opp": "PIT",
+     "v": 231.0
+    }
+   ],
+   "status": "Doesn't pass: odds worse than -350",
+   "passes": false,
+   "checks": [
+    {
+     "label": "Odds -350 or better",
+     "ok": false,
+     "detail": "-550"
+    },
+    {
+     "label": "Model chance 50%+",
+     "ok": true,
+     "detail": "75%"
+    },
+    {
+     "label": "Not questionable",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "4+ games with his team",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "QB situation known",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection near FanDuel's line",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection in the model's tested range",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Snap trend not against it",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Not removed after news check",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Has a model projection",
+     "ok": true,
+     "detail": "ok"
+    }
+   ],
+   "other_lines": [
+    {
+     "selection": "50+ Rec Yds",
+     "odds": -1100
+    }
+   ]
+  },
+  {
+   "game": "Cincinnati Bengals @ Washington Commanders",
+   "kickoff_et": "2026-11-23 20:15",
+   "event_id": "3a60ed1d20004aa4d4772b2c1a2272e7",
+   "player": "Stefon Diggs",
+   "team": "WAS",
+   "opp": "CIN",
+   "pos": "WR",
+   "market": "receptions",
+   "alt": true,
+   "side": "Over",
+   "line": 2.5,
+   "selection": "3+ Receptions",
+   "odds": -670,
+   "book_last_update": "2026-11-22T23:03:47Z",
+   "betslip_link": "https://sportsbook.fanduel.com/addToBetslip?marketId=42.626338364&selectionId=61354862",
+   "proj_median": 4.4,
+   "proj_mean": 4.4,
+   "p_model": 0.6611,
+   "p_market": 0.8167,
+   "market_ref_book": "fanduel",
+   "p_blend": 0.7389,
+   "breakeven": 0.8701,
+   "edge": -0.1312,
+   "ev": -0.1508,
+   "tier": "Pass",
+   "flags": "teammate_out,price_cap",
+   "evidence_score": 45.9,
+   "score_parts": null,
+   "season_hits": "8/8",
+   "last5": "5/5",
+   "last10": "8/8",
+   "last5_values": "5 6 3 3 6",
+   "def_factor": 0.971,
+   "target_share": 0.217,
+   "carry_share": 0.0,
+   "history": [
+    {
+     "wk": 1,
+     "opp": "PHI",
+     "v": 4.0
+    },
+    {
+     "wk": 2,
+     "opp": "DAL",
+     "v": 5.0
+    },
+    {
+     "wk": 3,
+     "opp": "SEA",
+     "v": 4.0
+    },
+    {
+     "wk": 4,
+     "opp": "IND",
+     "v": 5.0
+    },
+    {
+     "wk": 6,
+     "opp": "SF",
+     "v": 6.0
+    },
+    {
+     "wk": 8,
+     "opp": "PHI",
+     "v": 3.0
+    },
+    {
+     "wk": 9,
+     "opp": "LA",
+     "v": 3.0
+    },
+    {
+     "wk": 10,
+     "opp": "NYG",
+     "v": 6.0
+    }
+   ],
+   "status": "Doesn't pass: odds worse than -350",
+   "passes": false,
+   "checks": [
+    {
+     "label": "Odds -350 or better",
+     "ok": false,
+     "detail": "-670"
+    },
+    {
+     "label": "Model chance 50%+",
+     "ok": true,
+     "detail": "74%"
+    },
+    {
+     "label": "Not questionable",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "4+ games with his team",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "QB situation known",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection near FanDuel's line",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection in the model's tested range",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Snap trend not against it",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Not removed after news check",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Has a model projection",
+     "ok": true,
+     "detail": "ok"
+    }
+   ],
+   "other_lines": []
+  },
+  {
+   "game": "Minnesota Vikings @ San Francisco 49ers",
+   "kickoff_et": "2026-11-22 20:20",
+   "event_id": "60e1d27b083a335b722c2c852ea85612",
+   "player": "Christian McCaffrey",
+   "team": "SF",
+   "opp": "MIN",
+   "pos": "RB",
+   "market": "rush_yds",
+   "alt": true,
+   "side": "Over",
+   "line": 29.5,
+   "selection": "30+ Rush Yds",
+   "odds": -580,
+   "book_last_update": "2026-11-22T23:03:44Z",
+   "betslip_link": "https://sportsbook.fanduel.com/addToBetslip?marketId=42.626102491&selectionId=73139316",
+   "proj_median": 41.4,
+   "proj_mean": 45.8,
+   "p_model": 0.6702,
+   "p_market": 0.8039,
+   "market_ref_book": "fanduel",
+   "p_blend": 0.737,
+   "breakeven": 0.8529,
+   "edge": -0.1159,
+   "ev": -0.1359,
+   "tier": "Pass",
+   "flags": "price_cap",
+   "evidence_score": 43.7,
+   "score_parts": null,
+   "season_hits": "8/9",
+   "last5": "5/5",
+   "last10": "8/9",
+   "last5_values": "68 64 39 68 62",
+   "def_factor": 1.0,
+   "target_share": 0.122,
+   "carry_share": 0.427,
+   "history": [
+    {
+     "wk": 1,
+     "opp": "LA",
+     "v": 68.0
+    },
+    {
+     "wk": 2,
+     "opp": "MIA",
+     "v": 23.0
+    },
+    {
+     "wk": 3,
+     "opp": "ARI",
+     "v": 75.0
+    },
+    {
+     "wk": 4,
+     "opp": "DEN",
+     "v": 52.0
+    },
+    {
+     "wk": 5,
+     "opp": "SEA",
+     "v": 68.0
+    },
+    {
+     "wk": 6,
+     "opp": "WAS",
+     "v": 64.0
+    },
+    {
+     "wk": 7,
+     "opp": "ATL",
+     "v": 39.0
+    },
+    {
+     "wk": 9,
+     "opp": "LV",
+     "v": 68.0
+    },
+    {
+     "wk": 10,
+     "opp": "DAL",
+     "v": 62.0
+    }
+   ],
+   "status": "Doesn't pass: odds worse than -350",
+   "passes": false,
+   "checks": [
+    {
+     "label": "Odds -350 or better",
+     "ok": false,
+     "detail": "-580"
+    },
+    {
+     "label": "Model chance 50%+",
+     "ok": true,
+     "detail": "74%"
+    },
+    {
+     "label": "Not questionable",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "4+ games with his team",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "QB situation known",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection near FanDuel's line",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection in the model's tested range",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Snap trend not against it",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Not removed after news check",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Has a model projection",
+     "ok": true,
+     "detail": "ok"
+    }
+   ],
+   "other_lines": [
+    {
+     "selection": "25+ Rush Yds",
+     "odds": -1000
+    }
+   ]
+  },
+  {
+   "game": "Cincinnati Bengals @ Washington Commanders",
+   "kickoff_et": "2026-11-23 20:15",
+   "event_id": "3a60ed1d20004aa4d4772b2c1a2272e7",
+   "player": "Chase Brown",
+   "team": "CIN",
+   "opp": "WAS",
+   "pos": "RB",
+   "market": "receptions",
+   "alt": true,
+   "side": "Over",
+   "line": 2.5,
+   "selection": "3+ Receptions",
+   "odds": -440,
+   "book_last_update": "2026-11-22T23:03:47Z",
+   "betslip_link": "https://sportsbook.fanduel.com/addToBetslip?marketId=42.626338366&selectionId=64208751",
+   "proj_median": 4.4,
+   "proj_mean": 4.9,
+   "p_model": 0.6977,
+   "p_market": 0.7626,
+   "market_ref_book": "fanduel",
+   "p_blend": 0.7301,
+   "breakeven": 0.8148,
+   "edge": -0.0847,
+   "ev": -0.1039,
+   "tier": "Pass",
+   "flags": "price_cap",
+   "evidence_score": 39.2,
+   "score_parts": null,
+   "season_hits": "8/9",
+   "last5": "5/5",
+   "last10": "8/9",
+   "last5_values": "3 4 8 3 8",
+   "def_factor": 0.96,
+   "target_share": 0.173,
+   "carry_share": 0.535,
+   "history": [
+    {
+     "wk": 1,
+     "opp": "TB",
+     "v": 5.0
+    },
+    {
+     "wk": 2,
+     "opp": "HOU",
+     "v": 3.0
+    },
+    {
+     "wk": 3,
+     "opp": "PIT",
+     "v": 2.0
+    },
+    {
+     "wk": 4,
+     "opp": "JAX",
+     "v": 11.0
+    },
+    {
+     "wk": 5,
+     "opp": "MIA",
+     "v": 3.0
+    },
+    {
+     "wk": 7,
+     "opp": "BAL",
+     "v": 4.0
+    },
+    {
+     "wk": 8,
+     "opp": "TEN",
+     "v": 8.0
+    },
+    {
+     "wk": 9,
+     "opp": "ATL",
+     "v": 3.0
+    },
+    {
+     "wk": 10,
+     "opp": "PIT",
+     "v": 8.0
+    }
+   ],
+   "status": "Doesn't pass: odds worse than -350",
+   "passes": false,
+   "checks": [
+    {
+     "label": "Odds -350 or better",
+     "ok": false,
+     "detail": "-440"
+    },
+    {
+     "label": "Model chance 50%+",
+     "ok": true,
+     "detail": "73%"
+    },
+    {
+     "label": "Not questionable",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "4+ games with his team",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "QB situation known",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection near FanDuel's line",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection in the model's tested range",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Snap trend not against it",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Not removed after news check",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Has a model projection",
+     "ok": true,
+     "detail": "ok"
+    }
+   ],
+   "other_lines": [
+    {
+     "selection": "2+ Receptions",
+     "odds": -1800
+    }
+   ]
+  },
+  {
+   "game": "Minnesota Vikings @ San Francisco 49ers",
+   "kickoff_et": "2026-11-22 20:20",
+   "event_id": "60e1d27b083a335b722c2c852ea85612",
+   "player": "Kirk Cousins",
+   "team": "MIN",
+   "opp": "SF",
+   "pos": "QB",
+   "market": "pass_yds",
+   "alt": true,
+   "side": "Over",
+   "line": 199.5,
+   "selection": "200+ Pass Yds",
+   "odds": -260,
+   "book_last_update": "2026-11-22T23:03:44Z",
+   "betslip_link": "https://sportsbook.fanduel.com/addToBetslip?marketId=42.626102488&selectionId=40905920",
+   "proj_median": 216.5,
+   "proj_mean": 221.6,
+   "p_model": 0.5965,
+   "p_market": 0.6807,
+   "market_ref_book": "fanduel",
+   "p_blend": 0.6386,
+   "breakeven": 0.7222,
+   "edge": -0.0836,
+   "ev": -0.1158,
+   "tier": "Pass",
+   "flags": "small_sample,qb_change,teammate_out",
+   "evidence_score": 46.2,
+   "score_parts": null,
+   "season_hits": "9/10",
+   "last5": "5/5",
+   "last10": "9/10",
+   "last5_values": "313 295 247 216 207",
+   "def_factor": 0.964,
+   "target_share": 0.0,
+   "carry_share": 0.094,
+   "history": [
+    {
+     "wk": 1,
+     "opp": "MIA",
+     "v": 160.0
+    },
+    {
+     "wk": 2,
+     "opp": "LAC",
+     "v": 253.0
+    },
+    {
+     "wk": 3,
+     "opp": "NO",
+     "v": 248.0
+    },
+    {
+     "wk": 4,
+     "opp": "KC",
+     "v": 365.0
+    },
+    {
+     "wk": 5,
+     "opp": "NE",
+     "v": 243.0
+    },
+    {
+     "wk": 6,
+     "opp": "BUF",
+     "v": 313.0
+    },
+    {
+     "wk": 7,
+     "opp": "LA",
+     "v": 295.0
+    },
+    {
+     "wk": 8,
+     "opp": "NYJ",
+     "v": 247.0
+    },
+    {
+     "wk": 9,
+     "opp": "SF",
+     "v": 216.0
+    },
+    {
+     "wk": 10,
+     "opp": "GB",
+     "v": 207.0
+    }
+   ],
+   "status": "Doesn't pass: fewer than 4 games with his team",
+   "passes": false,
+   "checks": [
+    {
+     "label": "Odds -350 or better",
+     "ok": true,
+     "detail": "-260"
+    },
+    {
+     "label": "Model chance 50%+",
+     "ok": true,
+     "detail": "64%"
+    },
+    {
+     "label": "Not questionable",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "4+ games with his team",
+     "ok": false,
+     "detail": "fewer than 4"
+    },
+    {
+     "label": "QB situation known",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection near FanDuel's line",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection in the model's tested range",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Snap trend not against it",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Not removed after news check",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Has a model projection",
+     "ok": true,
+     "detail": "ok"
+    }
+   ],
+   "other_lines": [
+    {
+     "selection": "175+ Pass Yds",
+     "odds": -490
+    },
+    {
+     "selection": "150+ Pass Yds",
+     "odds": -1100
+    }
+   ]
+  },
+  {
+   "game": "Cincinnati Bengals @ Washington Commanders",
+   "kickoff_et": "2026-11-23 20:15",
+   "event_id": "3a60ed1d20004aa4d4772b2c1a2272e7",
+   "player": "Antonio Williams",
+   "team": "WAS",
+   "opp": "CIN",
+   "pos": "WR",
+   "market": "reception_yds",
+   "alt": true,
+   "side": "Over",
+   "line": 24.5,
+   "selection": "25+ Rec Yds",
+   "odds": -250,
+   "book_last_update": "2026-11-22T23:03:47Z",
+   "betslip_link": "https://sportsbook.fanduel.com/addToBetslip?marketId=42.626338356&selectionId=48777723",
+   "proj_median": 24.4,
+   "proj_mean": 31.3,
+   "p_model": 0.4981,
+   "p_market": 0.6704,
+   "market_ref_book": "fanduel",
+   "p_blend": 0.5843,
+   "breakeven": 0.7143,
+   "edge": -0.13,
+   "ev": -0.182,
+   "tier": "Pass",
+   "flags": "snap_rise,teammate_out,line_gap",
+   "evidence_score": 35.0,
+   "score_parts": null,
+   "season_hits": "6/9",
+   "last5": "5/5",
+   "last10": "6/9",
+   "last5_values": "31 50 54 25 42",
+   "def_factor": 0.971,
+   "target_share": 0.13,
+   "carry_share": 0.0,
+   "history": [
+    {
+     "wk": 1,
+     "opp": "PHI",
+     "v": 64.0
+    },
+    {
+     "wk": 2,
+     "opp": "DAL",
+     "v": 24.0
+    },
+    {
+     "wk": 3,
+     "opp": "SEA",
+     "v": 15.0
+    },
+    {
+     "wk": 4,
+     "opp": "IND",
+     "v": 21.0
+    },
+    {
+     "wk": 5,
+     "opp": "NYG",
+     "v": 31.0
+    },
+    {
+     "wk": 6,
+     "opp": "SF",
+     "v": 50.0
+    },
+    {
+     "wk": 8,
+     "opp": "PHI",
+     "v": 54.0
+    },
+    {
+     "wk": 9,
+     "opp": "LA",
+     "v": 25.0
+    },
+    {
+     "wk": 10,
+     "opp": "NYG",
+     "v": 42.0
+    }
+   ],
+   "status": "Doesn't pass: projection far from FanDuel's line",
+   "passes": false,
+   "checks": [
+    {
+     "label": "Odds -350 or better",
+     "ok": true,
+     "detail": "-250"
+    },
+    {
+     "label": "Model chance 50%+",
+     "ok": true,
+     "detail": "58%"
+    },
+    {
+     "label": "Not questionable",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "4+ games with his team",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "QB situation known",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection near FanDuel's line",
+     "ok": false,
+     "detail": "model 24.4 vs line 24.5"
+    },
+    {
+     "label": "Projection in the model's tested range",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Snap trend not against it",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Not removed after news check",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Has a model projection",
+     "ok": true,
+     "detail": "ok"
+    }
+   ],
+   "other_lines": [
+    {
+     "selection": "20+ Rec Yds",
+     "odds": -360
+    },
+    {
+     "selection": "15+ Rec Yds",
+     "odds": -600
+    },
+    {
+     "selection": "10+ Rec Yds",
+     "odds": -1200
+    }
+   ]
+  },
+  {
+   "game": "Minnesota Vikings @ San Francisco 49ers",
+   "kickoff_et": "2026-11-22 20:20",
+   "event_id": "60e1d27b083a335b722c2c852ea85612",
+   "player": "George Kittle",
+   "team": "SF",
+   "opp": "MIN",
+   "pos": "TE",
+   "market": "receptions",
+   "alt": true,
+   "side": "Over",
+   "line": 3.5,
+   "selection": "4+ Receptions",
+   "odds": -205,
+   "book_last_update": "2026-11-22T23:03:44Z",
+   "betslip_link": "https://sportsbook.fanduel.com/addToBetslip?marketId=42.626104093&selectionId=61401644",
+   "proj_median": 2.6,
+   "proj_mean": 3.2,
+   "p_model": 0.4554,
+   "p_market": 0.6289,
+   "market_ref_book": "fanduel",
+   "p_blend": 0.5421,
+   "breakeven": 0.6721,
+   "edge": -0.13,
+   "ev": -0.1934,
+   "tier": "Pass",
+   "flags": "line_gap",
+   "evidence_score": 51.8,
+   "score_parts": null,
+   "season_hits": "8/9",
+   "last5": "5/5",
+   "last10": "8/9",
+   "last5_values": "5 5 8 4 6",
+   "def_factor": 0.976,
+   "target_share": 0.175,
+   "carry_share": 0.0,
+   "history": [
+    {
+     "wk": 1,
+     "opp": "LA",
+     "v": 2.0
+    },
+    {
+     "wk": 2,
+     "opp": "MIA",
+     "v": 4.0
+    },
+    {
+     "wk": 3,
+     "opp": "ARI",
+     "v": 6.0
+    },
+    {
+     "wk": 4,
+     "opp": "DEN",
+     "v": 4.0
+    },
+    {
+     "wk": 5,
+     "opp": "SEA",
+     "v": 5.0
+    },
+    {
+     "wk": 6,
+     "opp": "WAS",
+     "v": 5.0
+    },
+    {
+     "wk": 7,
+     "opp": "ATL",
+     "v": 8.0
+    },
+    {
+     "wk": 9,
+     "opp": "LV",
+     "v": 4.0
+    },
+    {
+     "wk": 10,
+     "opp": "DAL",
+     "v": 6.0
+    }
+   ],
+   "status": "Doesn't pass: projection far from FanDuel's line",
+   "passes": false,
+   "checks": [
+    {
+     "label": "Odds -350 or better",
+     "ok": true,
+     "detail": "-205"
+    },
+    {
+     "label": "Model chance 50%+",
+     "ok": true,
+     "detail": "54%"
+    },
+    {
+     "label": "Not questionable",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "4+ games with his team",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "QB situation known",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection near FanDuel's line",
+     "ok": false,
+     "detail": "model 2.6 vs line 3.5"
+    },
+    {
+     "label": "Projection in the model's tested range",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Snap trend not against it",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Not removed after news check",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Has a model projection",
+     "ok": true,
+     "detail": "ok"
+    }
+   ],
+   "other_lines": [
+    {
+     "selection": "3+ Receptions",
+     "odds": -470
+    }
+   ]
+  },
+  {
+   "game": "Minnesota Vikings @ San Francisco 49ers",
+   "kickoff_et": "2026-11-22 20:20",
+   "event_id": "60e1d27b083a335b722c2c852ea85612",
+   "player": "Keenan Allen",
+   "team": "SF",
+   "opp": "MIN",
+   "pos": "WR",
+   "market": "receptions",
+   "alt": false,
+   "side": "Over",
+   "line": 2.5,
+   "selection": "Over 2.5 Receptions",
+   "odds": -114,
+   "book_last_update": "2026-11-22T23:03:44Z",
+   "betslip_link": "https://sportsbook.fanduel.com/addToBetslip?marketId=42.627588459&selectionId=14807213",
+   "proj_median": 2.6,
+   "proj_mean": 2.7,
+   "p_model": 0.5303,
+   "p_market": 0.5,
+   "market_ref_book": "fanduel",
+   "p_blend": 0.5152,
+   "breakeven": 0.5327,
+   "edge": -0.0175,
+   "ev": -0.0329,
+   "tier": "Pass",
+   "flags": "small_sample",
+   "evidence_score": 55.6,
+   "score_parts": null,
+   "season_hits": "8/9",
+   "last5": "5/5",
+   "last10": "8/9",
+   "last5_values": "8 3 7 4 5",
+   "def_factor": 0.943,
+   "target_share": 0.167,
+   "carry_share": 0.0,
+   "history": [
+    {
+     "wk": 1,
+     "opp": "BAL",
+     "v": 6.0
+    },
+    {
+     "wk": 2,
+     "opp": "KC",
+     "v": 1.0
+    },
+    {
+     "wk": 3,
+     "opp": "HOU",
+     "v": 6.0
+    },
+    {
+     "wk": 5,
+     "opp": "PIT",
+     "v": 5.0
+    },
+    {
+     "wk": 6,
+     "opp": "TEN",
+     "v": 8.0
+    },
+    {
+     "wk": 7,
+     "opp": "MIN",
+     "v": 3.0
+    },
+    {
+     "wk": 8,
+     "opp": "JAX",
+     "v": 7.0
+    },
+    {
+     "wk": 9,
+     "opp": "DAL",
+     "v": 4.0
+    },
+    {
+     "wk": 10,
+     "opp": "DAL",
+     "v": 5.0
+    }
+   ],
+   "status": "Doesn't pass: fewer than 4 games with his team",
+   "passes": false,
+   "checks": [
+    {
+     "label": "Odds -350 or better",
+     "ok": true,
+     "detail": "-114"
+    },
+    {
+     "label": "Model chance 50%+",
+     "ok": true,
+     "detail": "52%"
+    },
+    {
+     "label": "Not questionable",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "4+ games with his team",
+     "ok": false,
+     "detail": "fewer than 4"
+    },
+    {
+     "label": "QB situation known",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection near FanDuel's line",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection in the model's tested range",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Snap trend not against it",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Not removed after news check",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Has a model projection",
+     "ok": true,
+     "detail": "ok"
+    }
+   ],
+   "other_lines": [
+    {
+     "selection": "3+ Receptions",
+     "odds": -114
+    },
+    {
+     "selection": "2+ Receptions",
+     "odds": -350
+    }
+   ]
+  },
+  {
+   "game": "Minnesota Vikings @ San Francisco 49ers",
+   "kickoff_et": "2026-11-22 20:20",
+   "event_id": "60e1d27b083a335b722c2c852ea85612",
+   "player": "Keenan Allen",
+   "team": "SF",
+   "opp": "MIN",
+   "pos": "WR",
+   "market": "reception_yds",
+   "alt": true,
+   "side": "Over",
+   "line": 24.5,
+   "selection": "25+ Rec Yds",
+   "odds": -132,
+   "book_last_update": "2026-11-22T23:03:44Z",
+   "betslip_link": "https://sportsbook.fanduel.com/addToBetslip?marketId=42.627588458&selectionId=40906083",
+   "proj_median": 23.0,
+   "proj_mean": 28.8,
+   "p_model": 0.4744,
+   "p_market": 0.5362,
+   "market_ref_book": "fanduel",
+   "p_blend": 0.5053,
+   "breakeven": 0.569,
+   "edge": -0.0636,
+   "ev": -0.1119,
+   "tier": "Pass",
+   "flags": "small_sample",
+   "evidence_score": 48.0,
+   "score_parts": null,
+   "season_hits": "8/9",
+   "last5": "5/5",
+   "last10": "8/9",
+   "last5_values": "82 31 67 26 61",
+   "def_factor": 0.943,
+   "target_share": 0.167,
+   "carry_share": 0.0,
+   "history": [
+    {
+     "wk": 1,
+     "opp": "BAL",
+     "v": 32.0
+    },
+    {
+     "wk": 2,
+     "opp": "KC",
+     "v": 5.0
+    },
+    {
+     "wk": 3,
+     "opp": "HOU",
+     "v": 63.0
+    },
+    {
+     "wk": 5,
+     "opp": "PIT",
+     "v": 45.0
+    },
+    {
+     "wk": 6,
+     "opp": "TEN",
+     "v": 82.0
+    },
+    {
+     "wk": 7,
+     "opp": "MIN",
+     "v": 31.0
+    },
+    {
+     "wk": 8,
+     "opp": "JAX",
+     "v": 67.0
+    },
+    {
+     "wk": 9,
+     "opp": "DAL",
+     "v": 26.0
+    },
+    {
+     "wk": 10,
+     "opp": "DAL",
+     "v": 61.0
+    }
+   ],
+   "status": "Doesn't pass: fewer than 4 games with his team",
+   "passes": false,
+   "checks": [
+    {
+     "label": "Odds -350 or better",
+     "ok": true,
+     "detail": "-132"
+    },
+    {
+     "label": "Model chance 50%+",
+     "ok": true,
+     "detail": "51%"
+    },
+    {
+     "label": "Not questionable",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "4+ games with his team",
+     "ok": false,
+     "detail": "fewer than 4"
+    },
+    {
+     "label": "QB situation known",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection near FanDuel's line",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection in the model's tested range",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Snap trend not against it",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Not removed after news check",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Has a model projection",
+     "ok": true,
+     "detail": "ok"
+    }
+   ],
+   "other_lines": [
+    {
+     "selection": "20+ Rec Yds",
+     "odds": -200
+    },
+    {
+     "selection": "15+ Rec Yds",
+     "odds": -320
+    },
+    {
+     "selection": "10+ Rec Yds",
+     "odds": -550
+    },
+    {
+     "selection": "5+ Rec Yds",
+     "odds": -1400
+    }
+   ]
+  },
+  {
+   "game": "Minnesota Vikings @ San Francisco 49ers",
+   "kickoff_et": "2026-11-22 20:20",
+   "event_id": "60e1d27b083a335b722c2c852ea85612",
+   "player": "Aaron Jones",
+   "team": "MIN",
+   "opp": "SF",
+   "pos": "RB",
+   "market": "rush_yds",
+   "alt": true,
+   "side": "Over",
+   "line": 14.5,
+   "selection": "15+ Rush Yds",
+   "odds": -650,
+   "book_last_update": "2026-11-22T23:03:44Z",
+   "betslip_link": "https://sportsbook.fanduel.com/addToBetslip?marketId=42.626103499&selectionId=73619109",
+   "proj_median": 28.9,
+   "proj_mean": 33.0,
+   "p_model": 0.7405,
+   "p_market": 0.8168,
+   "market_ref_book": "fanduel",
+   "p_blend": 0.7787,
+   "breakeven": 0.8667,
+   "edge": -0.088,
+   "ev": -0.1015,
+   "tier": "Pass",
+   "flags": "snap_decline,price_cap",
+   "evidence_score": 26.3,
+   "score_parts": null,
+   "season_hits": "9/9",
+   "last5": "5/5",
+   "last10": "9/9",
+   "last5_values": "113 26 22 16 47",
+   "def_factor": 0.886,
+   "target_share": 0.081,
+   "carry_share": 0.395,
+   "history": [
+    {
+     "wk": 1,
+     "opp": "GB",
+     "v": 40.0
+    },
+    {
+     "wk": 2,
+     "opp": "CHI",
+     "v": 105.0
+    },
+    {
+     "wk": 3,
+     "opp": "TB",
+     "v": 58.0
+    },
+    {
+     "wk": 4,
+     "opp": "MIA",
+     "v": 94.0
+    },
+    {
+     "wk": 5,
+     "opp": "NO",
+     "v": 113.0
+    },
+    {
+     "wk": 7,
+     "opp": "IND",
+     "v": 26.0
+    },
+    {
+     "wk": 8,
+     "opp": "DET",
+     "v": 22.0
+    },
+    {
+     "wk": 9,
+     "opp": "BUF",
+     "v": 16.0
+    },
+    {
+     "wk": 10,
+     "opp": "GB",
+     "v": 47.0
+    }
+   ],
+   "status": "Doesn't pass: odds worse than -350; snap trend against it",
+   "passes": false,
+   "checks": [
+    {
+     "label": "Odds -350 or better",
+     "ok": false,
+     "detail": "-650"
+    },
+    {
+     "label": "Model chance 50%+",
+     "ok": true,
+     "detail": "78%"
+    },
+    {
+     "label": "Not questionable",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "4+ games with his team",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "QB situation known",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection near FanDuel's line",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection in the model's tested range",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Snap trend not against it",
+     "ok": false,
+     "detail": "snaps falling"
+    },
+    {
+     "label": "Not removed after news check",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Has a model projection",
+     "ok": true,
+     "detail": "ok"
+    }
+   ],
+   "other_lines": [
+    {
+     "selection": "10+ Rush Yds",
+     "odds": -1450
+    }
+   ]
+  },
+  {
+   "game": "Minnesota Vikings @ San Francisco 49ers",
+   "kickoff_et": "2026-11-22 20:20",
+   "event_id": "60e1d27b083a335b722c2c852ea85612",
+   "player": "Brock Purdy",
+   "team": "SF",
+   "opp": "MIN",
+   "pos": "QB",
+   "market": "rush_yds",
+   "alt": true,
+   "side": "Over",
+   "line": 4.5,
+   "selection": "5+ Rush Yds",
+   "odds": -750,
+   "book_last_update": "2026-11-22T23:03:44Z",
+   "betslip_link": "https://sportsbook.fanduel.com/addToBetslip?marketId=42.626104463&selectionId=73404556",
+   "proj_median": 13.1,
+   "proj_mean": 18.0,
+   "p_model": 0.7138,
+   "p_market": 0.8316,
+   "market_ref_book": "fanduel",
+   "p_blend": 0.7727,
+   "breakeven": 0.8824,
+   "edge": -0.1096,
+   "ev": -0.1242,
+   "tier": "Pass",
+   "flags": "price_cap,outside_calibrated_range",
+   "evidence_score": 40.3,
+   "score_parts": null,
+   "season_hits": "9/9",
+   "last5": "5/5",
+   "last10": "9/9",
+   "last5_values": "6 28 5 40 21",
+   "def_factor": 1.0,
+   "target_share": 0.0,
+   "carry_share": 0.143,
+   "history": [
+    {
+     "wk": 1,
+     "opp": "LA",
+     "v": 29.0
+    },
+    {
+     "wk": 2,
+     "opp": "MIA",
+     "v": 30.0
+    },
+    {
+     "wk": 3,
+     "opp": "ARI",
+     "v": 34.0
+    },
+    {
+     "wk": 4,
+     "opp": "DEN",
+     "v": 29.0
+    },
+    {
+     "wk": 5,
+     "opp": "SEA",
+     "v": 6.0
+    },
+    {
+     "wk": 6,
+     "opp": "WAS",
+     "v": 28.0
+    },
+    {
+     "wk": 7,
+     "opp": "ATL",
+     "v": 5.0
+    },
+    {
+     "wk": 9,
+     "opp": "LV",
+     "v": 40.0
+    },
+    {
+     "wk": 10,
+     "opp": "DAL",
+     "v": 21.0
+    }
+   ],
+   "status": "Doesn't pass: odds worse than -350; too small for the model to price",
+   "passes": false,
+   "checks": [
+    {
+     "label": "Odds -350 or better",
+     "ok": false,
+     "detail": "-750"
+    },
+    {
+     "label": "Model chance 50%+",
+     "ok": true,
+     "detail": "77%"
+    },
+    {
+     "label": "Not questionable",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "4+ games with his team",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "QB situation known",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection near FanDuel's line",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection in the model's tested range",
+     "ok": false,
+     "detail": "too small to model"
+    },
+    {
+     "label": "Snap trend not against it",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Not removed after news check",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Has a model projection",
+     "ok": true,
+     "detail": "ok"
+    }
+   ],
+   "other_lines": []
+  },
+  {
+   "game": "Cincinnati Bengals @ Washington Commanders",
+   "kickoff_et": "2026-11-23 20:15",
+   "event_id": "3a60ed1d20004aa4d4772b2c1a2272e7",
+   "player": "Antonio Williams",
+   "team": "WAS",
+   "opp": "CIN",
+   "pos": "WR",
+   "market": "receptions",
+   "alt": true,
+   "side": "Over",
+   "line": 1.5,
+   "selection": "2+ Receptions",
+   "odds": -850,
+   "book_last_update": "2026-11-22T23:03:47Z",
+   "betslip_link": "https://sportsbook.fanduel.com/addToBetslip?marketId=42.626338363&selectionId=102913944",
+   "proj_median": 1.8,
+   "proj_mean": 2.6,
+   "p_model": 0.6918,
+   "p_market": 0.837,
+   "market_ref_book": "fanduel",
+   "p_blend": 0.7644,
+   "breakeven": 0.8947,
+   "edge": -0.1303,
+   "ev": -0.1456,
+   "tier": "Pass",
+   "flags": "snap_rise,teammate_out,price_cap,line_gap",
+   "evidence_score": 41.3,
+   "score_parts": null,
+   "season_hits": "9/9",
+   "last5": "5/5",
+   "last10": "9/9",
+   "last5_values": "3 3 5 3 2",
+   "def_factor": 0.971,
+   "target_share": 0.13,
+   "carry_share": 0.0,
+   "history": [
+    {
+     "wk": 1,
+     "opp": "PHI",
+     "v": 4.0
+    },
+    {
+     "wk": 2,
+     "opp": "DAL",
+     "v": 3.0
+    },
+    {
+     "wk": 3,
+     "opp": "SEA",
+     "v": 2.0
+    },
+    {
+     "wk": 4,
+     "opp": "IND",
+     "v": 3.0
+    },
+    {
+     "wk": 5,
+     "opp": "NYG",
+     "v": 3.0
+    },
+    {
+     "wk": 6,
+     "opp": "SF",
+     "v": 3.0
+    },
+    {
+     "wk": 8,
+     "opp": "PHI",
+     "v": 5.0
+    },
+    {
+     "wk": 9,
+     "opp": "LA",
+     "v": 3.0
+    },
+    {
+     "wk": 10,
+     "opp": "NYG",
+     "v": 2.0
+    }
+   ],
+   "status": "Doesn't pass: odds worse than -350; projection far from FanDuel's line",
+   "passes": false,
+   "checks": [
+    {
+     "label": "Odds -350 or better",
+     "ok": false,
+     "detail": "-850"
+    },
+    {
+     "label": "Model chance 50%+",
+     "ok": true,
+     "detail": "76%"
+    },
+    {
+     "label": "Not questionable",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "4+ games with his team",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "QB situation known",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection near FanDuel's line",
+     "ok": false,
+     "detail": "model 1.8 vs line 1.5"
+    },
+    {
+     "label": "Projection in the model's tested range",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Snap trend not against it",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Not removed after news check",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Has a model projection",
+     "ok": true,
+     "detail": "ok"
+    }
+   ],
+   "other_lines": []
+  },
+  {
+   "game": "Minnesota Vikings @ San Francisco 49ers",
+   "kickoff_et": "2026-11-22 20:20",
+   "event_id": "60e1d27b083a335b722c2c852ea85612",
+   "player": "Christian McCaffrey",
+   "team": "SF",
+   "opp": "MIN",
+   "pos": "RB",
+   "market": "receptions",
+   "alt": true,
+   "side": "Over",
+   "line": 1.5,
+   "selection": "2+ Receptions",
+   "odds": -1100,
+   "book_last_update": "2026-11-22T23:03:44Z",
+   "betslip_link": "https://sportsbook.fanduel.com/addToBetslip?marketId=42.626102494&selectionId=61401577",
+   "proj_median": 1.8,
+   "proj_mean": 2.4,
+   "p_model": 0.6633,
+   "p_market": 0.8575,
+   "market_ref_book": "fanduel",
+   "p_blend": 0.7604,
+   "breakeven": 0.9167,
+   "edge": -0.1562,
+   "ev": -0.1704,
+   "tier": "Pass",
+   "flags": "price_cap,line_gap",
+   "evidence_score": 35.6,
+   "score_parts": null,
+   "season_hits": "9/9",
+   "last5": "5/5",
+   "last10": "9/9",
+   "last5_values": "3 9 6 2 4",
+   "def_factor": 0.897,
+   "target_share": 0.122,
+   "carry_share": 0.427,
+   "history": [
+    {
+     "wk": 1,
+     "opp": "LA",
+     "v": 5.0
+    },
+    {
+     "wk": 2,
+     "opp": "MIA",
+     "v": 4.0
+    },
+    {
+     "wk": 3,
+     "opp": "ARI",
+     "v": 4.0
+    },
+    {
+     "wk": 4,
+     "opp": "DEN",
+     "v": 3.0
+    },
+    {
+     "wk": 5,
+     "opp": "SEA",
+     "v": 3.0
+    },
+    {
+     "wk": 6,
+     "opp": "WAS",
+     "v": 9.0
+    },
+    {
+     "wk": 7,
+     "opp": "ATL",
+     "v": 6.0
+    },
+    {
+     "wk": 9,
+     "opp": "LV",
+     "v": 2.0
+    },
+    {
+     "wk": 10,
+     "opp": "DAL",
+     "v": 4.0
+    }
+   ],
+   "status": "Doesn't pass: odds worse than -350; projection far from FanDuel's line",
+   "passes": false,
+   "checks": [
+    {
+     "label": "Odds -350 or better",
+     "ok": false,
+     "detail": "-1100"
+    },
+    {
+     "label": "Model chance 50%+",
+     "ok": true,
+     "detail": "76%"
+    },
+    {
+     "label": "Not questionable",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "4+ games with his team",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "QB situation known",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection near FanDuel's line",
+     "ok": false,
+     "detail": "model 1.8 vs line 1.5"
+    },
+    {
+     "label": "Projection in the model's tested range",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Snap trend not against it",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Not removed after news check",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Has a model projection",
+     "ok": true,
+     "detail": "ok"
+    }
+   ],
+   "other_lines": []
+  },
+  {
+   "game": "Minnesota Vikings @ San Francisco 49ers",
+   "kickoff_et": "2026-11-22 20:20",
+   "event_id": "60e1d27b083a335b722c2c852ea85612",
+   "player": "George Kittle",
+   "team": "SF",
+   "opp": "MIN",
+   "pos": "TE",
+   "market": "reception_yds",
+   "alt": true,
+   "side": "Over",
+   "line": 19.5,
+   "selection": "20+ Rec Yds",
+   "odds": -750,
+   "book_last_update": "2026-11-22T23:03:44Z",
+   "betslip_link": "https://sportsbook.fanduel.com/addToBetslip?marketId=42.626104091&selectionId=73139305",
+   "proj_median": 30.9,
+   "proj_mean": 37.2,
+   "p_model": 0.6685,
+   "p_market": 0.8316,
+   "market_ref_book": "fanduel",
+   "p_blend": 0.7501,
+   "breakeven": 0.8824,
+   "edge": -0.1323,
+   "ev": -0.1499,
+   "tier": "Pass",
+   "flags": "price_cap,line_gap",
+   "evidence_score": 43.2,
+   "score_parts": null,
+   "season_hits": "8/9",
+   "last5": "5/5",
+   "last10": "8/9",
+   "last5_values": "24 69 88 58 74",
+   "def_factor": 0.976,
+   "target_share": 0.175,
+   "carry_share": 0.0,
+   "history": [
+    {
+     "wk": 1,
+     "opp": "LA",
+     "v": 12.0
+    },
+    {
+     "wk": 2,
+     "opp": "MIA",
+     "v": 80.0
+    },
+    {
+     "wk": 3,
+     "opp": "ARI",
+     "v": 82.0
+    },
+    {
+     "wk": 4,
+     "opp": "DEN",
+     "v": 70.0
+    },
+    {
+     "wk": 5,
+     "opp": "SEA",
+     "v": 24.0
+    },
+    {
+     "wk": 6,
+     "opp": "WAS",
+     "v": 69.0
+    },
+    {
+     "wk": 7,
+     "opp": "ATL",
+     "v": 88.0
+    },
+    {
+     "wk": 9,
+     "opp": "LV",
+     "v": 58.0
+    },
+    {
+     "wk": 10,
+     "opp": "DAL",
+     "v": 74.0
+    }
+   ],
+   "status": "Doesn't pass: odds worse than -350; projection far from FanDuel's line",
+   "passes": false,
+   "checks": [
+    {
+     "label": "Odds -350 or better",
+     "ok": false,
+     "detail": "-750"
+    },
+    {
+     "label": "Model chance 50%+",
+     "ok": true,
+     "detail": "75%"
+    },
+    {
+     "label": "Not questionable",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "4+ games with his team",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "QB situation known",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection near FanDuel's line",
+     "ok": false,
+     "detail": "model 30.9 vs line 19.5"
+    },
+    {
+     "label": "Projection in the model's tested range",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Snap trend not against it",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Not removed after news check",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Has a model projection",
+     "ok": true,
+     "detail": "ok"
+    }
+   ],
+   "other_lines": [
+    {
+     "selection": "15+ Rec Yds",
+     "odds": -1450
+    }
+   ]
+  },
+  {
+   "game": "Minnesota Vikings @ San Francisco 49ers",
+   "kickoff_et": "2026-11-22 20:20",
+   "event_id": "60e1d27b083a335b722c2c852ea85612",
+   "player": "Brock Purdy",
+   "team": "SF",
+   "opp": "MIN",
+   "pos": "QB",
+   "market": "pass_yds",
+   "alt": true,
+   "side": "Over",
+   "line": 174.5,
+   "selection": "175+ Pass Yds",
+   "odds": -700,
+   "book_last_update": "2026-11-22T23:03:44Z",
+   "betslip_link": "https://sportsbook.fanduel.com/addToBetslip?marketId=42.626102487&selectionId=64157666",
+   "proj_median": 196.7,
+   "proj_mean": 202.7,
+   "p_model": 0.6331,
+   "p_market": 0.8247,
+   "market_ref_book": "fanduel",
+   "p_blend": 0.7289,
+   "breakeven": 0.875,
+   "edge": -0.1461,
+   "ev": -0.167,
+   "tier": "Pass",
+   "flags": "excluded,price_cap",
+   "evidence_score": 47.4,
+   "score_parts": null,
+   "season_hits": "9/9",
+   "last5": "5/5",
+   "last10": "9/9",
+   "last5_values": "189 264 288 232 389",
+   "def_factor": 0.943,
+   "target_share": 0.0,
+   "carry_share": 0.143,
+   "history": [
+    {
+     "wk": 1,
+     "opp": "LA",
+     "v": 205.0
+    },
+    {
+     "wk": 2,
+     "opp": "MIA",
+     "v": 287.0
+    },
+    {
+     "wk": 3,
+     "opp": "ARI",
+     "v": 297.0
+    },
+    {
+     "wk": 4,
+     "opp": "DEN",
+     "v": 218.0
+    },
+    {
+     "wk": 5,
+     "opp": "SEA",
+     "v": 189.0
+    },
+    {
+     "wk": 6,
+     "opp": "WAS",
+     "v": 264.0
+    },
+    {
+     "wk": 7,
+     "opp": "ATL",
+     "v": 288.0
+    },
+    {
+     "wk": 9,
+     "opp": "LV",
+     "v": 232.0
+    },
+    {
+     "wk": 10,
+     "opp": "DAL",
+     "v": 389.0
+    }
+   ],
+   "status": "Doesn't pass: odds worse than -350; removed after news check",
+   "passes": false,
+   "checks": [
+    {
+     "label": "Odds -350 or better",
+     "ok": false,
+     "detail": "-700"
+    },
+    {
+     "label": "Model chance 50%+",
+     "ok": true,
+     "detail": "73%"
+    },
+    {
+     "label": "Not questionable",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "4+ games with his team",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "QB situation known",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection near FanDuel's line",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection in the model's tested range",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Snap trend not against it",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Not removed after news check",
+     "ok": false,
+     "detail": "removed (see context)"
+    },
+    {
+     "label": "Has a model projection",
+     "ok": true,
+     "detail": "ok"
+    }
+   ],
+   "other_lines": [
+    {
+     "selection": "150+ Pass Yds",
+     "odds": -1800
+    }
+   ]
+  },
+  {
+   "game": "Minnesota Vikings @ San Francisco 49ers",
+   "kickoff_et": "2026-11-22 20:20",
+   "event_id": "60e1d27b083a335b722c2c852ea85612",
+   "player": "Jauan Jennings",
+   "team": "MIN",
+   "opp": "SF",
+   "pos": "WR",
+   "market": "receptions",
+   "alt": false,
+   "side": "Under",
+   "line": 2.5,
+   "selection": "Under 2.5 Receptions",
+   "odds": -160,
+   "book_last_update": "2026-11-22T23:03:44Z",
+   "betslip_link": "https://sportsbook.fanduel.com/addToBetslip?marketId=42.626758860&selectionId=40913496",
+   "proj_median": 0.9,
+   "proj_mean": 1.2,
+   "p_model": 0.8354,
+   "p_market": 0.5752,
+   "market_ref_book": "fanduel",
+   "p_blend": 0.7053,
+   "breakeven": 0.6154,
+   "edge": 0.0899,
+   "ev": 0.146,
+   "tier": "Research Only",
+   "flags": "snap_decline,qb_change,teammate_out,outside_calibrated_range,line_gap",
+   "evidence_score": 65.6,
+   "score_parts": null,
+   "season_hits": "6/6",
+   "last5": "5/5",
+   "last10": "6/6",
+   "last5_values": "1 1 0 2 2",
+   "def_factor": 0.964,
+   "target_share": 0.066,
+   "carry_share": 0.0,
+   "history": [
+    {
+     "wk": 1,
+     "opp": "GB",
+     "v": 0.0
+    },
+    {
+     "wk": 3,
+     "opp": "TB",
+     "v": 1.0
+    },
+    {
+     "wk": 4,
+     "opp": "MIA",
+     "v": 1.0
+    },
+    {
+     "wk": 5,
+     "opp": "NO",
+     "v": 0.0
+    },
+    {
+     "wk": 7,
+     "opp": "IND",
+     "v": 2.0
+    },
+    {
+     "wk": 8,
+     "opp": "DET",
+     "v": 2.0
+    }
+   ],
+   "status": "Doesn't pass: projection far from FanDuel's line; too small for the model to price",
+   "passes": false,
+   "checks": [
+    {
+     "label": "Odds -350 or better",
+     "ok": true,
+     "detail": "-160"
+    },
+    {
+     "label": "Model chance 50%+",
+     "ok": true,
+     "detail": "71%"
+    },
+    {
+     "label": "Not questionable",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "4+ games with his team",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "QB situation known",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection near FanDuel's line",
+     "ok": false,
+     "detail": "model 0.9 vs line 2.5"
+    },
+    {
+     "label": "Projection in the model's tested range",
+     "ok": false,
+     "detail": "too small to model"
+    },
+    {
+     "label": "Snap trend not against it",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Not removed after news check",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Has a model projection",
+     "ok": true,
+     "detail": "ok"
+    }
+   ],
+   "other_lines": []
+  },
+  {
+   "game": "Minnesota Vikings @ San Francisco 49ers",
+   "kickoff_et": "2026-11-22 20:20",
+   "event_id": "60e1d27b083a335b722c2c852ea85612",
+   "player": "Christian McCaffrey",
+   "team": "SF",
+   "opp": "MIN",
+   "pos": "RB",
+   "market": "reception_yds",
+   "alt": true,
+   "side": "Over",
+   "line": 14.5,
+   "selection": "15+ Rec Yds",
+   "odds": -500,
+   "book_last_update": "2026-11-22T23:03:44Z",
+   "betslip_link": "https://sportsbook.fanduel.com/addToBetslip?marketId=42.626102492&selectionId=73139311",
+   "proj_median": 15.5,
+   "proj_mean": 20.4,
+   "p_model": 0.5241,
+   "p_market": 0.7854,
+   "market_ref_book": "fanduel",
+   "p_blend": 0.6547,
+   "breakeven": 0.8333,
+   "edge": -0.1786,
+   "ev": -0.2143,
+   "tier": "Pass",
+   "flags": "price_cap,line_gap",
+   "evidence_score": 39.0,
+   "score_parts": null,
+   "season_hits": "9/9",
+   "last5": "5/5",
+   "last10": "9/9",
+   "last5_values": "15 53 61 19 161",
+   "def_factor": 0.897,
+   "target_share": 0.122,
+   "carry_share": 0.427,
+   "history": [
+    {
+     "wk": 1,
+     "opp": "LA",
+     "v": 20.0
+    },
+    {
+     "wk": 2,
+     "opp": "MIA",
+     "v": 43.0
+    },
+    {
+     "wk": 3,
+     "opp": "ARI",
+     "v": 41.0
+    },
+    {
+     "wk": 4,
+     "opp": "DEN",
+     "v": 18.0
+    },
+    {
+     "wk": 5,
+     "opp": "SEA",
+     "v": 15.0
+    },
+    {
+     "wk": 6,
+     "opp": "WAS",
+     "v": 53.0
+    },
+    {
+     "wk": 7,
+     "opp": "ATL",
+     "v": 61.0
+    },
+    {
+     "wk": 9,
+     "opp": "LV",
+     "v": 19.0
+    },
+    {
+     "wk": 10,
+     "opp": "DAL",
+     "v": 161.0
+    }
+   ],
+   "status": "Doesn't pass: odds worse than -350; projection far from FanDuel's line",
+   "passes": false,
+   "checks": [
+    {
+     "label": "Odds -350 or better",
+     "ok": false,
+     "detail": "-500"
+    },
+    {
+     "label": "Model chance 50%+",
+     "ok": true,
+     "detail": "65%"
+    },
+    {
+     "label": "Not questionable",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "4+ games with his team",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "QB situation known",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection near FanDuel's line",
+     "ok": false,
+     "detail": "model 15.5 vs line 14.5"
+    },
+    {
+     "label": "Projection in the model's tested range",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Snap trend not against it",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Not removed after news check",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Has a model projection",
+     "ok": true,
+     "detail": "ok"
+    }
+   ],
+   "other_lines": [
+    {
+     "selection": "10+ Rec Yds",
+     "odds": -1100
+    }
+   ]
+  },
+  {
+   "game": "Cincinnati Bengals @ Washington Commanders",
+   "kickoff_et": "2026-11-23 20:15",
+   "event_id": "3a60ed1d20004aa4d4772b2c1a2272e7",
+   "player": "Drew Sample",
+   "team": "CIN",
+   "opp": "WAS",
+   "pos": "TE",
+   "market": "receptions",
+   "alt": true,
+   "side": "Over",
+   "line": 0.5,
+   "selection": "1+ Receptions",
+   "odds": -290,
+   "book_last_update": "2026-11-22T23:03:47Z",
+   "betslip_link": "https://sportsbook.fanduel.com/addToBetslip?marketId=42.627082274&selectionId=65052689",
+   "proj_median": 0.9,
+   "proj_mean": 0.9,
+   "p_model": 0.507,
+   "p_market": 0.6949,
+   "market_ref_book": "fanduel",
+   "p_blend": 0.6009,
+   "breakeven": 0.7436,
+   "edge": -0.1427,
+   "ev": -0.1919,
+   "tier": "Pass",
+   "flags": "snap_rise,teammate_out,outside_calibrated_range,line_gap",
+   "evidence_score": 59.1,
+   "score_parts": null,
+   "season_hits": "5/5",
+   "last5": "5/5",
+   "last10": "5/5",
+   "last5_values": "3 1 1 2 3",
+   "def_factor": 1.184,
+   "target_share": 0.034,
+   "carry_share": 0.0,
+   "history": [
+    {
+     "wk": 1,
+     "opp": "TB",
+     "v": 3.0
+    },
+    {
+     "wk": 3,
+     "opp": "PIT",
+     "v": 1.0
+    },
+    {
+     "wk": 5,
+     "opp": "MIA",
+     "v": 1.0
+    },
+    {
+     "wk": 7,
+     "opp": "BAL",
+     "v": 2.0
+    },
+    {
+     "wk": 10,
+     "opp": "PIT",
+     "v": 3.0
+    }
+   ],
+   "status": "Doesn't pass: projection far from FanDuel's line; too small for the model to price",
+   "passes": false,
+   "checks": [
+    {
+     "label": "Odds -350 or better",
+     "ok": true,
+     "detail": "-290"
+    },
+    {
+     "label": "Model chance 50%+",
+     "ok": true,
+     "detail": "60%"
+    },
+    {
+     "label": "Not questionable",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "4+ games with his team",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "QB situation known",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection near FanDuel's line",
+     "ok": false,
+     "detail": "model 0.9 vs line 0.5"
+    },
+    {
+     "label": "Projection in the model's tested range",
+     "ok": false,
+     "detail": "too small to model"
+    },
+    {
+     "label": "Snap trend not against it",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Not removed after news check",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Has a model projection",
+     "ok": true,
+     "detail": "ok"
+    }
+   ],
+   "other_lines": []
+  },
+  {
+   "game": "Cincinnati Bengals @ Washington Commanders",
+   "kickoff_et": "2026-11-23 20:15",
+   "event_id": "3a60ed1d20004aa4d4772b2c1a2272e7",
+   "player": "Joe Burrow",
+   "team": "CIN",
+   "opp": "WAS",
+   "pos": "QB",
+   "market": "rush_yds",
+   "alt": true,
+   "side": "Over",
+   "line": 4.5,
+   "selection": "5+ Rush Yds",
+   "odds": -230,
+   "book_last_update": "2026-11-22T23:03:47Z",
+   "betslip_link": "https://sportsbook.fanduel.com/addToBetslip?marketId=42.626338353&selectionId=73881930",
+   "proj_median": 5.9,
+   "proj_mean": 10.8,
+   "p_model": 0.5434,
+   "p_market": 0.6542,
+   "market_ref_book": "fanduel",
+   "p_blend": 0.5988,
+   "breakeven": 0.697,
+   "edge": -0.0982,
+   "ev": -0.1409,
+   "tier": "Pass",
+   "flags": "teammate_out,outside_calibrated_range,line_gap",
+   "evidence_score": 45.7,
+   "score_parts": null,
+   "season_hits": "8/9",
+   "last5": "5/5",
+   "last10": "8/9",
+   "last5_values": "10 12 10 7 8",
+   "def_factor": 0.973,
+   "target_share": 0.0,
+   "carry_share": 0.115,
+   "history": [
+    {
+     "wk": 1,
+     "opp": "TB",
+     "v": 20.0
+    },
+    {
+     "wk": 2,
+     "opp": "HOU",
+     "v": -1.0
+    },
+    {
+     "wk": 3,
+     "opp": "PIT",
+     "v": 13.0
+    },
+    {
+     "wk": 4,
+     "opp": "JAX",
+     "v": 6.0
+    },
+    {
+     "wk": 5,
+     "opp": "MIA",
+     "v": 10.0
+    },
+    {
+     "wk": 7,
+     "opp": "BAL",
+     "v": 12.0
+    },
+    {
+     "wk": 8,
+     "opp": "TEN",
+     "v": 10.0
+    },
+    {
+     "wk": 9,
+     "opp": "ATL",
+     "v": 7.0
+    },
+    {
+     "wk": 10,
+     "opp": "PIT",
+     "v": 8.0
+    }
+   ],
+   "status": "Doesn't pass: projection far from FanDuel's line; too small for the model to price",
+   "passes": false,
+   "checks": [
+    {
+     "label": "Odds -350 or better",
+     "ok": true,
+     "detail": "-230"
+    },
+    {
+     "label": "Model chance 50%+",
+     "ok": true,
+     "detail": "60%"
+    },
+    {
+     "label": "Not questionable",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "4+ games with his team",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "QB situation known",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection near FanDuel's line",
+     "ok": false,
+     "detail": "model 5.9 vs line 4.5"
+    },
+    {
+     "label": "Projection in the model's tested range",
+     "ok": false,
+     "detail": "too small to model"
+    },
+    {
+     "label": "Snap trend not against it",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Not removed after news check",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Has a model projection",
+     "ok": true,
+     "detail": "ok"
+    }
+   ],
+   "other_lines": []
+  },
+  {
+   "game": "Minnesota Vikings @ San Francisco 49ers",
+   "kickoff_et": "2026-11-22 20:20",
+   "event_id": "60e1d27b083a335b722c2c852ea85612",
+   "player": "Mike Evans",
+   "team": "SF",
+   "opp": "MIN",
+   "pos": "WR",
+   "market": "receptions",
+   "alt": true,
+   "side": "Over",
+   "line": 2.5,
+   "selection": "3+ Receptions",
+   "odds": -330,
+   "book_last_update": "2026-11-22T23:03:44Z",
+   "betslip_link": "https://sportsbook.fanduel.com/addToBetslip?marketId=42.627225057&selectionId=61338647",
+   "proj_median": 1.8,
+   "proj_mean": 2.5,
+   "p_model": 0.4716,
+   "p_market": 0.7171,
+   "market_ref_book": "fanduel",
+   "p_blend": 0.5943,
+   "breakeven": 0.7674,
+   "edge": -0.1731,
+   "ev": -0.2256,
+   "tier": "Pass",
+   "flags": "questionable,line_gap",
+   "evidence_score": 46.4,
+   "score_parts": null,
+   "season_hits": "6/6",
+   "last5": "5/5",
+   "last10": "6/6",
+   "last5_values": "3 3 5 7 3",
+   "def_factor": 0.943,
+   "target_share": 0.161,
+   "carry_share": 0.0,
+   "history": [
+    {
+     "wk": 1,
+     "opp": "LA",
+     "v": 6.0
+    },
+    {
+     "wk": 2,
+     "opp": "MIA",
+     "v": 3.0
+    },
+    {
+     "wk": 3,
+     "opp": "ARI",
+     "v": 3.0
+    },
+    {
+     "wk": 4,
+     "opp": "DEN",
+     "v": 5.0
+    },
+    {
+     "wk": 5,
+     "opp": "SEA",
+     "v": 7.0
+    },
+    {
+     "wk": 6,
+     "opp": "WAS",
+     "v": 3.0
+    }
+   ],
+   "status": "Doesn't pass: listed questionable; projection far from FanDuel's line",
+   "passes": false,
+   "checks": [
+    {
+     "label": "Odds -350 or better",
+     "ok": true,
+     "detail": "-330"
+    },
+    {
+     "label": "Model chance 50%+",
+     "ok": true,
+     "detail": "59%"
+    },
+    {
+     "label": "Not questionable",
+     "ok": false,
+     "detail": "listed questionable"
+    },
+    {
+     "label": "4+ games with his team",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "QB situation known",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection near FanDuel's line",
+     "ok": false,
+     "detail": "model 1.8 vs line 2.5"
+    },
+    {
+     "label": "Projection in the model's tested range",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Snap trend not against it",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Not removed after news check",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Has a model projection",
+     "ok": true,
+     "detail": "ok"
+    }
+   ],
+   "other_lines": [
+    {
+     "selection": "2+ Receptions",
+     "odds": -1200
+    }
+   ]
+  },
+  {
+   "game": "Minnesota Vikings @ San Francisco 49ers",
+   "kickoff_et": "2026-11-22 20:20",
+   "event_id": "60e1d27b083a335b722c2c852ea85612",
+   "player": "Mike Evans",
+   "team": "SF",
+   "opp": "MIN",
+   "pos": "WR",
+   "market": "reception_yds",
+   "alt": true,
+   "side": "Over",
+   "line": 29.5,
+   "selection": "30+ Rec Yds",
+   "odds": -320,
+   "book_last_update": "2026-11-22T23:03:44Z",
+   "betslip_link": "https://sportsbook.fanduel.com/addToBetslip?marketId=42.627225055&selectionId=73619335",
+   "proj_median": 25.0,
+   "proj_mean": 32.3,
+   "p_model": 0.4382,
+   "p_market": 0.7181,
+   "market_ref_book": "fanduel",
+   "p_blend": 0.5782,
+   "breakeven": 0.7619,
+   "edge": -0.1837,
+   "ev": -0.2412,
+   "tier": "Pass",
+   "flags": "questionable,line_gap",
+   "evidence_score": 46.6,
+   "score_parts": null,
+   "season_hits": "6/6",
+   "last5": "5/5",
+   "last10": "6/6",
+   "last5_values": "54 34 76 113 94",
+   "def_factor": 0.943,
+   "target_share": 0.161,
+   "carry_share": 0.0,
+   "history": [
+    {
+     "wk": 1,
+     "opp": "LA",
+     "v": 49.0
+    },
+    {
+     "wk": 2,
+     "opp": "MIA",
+     "v": 54.0
+    },
+    {
+     "wk": 3,
+     "opp": "ARI",
+     "v": 34.0
+    },
+    {
+     "wk": 4,
+     "opp": "DEN",
+     "v": 76.0
+    },
+    {
+     "wk": 5,
+     "opp": "SEA",
+     "v": 113.0
+    },
+    {
+     "wk": 6,
+     "opp": "WAS",
+     "v": 94.0
+    }
+   ],
+   "status": "Doesn't pass: listed questionable; projection far from FanDuel's line",
+   "passes": false,
+   "checks": [
+    {
+     "label": "Odds -350 or better",
+     "ok": true,
+     "detail": "-320"
+    },
+    {
+     "label": "Model chance 50%+",
+     "ok": true,
+     "detail": "58%"
+    },
+    {
+     "label": "Not questionable",
+     "ok": false,
+     "detail": "listed questionable"
+    },
+    {
+     "label": "4+ games with his team",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "QB situation known",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection near FanDuel's line",
+     "ok": false,
+     "detail": "model 25.0 vs line 29.5"
+    },
+    {
+     "label": "Projection in the model's tested range",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Snap trend not against it",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Not removed after news check",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Has a model projection",
+     "ok": true,
+     "detail": "ok"
+    }
+   ],
+   "other_lines": [
+    {
+     "selection": "25+ Rec Yds",
+     "odds": -450
+    },
+    {
+     "selection": "20+ Rec Yds",
+     "odds": -700
+    },
+    {
+     "selection": "15+ Rec Yds",
+     "odds": -1400
+    }
+   ]
+  },
+  {
+   "game": "Minnesota Vikings @ San Francisco 49ers",
+   "kickoff_et": "2026-11-22 20:20",
+   "event_id": "60e1d27b083a335b722c2c852ea85612",
+   "player": "Jordan Watkins",
+   "team": "SF",
+   "opp": "MIN",
+   "pos": "WR",
+   "market": "receptions",
+   "alt": false,
+   "side": "Over",
+   "line": 0.5,
+   "selection": "Over 0.5 Receptions",
+   "odds": -136,
+   "book_last_update": "2026-11-22T23:03:44Z",
+   "betslip_link": "https://sportsbook.fanduel.com/addToBetslip?marketId=42.627591747&selectionId=41533367",
+   "proj_median": 0.9,
+   "proj_mean": 1.0,
+   "p_model": 0.588,
+   "p_market": 0.5379,
+   "market_ref_book": "fanduel",
+   "p_blend": 0.563,
+   "breakeven": 0.5763,
+   "edge": -0.0133,
+   "ev": -0.0231,
+   "tier": "Pass",
+   "flags": "snap_rise,outside_calibrated_range,line_gap",
+   "evidence_score": 53.0,
+   "score_parts": null,
+   "season_hits": "5/5",
+   "last5": "5/5",
+   "last10": "5/5",
+   "last5_values": "2 1 3 4 2",
+   "def_factor": 0.943,
+   "target_share": 0.063,
+   "carry_share": 0.0,
+   "history": [
+    {
+     "wk": 3,
+     "opp": "ARI",
+     "v": 2.0
+    },
+    {
+     "wk": 6,
+     "opp": "WAS",
+     "v": 1.0
+    },
+    {
+     "wk": 7,
+     "opp": "ATL",
+     "v": 3.0
+    },
+    {
+     "wk": 9,
+     "opp": "LV",
+     "v": 4.0
+    },
+    {
+     "wk": 10,
+     "opp": "DAL",
+     "v": 2.0
+    }
+   ],
+   "status": "Doesn't pass: projection far from FanDuel's line; too small for the model to price",
+   "passes": false,
+   "checks": [
+    {
+     "label": "Odds -350 or better",
+     "ok": true,
+     "detail": "-136"
+    },
+    {
+     "label": "Model chance 50%+",
+     "ok": true,
+     "detail": "56%"
+    },
+    {
+     "label": "Not questionable",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "4+ games with his team",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "QB situation known",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection near FanDuel's line",
+     "ok": false,
+     "detail": "model 0.9 vs line 0.5"
+    },
+    {
+     "label": "Projection in the model's tested range",
+     "ok": false,
+     "detail": "too small to model"
+    },
+    {
+     "label": "Snap trend not against it",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Not removed after news check",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Has a model projection",
+     "ok": true,
+     "detail": "ok"
+    }
+   ],
+   "other_lines": [
+    {
+     "selection": "1+ Receptions",
+     "odds": -138
+    }
+   ]
+  },
+  {
+   "game": "Minnesota Vikings @ San Francisco 49ers",
+   "kickoff_et": "2026-11-22 20:20",
+   "event_id": "60e1d27b083a335b722c2c852ea85612",
+   "player": "Deebo Samuel",
+   "team": "SF",
+   "opp": "MIN",
+   "pos": "WR",
+   "market": "reception_yds",
+   "alt": true,
+   "side": "Over",
+   "line": 19.5,
+   "selection": "20+ Rec Yds",
+   "odds": -198,
+   "book_last_update": "2026-11-22T23:03:44Z",
+   "betslip_link": "https://sportsbook.fanduel.com/addToBetslip?marketId=42.627397204&selectionId=73139308",
+   "proj_median": 10.8,
+   "proj_mean": 17.5,
+   "p_model": 0.3443,
+   "p_market": 0.6262,
+   "market_ref_book": "fanduel",
+   "p_blend": 0.4853,
+   "breakeven": 0.6644,
+   "edge": -0.1792,
+   "ev": -0.2697,
+   "tier": "Pass",
+   "flags": "outside_calibrated_range,line_gap",
+   "evidence_score": 41.4,
+   "score_parts": null,
+   "season_hits": "6/6",
+   "last5": "5/5",
+   "last10": "6/6",
+   "last5_values": "31 80 26 21 31",
+   "def_factor": 0.943,
+   "target_share": 0.088,
+   "carry_share": 0.076,
+   "history": [
+    {
+     "wk": 1,
+     "opp": "LA",
+     "v": 48.0
+    },
+    {
+     "wk": 2,
+     "opp": "MIA",
+     "v": 31.0
+    },
+    {
+     "wk": 3,
+     "opp": "ARI",
+     "v": 80.0
+    },
+    {
+     "wk": 4,
+     "opp": "DEN",
+     "v": 26.0
+    },
+    {
+     "wk": 5,
+     "opp": "SEA",
+     "v": 21.0
+    },
+    {
+     "wk": 10,
+     "opp": "DAL",
+     "v": 31.0
+    }
+   ],
+   "status": "Doesn't pass: model chance under 50%; projection far from FanDuel's line; too small for the model to price",
+   "passes": false,
+   "checks": [
+    {
+     "label": "Odds -350 or better",
+     "ok": true,
+     "detail": "-198"
+    },
+    {
+     "label": "Model chance 50%+",
+     "ok": false,
+     "detail": "49%"
+    },
+    {
+     "label": "Not questionable",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "4+ games with his team",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "QB situation known",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection near FanDuel's line",
+     "ok": false,
+     "detail": "model 10.8 vs line 19.5"
+    },
+    {
+     "label": "Projection in the model's tested range",
+     "ok": false,
+     "detail": "too small to model"
+    },
+    {
+     "label": "Snap trend not against it",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Not removed after news check",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Has a model projection",
+     "ok": true,
+     "detail": "ok"
+    }
+   ],
+   "other_lines": [
+    {
+     "selection": "15+ Rec Yds",
+     "odds": -300
+    },
+    {
+     "selection": "10+ Rec Yds",
+     "odds": -500
+    },
+    {
+     "selection": "5+ Rec Yds",
+     "odds": -1200
+    }
+   ]
+  },
+  {
+   "game": "Minnesota Vikings @ San Francisco 49ers",
+   "kickoff_et": "2026-11-22 20:20",
+   "event_id": "60e1d27b083a335b722c2c852ea85612",
+   "player": "Jordan Watkins",
+   "team": "SF",
+   "opp": "MIN",
+   "pos": "WR",
+   "market": "reception_yds",
+   "alt": true,
+   "side": "Over",
+   "line": 19.5,
+   "selection": "20+ Rec Yds",
+   "odds": 152,
+   "book_last_update": "2026-11-22T23:03:44Z",
+   "betslip_link": "https://sportsbook.fanduel.com/addToBetslip?marketId=42.627591746&selectionId=104112059",
+   "proj_median": 5.8,
+   "proj_mean": 15.2,
+   "p_model": 0.2882,
+   "p_market": 0.374,
+   "market_ref_book": "fanduel",
+   "p_blend": 0.3311,
+   "breakeven": 0.3968,
+   "edge": -0.0657,
+   "ev": -0.1656,
+   "tier": "Pass",
+   "flags": "snap_rise,outside_calibrated_range,line_gap",
+   "evidence_score": 44.0,
+   "score_parts": null,
+   "season_hits": "5/5",
+   "last5": "5/5",
+   "last10": "5/5",
+   "last5_values": "60 22 56 86 49",
+   "def_factor": 0.943,
+   "target_share": 0.063,
+   "carry_share": 0.0,
+   "history": [
+    {
+     "wk": 3,
+     "opp": "ARI",
+     "v": 60.0
+    },
+    {
+     "wk": 6,
+     "opp": "WAS",
+     "v": 22.0
+    },
+    {
+     "wk": 7,
+     "opp": "ATL",
+     "v": 56.0
+    },
+    {
+     "wk": 9,
+     "opp": "LV",
+     "v": 86.0
+    },
+    {
+     "wk": 10,
+     "opp": "DAL",
+     "v": 49.0
+    }
+   ],
+   "status": "Doesn't pass: model chance under 50%; projection far from FanDuel's line; too small for the model to price",
+   "passes": false,
+   "checks": [
+    {
+     "label": "Odds -350 or better",
+     "ok": true,
+     "detail": "+152"
+    },
+    {
+     "label": "Model chance 50%+",
+     "ok": false,
+     "detail": "33%"
+    },
+    {
+     "label": "Not questionable",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "4+ games with his team",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "QB situation known",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection near FanDuel's line",
+     "ok": false,
+     "detail": "model 5.8 vs line 19.5"
+    },
+    {
+     "label": "Projection in the model's tested range",
+     "ok": false,
+     "detail": "too small to model"
+    },
+    {
+     "label": "Snap trend not against it",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Not removed after news check",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Has a model projection",
+     "ok": true,
+     "detail": "ok"
+    }
+   ],
+   "other_lines": [
+    {
+     "selection": "15+ Rec Yds",
+     "odds": 116
+    },
+    {
+     "selection": "10+ Rec Yds",
+     "odds": -108
+    },
+    {
+     "selection": "Over 8.5 Rec Yds",
+     "odds": -113
+    },
+    {
+     "selection": "5+ Rec Yds",
+     "odds": -132
+    }
+   ]
+  },
+  {
+   "game": "Minnesota Vikings @ San Francisco 49ers",
+   "kickoff_et": "2026-11-22 20:20",
+   "event_id": "60e1d27b083a335b722c2c852ea85612",
+   "player": "Aaron Jones",
+   "team": "MIN",
+   "opp": "SF",
+   "pos": "RB",
+   "market": "receptions",
+   "alt": true,
+   "side": "Over",
+   "line": 0.5,
+   "selection": "1+ Receptions",
+   "odds": -850,
+   "book_last_update": "2026-11-22T23:03:44Z",
+   "betslip_link": "https://sportsbook.fanduel.com/addToBetslip?marketId=42.626758861&selectionId=61447976",
+   "proj_median": 0.9,
+   "proj_mean": 1.8,
+   "p_model": 0.7553,
+   "p_market": 0.8355,
+   "market_ref_book": "fanduel",
+   "p_blend": 0.7954,
+   "breakeven": 0.8947,
+   "edge": -0.0994,
+   "ev": -0.111,
+   "tier": "Pass",
+   "flags": "snap_decline,price_cap,outside_calibrated_range,line_gap",
+   "evidence_score": 16.0,
+   "score_parts": null,
+   "season_hits": "7/9",
+   "last5": "5/5",
+   "last10": "7/9",
+   "last5_values": "3 1 2 1 1",
+   "def_factor": 0.976,
+   "target_share": 0.081,
+   "carry_share": 0.395,
+   "history": [
+    {
+     "wk": 1,
+     "opp": "GB",
+     "v": 0.0
+    },
+    {
+     "wk": 2,
+     "opp": "CHI",
+     "v": 0.0
+    },
+    {
+     "wk": 3,
+     "opp": "TB",
+     "v": 5.0
+    },
+    {
+     "wk": 4,
+     "opp": "MIA",
+     "v": 4.0
+    },
+    {
+     "wk": 5,
+     "opp": "NO",
+     "v": 3.0
+    },
+    {
+     "wk": 7,
+     "opp": "IND",
+     "v": 1.0
+    },
+    {
+     "wk": 8,
+     "opp": "DET",
+     "v": 2.0
+    },
+    {
+     "wk": 9,
+     "opp": "BUF",
+     "v": 1.0
+    },
+    {
+     "wk": 10,
+     "opp": "GB",
+     "v": 1.0
+    }
+   ],
+   "status": "Doesn't pass: odds worse than -350; projection far from FanDuel's line; too small for the model to price; snap trend against it",
+   "passes": false,
+   "checks": [
+    {
+     "label": "Odds -350 or better",
+     "ok": false,
+     "detail": "-850"
+    },
+    {
+     "label": "Model chance 50%+",
+     "ok": true,
+     "detail": "80%"
+    },
+    {
+     "label": "Not questionable",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "4+ games with his team",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "QB situation known",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Projection near FanDuel's line",
+     "ok": false,
+     "detail": "model 0.9 vs line 0.5"
+    },
+    {
+     "label": "Projection in the model's tested range",
+     "ok": false,
+     "detail": "too small to model"
+    },
+    {
+     "label": "Snap trend not against it",
+     "ok": false,
+     "detail": "snaps falling"
+    },
+    {
+     "label": "Not removed after news check",
+     "ok": true,
+     "detail": "ok"
+    },
+    {
+     "label": "Has a model projection",
+     "ok": true,
+     "detail": "ok"
+    }
+   ],
+   "other_lines": []
+  }
+ ]
 }

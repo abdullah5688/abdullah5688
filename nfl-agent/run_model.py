@@ -94,6 +94,35 @@ def espn_events(dates):
     return ev
 
 
+def streak_checks(r):
+    """Every Parlay C condition for one 5/5 streak line, as (label, passed, detail).
+    The parlay builder and the "All last-5 streaks" list both use this, so they always agree."""
+    f = set(str(r.get("flags") or "").split(",")) - {""}
+    over = r["side"] == "Over"
+    return [
+        ("Odds -350 or better", r["odds"] >= PRICE_CAP, fmt(int(r["odds"]))),
+        ("Model chance 50%+", r["p_blend"] is not None and r["p_blend"] >= 0.5,
+         f"{r['p_blend']:.0%}" if r["p_blend"] is not None else "no projection"),
+        ("Not questionable", "questionable" not in f, "listed questionable" if "questionable" in f else "ok"),
+        ("4+ games with his team", "small_sample" not in f, "fewer than 4" if "small_sample" in f else "ok"),
+        ("QB situation known", not ({"qb_debut", "qb_unknown"} & f),
+         "QB debut/unknown" if {"qb_debut", "qb_unknown"} & f else "ok"),
+        ("Projection near FanDuel's line", "line_gap" not in f,
+         f"model {r.get('proj_median')} vs line {r['line']:g}" if "line_gap" in f else "ok"),
+        ("Projection in the model's tested range", "outside_calibrated_range" not in f,
+         "too small to model" if "outside_calibrated_range" in f else "ok"),
+        ("Snap trend not against it", not ((not over and "snap_rise" in f) or (over and "snap_decline" in f)),
+         ("snaps rising" if "snap_rise" in f else "snaps falling") if
+         ((not over and "snap_rise" in f) or (over and "snap_decline" in f)) else "ok"),
+        ("Not removed after news check", "excluded" not in f, "removed (see context)" if "excluded" in f else "ok"),
+        ("Has a model projection", "no_projection" not in f, "missing" if "no_projection" in f else "ok"),
+    ]
+
+
+def streak_ok(r):
+    return all(ok for _, ok, _ in streak_checks(r))
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--odds", required=True)
@@ -320,15 +349,11 @@ def main():
     # no status/role blocks and a blended probability of at least 50%. One leg per game, up to 5.
     # also skipped: lines the model can't vouch for (outside_calibrated_range, line_gap) and a
     # streak running against a role change (under while snaps rise / over while snaps fall)
-    STREAK_BLOCK = {"qb_debut", "qb_unknown", "questionable", "excluded", "small_sample",
-                    "no_projection", "price_cap", "outside_calibrated_range", "line_gap"}
+    # (the conditions themselves live in streak_checks(), shared with the "All last-5 streaks" list)
     sc = C[(C.last5 == "5/5") & C.p_blend.notna()].copy() if "last5" in C else C.iloc[0:0]
+    all5 = sc.copy()  # every 5/5 line, before the checks (for the "All last-5 streaks" list)
     if len(sc):
-        sc = sc[sc["flags"].fillna("").map(lambda f: not (set(f.split(",")) & STREAK_BLOCK))]
-        fl = sc["flags"].fillna("")
-        sc = sc[~(((sc.side == "Under") & fl.str.contains("snap_rise")) |
-                  ((sc.side == "Over") & fl.str.contains("snap_decline")))]
-        sc = sc[(sc.p_blend >= 0.5) & (sc.odds >= PRICE_CAP)]
+        sc = sc[[streak_ok(r) for r in sc.to_dict("records")]]
 
         def rate(t):
             a, b = str(t).split(" ")[0].split("/")
@@ -361,6 +386,7 @@ def main():
         pc["name"] = f"Parlay C{len(parlays_c) + 1}"
         pc["rule"] = "every leg hit in each of the player's last 5 games"
         parlays_c.append(pc)
+    streak_all = build_streak_all(all5, parlays_c, streak_leftover)
 
     # popular props to avoid: highest-volume players whose main line is clearly -EV both ways
     avoid = []
@@ -376,7 +402,8 @@ def main():
 
     out = dict(date=run_date, generated_at=datetime.now().isoformat(timespec="seconds"), odds_file=a.odds,
                model_weight=a.model_weight, games=games_info, top=[clean(r) for r in top],
-               parlays_c=parlays_c, streak=streak, streak_leftover=streak_leftover, over_under=ou, avoid=avoid,
+               parlays_c=parlays_c, streak=streak, streak_leftover=streak_leftover,
+               streak_all=streak_all, over_under=ou, avoid=avoid,
                longshots=[clean(r) for r in longshots.to_dict("records")],
                counts=dict(candidates=len(C), bets=int((C.tier == "Bet").sum()), leans=int((C.tier == "Lean").sum()),
                            research_only=int((C.tier == "Research Only").sum())))
@@ -386,6 +413,51 @@ def main():
     with open(os.path.join(a.out, f"{run_date}-model-tables.md"), "w") as f:
         f.write(md)
     print(md)
+
+
+FAIL_TEXT = {"Odds -350 or better": "odds worse than -350", "Model chance 50%+": "model chance under 50%",
+             "Not questionable": "listed questionable", "4+ games with his team": "fewer than 4 games with his team",
+             "QB situation known": "QB debut/unknown", "Projection near FanDuel's line": "projection far from FanDuel's line",
+             "Projection in the model's tested range": "too small for the model to price",
+             "Snap trend not against it": "snap trend against it", "Not removed after news check": "removed after news check",
+             "Has a model projection": "no model projection"}
+
+
+def build_streak_all(all5, parlays_c, leftover):
+    """Every player-market-side with a 5/5 streak at some line, with its checklist and status.
+    Shown line: the best-priced line that passes every check; else the best-priced line within
+    the -350 cap; else the best-priced line overall."""
+    used = {}
+    for p in parlays_c:
+        for l in p["legs"]:
+            used[(l["player"], l["market"], l["side"], float(l["line"]))] = p["name"]
+    for l in leftover:
+        used[(l["player"], l["market"], l["side"], float(l["line"]))] = "Single (no parlay fit)"
+    used_players = {k[0]: v for k, v in used.items()}
+    out = []
+    if not len(all5):
+        return out
+    for (nm, mk, sd), x in all5.groupby(["nname", "market", "side"]):
+        recs = sorted(x.to_dict("records"), key=lambda r: -r["odds"])
+        passing = [r for r in recs if streak_ok(r)]
+        capped = [r for r in recs if r["odds"] >= PRICE_CAP]
+        r = (passing or capped or recs)[0]
+        checks = streak_checks(r)
+        key = (r["player"], mk, sd, float(r["line"]))
+        if key in used:
+            status = used[key]
+        elif passing:
+            status = (f"Qualifies (he's already in {used_players[r['player']]} with another bet)"
+                      if r["player"] in used_players else "Qualifies")
+        else:
+            status = "Doesn't pass: " + "; ".join(FAIL_TEXT.get(lbl, lbl) for lbl, ok, _ in checks if not ok)
+        row = clean(r)
+        row.update(status=status, passes=bool(passing), checks=[dict(label=a, ok=bool(b), detail=c) for a, b, c in checks],
+                   other_lines=[dict(selection=o["selection"], odds=int(o["odds"])) for o in recs if o is not r])
+        out.append(row)
+    rank = lambda r: (0 if r["status"].startswith("Parlay") else 1 if r["passes"] else 2,
+                      sum(not c["ok"] for c in r["checks"]), -(r["p_blend"] or 0))
+    return sorted(out, key=rank)
 
 
 def clean(r):

@@ -96,6 +96,53 @@ Chance 55% · projection 25 · value alone -12.4% · season 5/7 · last 10 5/7
 - ⚠️ **Risk:** Two of those were 26 and 27, right at the line. The model gives about 55%, negative value at -166 (-12%).
 [➕ This leg alone in FanDuel](https://sportsbook.fanduel.com/addToBetslip?marketId=42.627080997&selectionId=48337167)
 
+## All last-5 streaks
+
+Every line a player cleared in each of his last 5 games: 37 lines, 4 pass every Parlay C check. Open the phone page for each one's checklist and game-by-game data.
+
+**Vikings @ 49ers**
+
+- Justin Jefferson Under 84.5 Rec Yds (-113) · Parlay C1
+- Jordan Mason 20+ Rush Yds (-580) · Doesn't pass: odds worse than -350
+- Kaelon Black 15+ Rush Yds (-490) · Doesn't pass: odds worse than -350
+- Christian McCaffrey 30+ Rush Yds (-580) · Doesn't pass: odds worse than -350
+- Kirk Cousins 200+ Pass Yds (-260) · Doesn't pass: fewer than 4 games with his team
+- George Kittle 4+ Receptions (-205) · Doesn't pass: projection far from FanDuel's line
+- Keenan Allen Over 2.5 Receptions (-114) · Doesn't pass: fewer than 4 games with his team
+- Keenan Allen 25+ Rec Yds (-132) · Doesn't pass: fewer than 4 games with his team
+- Aaron Jones 15+ Rush Yds (-650) · Doesn't pass: odds worse than -350; snap trend against it
+- Brock Purdy 5+ Rush Yds (-750) · Doesn't pass: odds worse than -350; too small for the model to price
+- Christian McCaffrey 2+ Receptions (-1100) · Doesn't pass: odds worse than -350; projection far from FanDuel's line
+- George Kittle 20+ Rec Yds (-750) · Doesn't pass: odds worse than -350; projection far from FanDuel's line
+- Brock Purdy 175+ Pass Yds (-700) · Doesn't pass: odds worse than -350; removed after news check
+- Jauan Jennings Under 2.5 Receptions (-160) · Doesn't pass: projection far from FanDuel's line; too small for the model to price
+- Christian McCaffrey 15+ Rec Yds (-500) · Doesn't pass: odds worse than -350; projection far from FanDuel's line
+- Mike Evans 3+ Receptions (-330) · Doesn't pass: listed questionable; projection far from FanDuel's line
+- Mike Evans 30+ Rec Yds (-320) · Doesn't pass: listed questionable; projection far from FanDuel's line
+- Jordan Watkins Over 0.5 Receptions (-136) · Doesn't pass: projection far from FanDuel's line; too small for the model to price
+- Deebo Samuel 20+ Rec Yds (-198) · Doesn't pass: model chance under 50%; projection far from FanDuel's line; too small for the model to price
+- Jordan Watkins 20+ Rec Yds (+152) · Doesn't pass: model chance under 50%; projection far from FanDuel's line; too small for the model to price
+- Aaron Jones 1+ Receptions (-850) · Doesn't pass: odds worse than -350; projection far from FanDuel's line; too small for the model to price; snap trend against it
+
+**Bengals @ Commanders**
+
+- Stefon Diggs 30+ Rec Yds (-320) · Parlay C1
+- Chase Brown 30+ Rush Yds (-350) · Single (no parlay fit)
+- Treylon Burks 25+ Rec Yds (-166) · Single (no parlay fit)
+- Treylon Burks 1+ Receptions (-1450) · Doesn't pass: odds worse than -350
+- Ja'Marr Chase 5+ Receptions (-1450) · Doesn't pass: odds worse than -350
+- Jayden Daniels 175+ Pass Yds (-400) · Doesn't pass: odds worse than -350
+- Chig Okonkwo 20+ Rec Yds (-700) · Doesn't pass: odds worse than -350
+- Samaje Perine 10+ Rush Yds (-420) · Doesn't pass: odds worse than -350
+- Chase Brown 15+ Rec Yds (-390) · Doesn't pass: odds worse than -350
+- Ja'Marr Chase 60+ Rec Yds (-550) · Doesn't pass: odds worse than -350
+- Stefon Diggs 3+ Receptions (-670) · Doesn't pass: odds worse than -350
+- Chase Brown 3+ Receptions (-440) · Doesn't pass: odds worse than -350
+- Antonio Williams 25+ Rec Yds (-250) · Doesn't pass: projection far from FanDuel's line
+- Antonio Williams 2+ Receptions (-850) · Doesn't pass: odds worse than -350; projection far from FanDuel's line
+- Drew Sample 1+ Receptions (-290) · Doesn't pass: projection far from FanDuel's line; too small for the model to price
+- Joe Burrow 5+ Rush Yds (-230) · Doesn't pass: projection far from FanDuel's line; too small for the model to price
+
 ## Removed today
 
 - **Justin Jefferson — receptions**: role/QB change: Kirk Cousins has one MIN start (Wk10: Jefferson 13 tgt, 9 rec with Addison and Hockenson out). The model's catch rate comes from the previous QB's games, so it can't price receptions with Cousins yet; FanDuel prices Over 6.5 at -172.
