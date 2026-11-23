@@ -1,10 +1,38 @@
-{"Justin Jefferson": {"why": "Under 84.5 in all of his last 5 (79, 44, 33, 58, 74) and 7 of 8 this season; model median 64 yards. Still 74 yards in Cousins's first start on 13 targets.",
-                      "risk": "New QB: only one Cousins start, and Addison (WR2) is out, so his targets could climb. One deep catch beats this."},
- "Jayden Daniels": {"why": "Under 41.5 in 4 of his last 5 (10, 23, 16, 28 after a 103); model median 30 rushing yards.",
-                    "risk": "One scramble-heavy game (he ran for 103 five games ago) beats it, and RB Croskey-Merritt is questionable, which could mean more designed runs."},
- "Stefon Diggs": {"why": "Model median 4.4 catches on a 22% target share; CIN's defense allows slightly fewer WR yards than expected.",
-                  "risk": "Thin: he has gone over 4.5 in 3 of his last 5 (5, 6, 6). Washington is a 6-point underdog, which can mean more passing."},
- "Chig Okonkwo": {"why": "Model median 3.5 catches; under 4.5 in 5 of 7 games this season.",
-                  "risk": "CIN gives up the most to tight ends of any defense in this sample (matchup factor 1.16), and he had 6 and 7 catches in two of his last 5."},
- "Christian McCaffrey": {"why": "Model median 41 rushing yards: his snap share fell from ~85% to ~60% as Kaelon Black takes 11-12 carries a game.",
-                         "risk": "Weakest pick: his history says over (7 of 9 games, 4 of last 5 between 62 and 68). The model leans on its rushing calibration, which is known to run low on overs."}}
+{
+ "Justin Jefferson": {
+  "why": "Under 84.5 in all of his last 5 (79, 44, 33, 58, 74) and 7 of 8 this season; model median 64 yards. Still 74 yards in Cousins's first start on 13 targets.",
+  "risk": "New QB: only one Cousins start, and Addison (WR2) is out, so his targets could climb. One deep catch beats this."
+ },
+ "Jayden Daniels": {
+  "why": "Under 41.5 in 4 of his last 5 (10, 23, 16, 28 after a 103); model median 30 rushing yards.",
+  "risk": "One scramble-heavy game (he ran for 103 five games ago) beats it, and RB Croskey-Merritt is questionable, which could mean more designed runs."
+ },
+ "Stefon Diggs": {
+  "why": "Model median 4.4 catches on a 22% target share; CIN's defense allows slightly fewer WR yards than expected.",
+  "risk": "Thin: he has gone over 4.5 in 3 of his last 5 (5, 6, 6). Washington is a 6-point underdog, which can mean more passing."
+ },
+ "Chig Okonkwo": {
+  "why": "Model median 3.5 catches; under 4.5 in 5 of 7 games this season.",
+  "risk": "CIN gives up the most to tight ends of any defense in this sample (matchup factor 1.16), and he had 6 and 7 catches in two of his last 5."
+ },
+ "Christian McCaffrey": {
+  "why": "Model median 41 rushing yards: his snap share fell from ~85% to ~60% as Kaelon Black takes 11-12 carries a game.",
+  "risk": "Weakest pick: his history says over (7 of 9 games, 4 of last 5 between 62 and 68). The model leans on its rushing calibration, which is known to run low on overs."
+ },
+ "Stefon Diggs|reception_yds": {
+  "why": "30+ receiving yards in all 8 games this season (last 5: 83, 51, 38, 44, 35). Model median 46 yards, about a 71% chance.",
+  "risk": "At -320 the price is steeper than his ~71% chance, so this leg is negative value on its own (-7%). Two or three short catches would leave him under 30."
+ },
+ "Justin Jefferson|reception_yds": {
+  "why": "Under 84.5 in all of his last 5 (74, 58, 33, 44, 79) and 7 of 8 this season, including 74 yards in Cousins's first start. Model median 64 yards.",
+  "risk": "New QB with only one start, and Addison (WR2) is out, so his targets could climb. One deep catch beats it."
+ },
+ "Chase Brown|rush_yds": {
+  "why": "30+ rushing yards in each of his last 5 (44, 57, 55, 39, 39). Model gives about a 71% chance.",
+  "risk": "At -350 this is negative value on its own (-8%). It can't join a parlay because every parlay already has a player from this game."
+ },
+ "Treylon Burks|reception_yds": {
+  "why": "25+ receiving yards in each of his last 5 (27, 81, 66, 26, 47).",
+  "risk": "Two of those were 26 and 27, right at the line. The model gives about 55%, negative value at -166 (-12%)."
+ }
+}

@@ -269,6 +269,9 @@ def main():
                        season_hits=f"{sum(won)}/{n - sum(push)}" + (f" ({sum(push)} push)" if sum(push) else ""),
                        last5=f"{sum(won[-5:])}/{len(won[-5:])}", last10=f"{sum(won[-10:])}/{len(won[-10:])}",
                        last5_values=" ".join(f"{v:g}" for v in vals[-5:]),
+                       # game-by-game history this season (oldest -> newest) for the phone page
+                       history=[dict(wk=int(h.week), opp=str(h.opponent_team), v=float(getattr(h, NFLV_COL[r.mkt])))
+                                for h in hist.itertuples()],
                        score_parts=dict(consistency=round(consistency), workload=round(float(np.clip(workload, 0, 100))),
                                         matchup=round(matchup), value=round(value), quality=round(quality)),
                        def_factor=round(float(dfac), 3), target_share=round(pr["ts"], 3), carry_share=round(pr["cs"], 3))
@@ -279,7 +282,7 @@ def main():
 
     C = pd.DataFrame(cand)
     os.makedirs(a.out, exist_ok=True)
-    C.drop(columns=["score_parts"], errors="ignore").to_csv(os.path.join(a.out, f"{run_date}-candidates.csv"), index=False)
+    C.drop(columns=["score_parts", "history"], errors="ignore").to_csv(os.path.join(a.out, f"{run_date}-candidates.csv"), index=False)
     ok = C[C.tier.isin(["Bet", "Lean"])].copy()
     ok["tier_rank"] = ok.tier.map({"Bet": 0, "Lean": 1})
 
@@ -390,7 +393,7 @@ def clean(r):
             "selection", "odds", "book_last_update", "betslip_link", "proj_median", "proj_mean", "p_model",
             "p_market", "market_ref_book", "p_blend", "breakeven", "edge", "ev", "tier", "flags",
             "evidence_score", "score_parts", "season_hits", "last5", "last10", "last5_values", "def_factor",
-            "target_share", "carry_share"]
+            "target_share", "carry_share", "history"]
     return {k: (None if isinstance(r.get(k), float) and math.isnan(r.get(k)) else r.get(k)) for k in keep}
 
 

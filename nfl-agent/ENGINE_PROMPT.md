@@ -23,7 +23,10 @@ Do not select bets merely to fill the requested number of legs.
 * Target: Five legs per parlay, but fewer when justified.
 * Individual leg pricing: American odds of -350 or better. Do not use more heavily favored odds without express permission.
 * Mode: Pregame only.
-* Final output: Top 10 ranked player props, followed by the Parlay C set (section 15): C1, C2, C3... of up to five legs each.
+* Final output shown to the user: ONLY the Parlay C set (section 15): C1, C2, C3... of up to five legs
+  each, plus leftover streak legs, each with its game-by-game history. The Top 10 is still computed and
+  kept in the full research report and the ledger to track the model, but never shown in the summary,
+  the phone page, the PDF or the notification (user request, 2026-11-23).
 * Parlays A and B were retired on 2026-11-22 at the user's request. Do not build them.
 
 Allowed player-prop categories

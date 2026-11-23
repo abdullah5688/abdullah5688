@@ -6,7 +6,7 @@ Usage: python3 make_report_html.py 2026-11-22 [--out reports/]
 Reads, for that date:
   reports/DATE-picks.json    model output (all numbers come from here)
   reports/DATE-context.json  analyst context (QBs, exclusions with reasons)
-  reports/DATE-notes.json    optional {"Player": {"why": "...", "risk": "..."}} written by the analyst
+  reports/DATE-notes.json    optional {"Player|market": {"why": "...", "risk": "..."}} written by the analyst
   ledger/picks.csv           graded results for the record line
 Writes reports/DATE-nfl-props.html. Nothing here invents a number: every figure is copied
 from those files.
@@ -47,19 +47,17 @@ def recheck(k, first=None):
 
 
 def record(date):
-    """Last graded week and season-to-date for top picks, from ledger/picks.csv."""
+    """Parlay C results (won-lost) for the last graded week and the season, from ledger/parlays.csv."""
     try:
-        df = pd.read_csv("ledger/picks.csv")
+        df = pd.read_csv("ledger/parlays.csv")
     except OSError:
         return None
-    g = df[(df.source == "top") & df.result.isin(["win", "loss", "push"]) & (df.date < date)]
+    g = df[df.kind.astype(str).str.startswith("parlay_c") & df.result.isin(["win", "loss"]) & (df.date < date)]
     if not len(g):
         return None
 
     def line(x):
-        w, l = int((x.result == "win").sum()), int((x.result == "loss").sum())
-        u = float(x.units.sum())
-        return dict(w=w, l=l, units=u, roi=u / max(1, len(x)))
+        return dict(w=int((x.result == "win").sum()), l=int((x.result == "loss").sum()))
     last = g.date.max()
     return dict(last_date=last, last=line(g[g.date == last]), season=line(g))
 
@@ -69,15 +67,60 @@ def short_game(g):
     return f"{a.split()[-1]} @ {h.split()[-1]}"
 
 
+NOTES = {}
+DAY0 = [None]
+
+
+def leg_note(l):
+    """Analyst note written for exactly this bet ("Player|market"), else generated from the data.
+    (A note keyed by player alone may describe a different market, so it is never used here.)"""
+    n = NOTES.get(f"{l['player']}|{l['market']}") or {}
+    why = n.get("why") or (f"Cleared this line in all of his last 5 games ({l['last5_values']}) and "
+                           f"{l['season_hits']} this season. Model median {l['proj_median']:g}.")
+    if n.get("risk"):
+        risk = n["risk"]
+    elif l["ev"] < 0:
+        risk = (f"FanDuel's price is steeper than the model's {pct(l['p_blend'])} chance, so on its own this leg is "
+                f"negative value ({evs(l['ev'])}). Streaks also tend to cool off.")
+    else:
+        risk = "One off game breaks it, and hot streaks tend to cool off."
+    return why, risk
+
+
 def leg_rows(legs, extra=False):
     out = []
     for l in legs:
-        sub = f"{E(short_game(l['game']))} · {kick(l['kickoff_et'])}"
-        if extra:
-            sub += f" · last 5: <span class=num>{E(l['last5_values'])}</span>"
-        out.append(f"""<li class="leg"><div class="leg-main"><span class="leg-name">{E(l['player'])}</span>
-<span class="leg-sel">{E(l['selection'])}</span><span class="leg-sub">{sub}</span></div>
-<span class="odds">{am(l['odds'])}</span></li>""")
+        day = "" if DAY0[0] is None or l["kickoff_et"][:10] == DAY0[0] else \
+            datetime.strptime(l["kickoff_et"][:10], "%Y-%m-%d").strftime("%a ")
+        sub = f"{E(short_game(l['game']))} · {day}{kick(l['kickoff_et'])}"
+        line, over = float(l["line"]), l["side"] == "Over"
+        hist = list(reversed(l.get("history") or []))  # newest first
+        rows = "".join(
+            f"<tr class=\"{'l5' if i < 5 else ''}\"><td class=num>Wk {h['wk']}</td><td>{E(h['opp'])}</td>"
+            f"<td class=num>{h['v']:g}</td><td class=\"{'hit' if ((h['v'] > line) if over else (h['v'] < line)) else 'miss'}\">"
+            f"{'Hit' if ((h['v'] > line) if over else (h['v'] < line)) else 'Miss'}</td></tr>"
+            for i, h in enumerate(hist))
+        table = (f"<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs {line:g}</th></tr></thead>"
+                 f"<tbody>{rows}</tbody></table><p class=\"muted small\">Newest first. The top 5 rows (shaded) are the "
+                 f"last-5 streak.</p>") if hist else f"<p class=muted>Last 5: {E(l['last5_values'])}</p>"
+        why, risk = leg_note(l)
+        l5_new = " ".join(f"{h['v']:g}" for h in hist[:5]) if hist else " ".join(reversed(l["last5_values"].split()))
+        flags = "".join(f'<span class="flag">{E(f)}</span>' for f in (l.get("flags") or "").split(",") if f)
+        link = f'<a class="btn small" href="{E(l["betslip_link"])}" target="_blank" rel="noopener">This leg alone in FanDuel</a>' \
+            if l.get("betslip_link") else ""
+        out.append(f"""<li><details class="leg"><summary><span class="leg-main"><span class="leg-name">{E(l['player'])}</span>
+<span class="leg-sel">{E(l['selection'])}</span><span class="leg-sub">{sub} · last 5 (newest first): <span class=num>{E(l5_new)}</span></span></span>
+<span class="leg-right"><span class="odds">{am(l['odds'])}</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">{pct(l['p_blend'])}</b></div>
+<div class="kv"><span>Projection</span><b class="num">{l['proj_median']:g}</b></div>
+<div class="kv"><span>Value alone</span><b class="num">{evs(l['ev'])}</b></div>
+<div class="kv"><span>Season</span><b class="num">{E(str(l['season_hits']))}</b></div>
+<div class="kv"><span>Last 10</span><b class="num">{E(str(l['last10']))}</b></div></div>
+{table}
+<p><b>Why.</b> {E(why)}</p><p><b>Risk.</b> {E(risk)}</p>{('<p class="flags">' + flags + '</p>') if flags else ''}
+{link}
+</div></details></li>""")
     return "\n".join(out)
 
 
@@ -120,43 +163,22 @@ def main():
         notes = json.load(open(os.path.join(R, f"{D}-notes.json")))
     except OSError:
         notes = {}
-    top, games = b["top"], b["games"]
+    games = b["games"]
+    NOTES.update(notes)
     day = datetime.strptime(D, "%Y-%m-%d")
     pulled = datetime.fromisoformat(b["generated_at"]).strftime("%-I:%M %p")
     odds_t = os.path.basename(b["odds_file"]).replace("odds-", "")[:13]  # YYYYMMDD-HHMM
     odds_time = datetime.strptime(odds_t, "%Y%m%d-%H%M").strftime("%-I:%M %p ET")
     rec = record(D)
     kicks = sorted({g["kickoff"] for g in games.values()})
+    DAY0[0] = kicks[0][:10]
 
     # ---- header stats
     rec_html = ""
     if rec:
         L, S = rec["last"], rec["season"]
-        rec_html = f"""<div class="stat"><span>Last week</span><b class="num">{L['w']}-{L['l']}</b><small class="num">{L['units']:+.2f}u</small></div>
-<div class="stat"><span>Season</span><b class="num">{S['w']}-{S['l']}</b><small class="num">{S['units']:+.2f}u · ROI {S['roi']*100:+.1f}%</small></div>"""
-
-    # ---- top 10
-    cards = []
-    for i, p in enumerate(top, 1):
-        n = notes.get(p["player"], {})
-        why = n.get("why") or f"Model median {p['proj_median']:g} vs this line."
-        risk = n.get("risk") or "See flags."
-        flags = "".join(f'<span class="flag">{E(f)}</span>' for f in (p.get("flags") or "").split(",") if f)
-        cards.append(f"""<details class="pick">
-<summary><span class="rank num">{i}</span><span class="pick-main"><span class="pick-name">{E(p['player'])}</span>
-<span class="pick-sel">{E(p['selection'])}</span><span class="pick-sub">{E(short_game(p['game']))} · {kick(p['kickoff_et'])}</span></span>
-<span class="pick-right"><span class="odds">{am(p['odds'])}</span><span class="tier {p['tier'].lower()}">{E(p['tier'])}</span></span></summary>
-<div class="pick-body">
-<div class="kvs"><div class="kv"><span>Chance</span><b class="num">{pct(p['p_blend'])}</b></div>
-<div class="kv"><span>Value (EV)</span><b class="num">{evs(p['ev'])}</b></div>
-<div class="kv"><span>Projection</span><b class="num">{p['proj_median']:g}</b></div>
-<div class="kv"><span>Season</span><b class="num">{E(p['season_hits'])}</b></div></div>
-<p class="l5">Last 5 games: <span class="num">{E(p['last5_values'])}</span> <span class="muted">({E(p['last5'])} would have won)</span></p>
-<p><b>Why.</b> {E(why)}</p><p><b>Risk.</b> {E(risk)}</p>{('<p class="flags">' + flags + '</p>') if flags else ''}
-<a class="btn small" href="{E(p['betslip_link'])}" target="_blank" rel="noopener">Add to FanDuel betslip</a>
-</div></details>""")
-
-    copy_text = "\n".join(f"{i}. {p['player']} {p['selection']} ({am(p['odds'])}) · {p['tier']}" for i, p in enumerate(top, 1))
+        rec_html = f"""<div class="stat"><span>Parlay C last week</span><b class="num">{L['w']}-{L['l']}</b></div>
+<div class="stat"><span>Parlay C season</span><b class="num">{S['w']}-{S['l']}</b></div>"""
 
     # ---- parlays
     pcs = b.get("parlays_c") or ([b["parlay_c"]] if b.get("parlay_c") else [])
@@ -165,10 +187,16 @@ def main():
         parlay_card(f"parlay-c{i}", p.get("name") or f"Parlay C{i}", "Last-5 streak", p,
                     warn_c if p["ev_if_priced_as_product"] <= 0 else None)
         for i, p in enumerate(pcs, 1)) or parlay_card("parlay-c", "Parlay C", "Last-5 streak", None)
+    left = b.get("streak_leftover") or []
+    leftover = (f'<section id="singles"><h2>Streak legs that didn\'t fit a parlay</h2>'
+                f'<p class="muted">They qualify by streak, but every parlay already has a player from that game. '
+                f'Tap for the data.</p><ul class="legs card">{leg_rows(left, True)}</ul></section>') if left else ""
+    copy_text = "\n\n".join(
+        f"{p.get('name') or 'Parlay C'} (bet only at {am(p['min_acceptable_odds'])} or better)\n" +
+        "\n".join(f"- {l['player']} {l['selection']} ({am(l['odds'])})" for l in p["legs"]) for p in pcs) \
+        or "No Parlay C today."
 
     # ---- avoided & exclusions
-    avoid = "".join(f"<li><b>{E(x['player'])}</b> {E(x['selection'])} <span class=num>({am(x['odds'])})</span>"
-                    f" <span class=muted>EV {evs(x['ev'])}</span></li>" for x in b.get("avoid", [])[:5])
     excl = "".join(f"<li><b>{E(k)}</b> <span class=muted>{E(v)}</span></li>" for k, v in ctx.get("exclude", {}).items())
     qbs = "".join(f"<li><b>{E(t)}</b> {E(q)}</li>" for t, q in ctx.get("qb", {}).items())
     checks = "".join(f"<li><span class=num>{recheck(k)}</span> for the {kick(k)} games</li>" for k in kicks)
@@ -213,9 +241,21 @@ section {{ display:flex; flex-direction:column; gap:12px; min-width:0 }}
 .parlay-head {{ display:flex; justify-content:space-between; align-items:baseline; gap:8px; flex-wrap:wrap }}
 .tag {{ font-size:.75rem; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); font-weight:600 }}
 .legs {{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column }}
-.leg {{ display:flex; justify-content:space-between; gap:12px; padding:10px 0; border-top:1px dashed var(--line) }}
-.leg:first-child {{ border-top:0 }}
+.legs > li {{ border-top:1px dashed var(--line) }} .legs > li:first-child {{ border-top:0 }}
+.legs.card {{ background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:4px 16px }}
+.leg summary {{ list-style:none; display:flex; justify-content:space-between; gap:12px; padding:10px 0; cursor:pointer }}
+.leg summary::-webkit-details-marker {{ display:none }}
 .leg-main {{ display:flex; flex-direction:column; min-width:0 }}
+.leg-right {{ display:flex; flex-direction:column; align-items:flex-end; gap:2px }}
+.more {{ font-size:.72rem; font-weight:600; color:var(--accent); text-transform:uppercase; letter-spacing:.08em }}
+.more::after {{ content:" ▾" }} .leg[open] .more::after {{ content:" ▴" }}
+.leg-body {{ display:flex; flex-direction:column; gap:10px; padding:4px 0 14px }}
+table.hist {{ width:100%; border-collapse:collapse; font-size:.85rem }}
+table.hist th {{ text-align:left; font-size:.7rem; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); font-weight:600; padding:4px 6px; border-bottom:1px solid var(--line) }}
+table.hist td {{ padding:4px 6px; border-bottom:1px solid var(--line) }}
+table.hist tr.l5 td {{ background:var(--chip) }}
+td.hit {{ color:var(--good); font-weight:600 }} td.miss {{ color:var(--bad); font-weight:600 }}
+.small {{ font-size:.78rem }}
 .leg-name {{ font-weight:600 }} .leg-sel {{ }} .leg-sub {{ font-size:.8rem; color:var(--muted) }}
 .odds {{ font-family:var(--display); font-size:1.3rem; font-weight:700; font-variant-numeric:tabular-nums; white-space:nowrap }}
 .minbox {{ display:flex; align-items:baseline; gap:8px; justify-content:center; background:var(--chip); border-radius:10px; padding:10px }}
@@ -240,35 +280,31 @@ ul.plain {{ margin:0; padding-left:18px; display:flex; flex-direction:column; ga
 .foot {{ font-size:.8rem; color:var(--muted); border-top:1px solid var(--line); padding-top:14px }}
 @media print {{
   body {{ background:#fff; color:#000; padding:0 }} .btn {{ display:none }}
-  .pick, .parlay {{ break-inside:avoid }} details > .pick-body {{ display:flex }}
+  .pick, .parlay, .leg {{ break-inside:avoid }} details > .pick-body, details > .leg-body {{ display:flex }}
 }}
 @media (prefers-reduced-motion: reduce) {{ * {{ transition:none !important }} }}
 </style>
 <div class="wrap">
 <header style="display:flex;flex-direction:column;gap:12px">
-<span class="eyebrow">NFL player props · Sunday slate</span>
+<span class="eyebrow">NFL player props · Parlay C</span>
 <h1>{day.strftime('%A, %B %-d')}</h1>
 <div class="status"><span class="chip ok">FanDuel odds verified · {odds_time}</span><span class="chip">{len(games)} games</span>
 <span class="chip">Research only, not a guarantee</span></div>
 <div class="stats">{rec_html}<div class="stat wide"><span>Recheck inactives</span><b class="num">{recheck(kicks[0])}</b><small>{' · '.join(recheck(k, kicks[0]) for k in kicks[1:]) and 'then ' + ' · '.join(recheck(k, kicks[0]) for k in kicks[1:])} · 90 min before each kickoff</small></div></div>
 </header>
 
-<section id="copy"><div class="row"><h2>Top {len(top)}</h2><button class="btn ghost small" id="copy-btn" type="button">Copy list</button></div>
-<div class="copy"><pre id="copy-text">{E(copy_text)}</pre></div></section>
-
-<section id="parlays"><h2>Parlays</h2>
-<p class="muted">Each button opens FanDuel with the legs in your betslip. Check every leg and the price before you bet.</p>
+<section id="parlays"><h2>Parlay C · last-5 streak</h2>
+<p class="muted">Every leg cleared its line in each of the player's last 5 games. Tap a player for his game-by-game data. Each button opens FanDuel with that parlay's legs in your betslip; check every leg and the price before you bet.</p>
 {parlays}</section>
-
-<section id="picks"><h2>Pick details</h2><p class="muted">Tap a pick for the reasoning.</p>
-<div class="picks">{''.join(cards)}</div></section>
+{leftover}
+<section id="copy"><div class="row"><h2>Copy list</h2><button class="btn ghost small" id="copy-btn" type="button">Copy</button></div>
+<div class="copy"><pre id="copy-text">{E(copy_text)}</pre></div></section>
 
 <section id="checks"><h2>Before kickoff</h2><ul class="plain">{checks}
 <li>Re-check every price in the app; these are from {odds_time}.</li></ul></section>
 
 <section id="context"><h2>Today's context</h2>
 {('<p class="eyebrow">Starting QB changes</p><ul class="plain">' + qbs + '</ul>') if qbs else ''}
-{('<p class="eyebrow">Avoided (popular props with negative value)</p><ul class="plain">' + avoid + '</ul>') if avoid else ''}
 {('<p class="eyebrow">Removed by the analyst</p><ul class="plain">' + excl + '</ul>') if excl else ''}
 </section>
 

@@ -38,9 +38,21 @@ section { display:flex; flex-direction:column; gap:12px; min-width:0 }
 .parlay-head { display:flex; justify-content:space-between; align-items:baseline; gap:8px; flex-wrap:wrap }
 .tag { font-size:.75rem; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); font-weight:600 }
 .legs { list-style:none; margin:0; padding:0; display:flex; flex-direction:column }
-.leg { display:flex; justify-content:space-between; gap:12px; padding:10px 0; border-top:1px dashed var(--line) }
-.leg:first-child { border-top:0 }
+.legs > li { border-top:1px dashed var(--line) } .legs > li:first-child { border-top:0 }
+.legs.card { background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:4px 16px }
+.leg summary { list-style:none; display:flex; justify-content:space-between; gap:12px; padding:10px 0; cursor:pointer }
+.leg summary::-webkit-details-marker { display:none }
 .leg-main { display:flex; flex-direction:column; min-width:0 }
+.leg-right { display:flex; flex-direction:column; align-items:flex-end; gap:2px }
+.more { font-size:.72rem; font-weight:600; color:var(--accent); text-transform:uppercase; letter-spacing:.08em }
+.more::after { content:" ▾" } .leg[open] .more::after { content:" ▴" }
+.leg-body { display:flex; flex-direction:column; gap:10px; padding:4px 0 14px }
+table.hist { width:100%; border-collapse:collapse; font-size:.85rem }
+table.hist th { text-align:left; font-size:.7rem; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); font-weight:600; padding:4px 6px; border-bottom:1px solid var(--line) }
+table.hist td { padding:4px 6px; border-bottom:1px solid var(--line) }
+table.hist tr.l5 td { background:var(--chip) }
+td.hit { color:var(--good); font-weight:600 } td.miss { color:var(--bad); font-weight:600 }
+.small { font-size:.78rem }
 .leg-name { font-weight:600 } .leg-sel { } .leg-sub { font-size:.8rem; color:var(--muted) }
 .odds { font-family:var(--display); font-size:1.3rem; font-weight:700; font-variant-numeric:tabular-nums; white-space:nowrap }
 .minbox { display:flex; align-items:baseline; gap:8px; justify-content:center; background:var(--chip); border-radius:10px; padding:10px }
@@ -65,112 +77,90 @@ ul.plain { margin:0; padding-left:18px; display:flex; flex-direction:column; gap
 .foot { font-size:.8rem; color:var(--muted); border-top:1px solid var(--line); padding-top:14px }
 @media print {
   body { background:#fff; color:#000; padding:0 } .btn { display:none }
-  .pick, .parlay { break-inside:avoid } details > .pick-body { display:flex }
+  .pick, .parlay, .leg { break-inside:avoid } details > .pick-body, details > .leg-body { display:flex }
 }
 @media (prefers-reduced-motion: reduce) { * { transition:none !important } }
 </style>
 <div class="wrap">
 <header style="display:flex;flex-direction:column;gap:12px">
-<span class="eyebrow">NFL player props · Sunday slate</span>
+<span class="eyebrow">NFL player props · Parlay C</span>
 <h1>Sunday, November 22</h1>
 <div class="status"><span class="chip ok">FanDuel odds verified · 6:04 PM ET</span><span class="chip">2 games</span>
 <span class="chip">Research only, not a guarantee</span></div>
-<div class="stats"><div class="stat"><span>Last week</span><b class="num">4-6</b><small class="num">-2.46u</small></div>
-<div class="stat"><span>Season</span><b class="num">4-6</b><small class="num">-2.46u · ROI -24.6%</small></div><div class="stat wide"><span>Recheck inactives</span><b class="num">6:50 PM</b><small>then Mon 6:45 PM · 90 min before each kickoff</small></div></div>
+<div class="stats"><div class="stat wide"><span>Recheck inactives</span><b class="num">6:50 PM</b><small>then Mon 6:45 PM · 90 min before each kickoff</small></div></div>
 </header>
 
-<section id="copy"><div class="row"><h2>Top 5</h2><button class="btn ghost small" id="copy-btn" type="button">Copy list</button></div>
-<div class="copy"><pre id="copy-text">1. Justin Jefferson Under 84.5 Rec Yds (-113) · Bet
-2. Jayden Daniels Under 41.5 Rush Yds (-114) · Bet
-3. Stefon Diggs Under 4.5 Receptions (-114) · Bet
-4. Chig Okonkwo Under 4.5 Receptions (-130) · Bet
-5. Christian McCaffrey Under 51.5 Rush Yds (-113) · Bet</pre></div></section>
-
-<section id="parlays"><h2>Parlays</h2>
-<p class="muted">Each button opens FanDuel with the legs in your betslip. Check every leg and the price before you bet.</p>
+<section id="parlays"><h2>Parlay C · last-5 streak</h2>
+<p class="muted">Every leg cleared its line in each of the player's last 5 games. Tap a player for his game-by-game data. Each button opens FanDuel with that parlay's legs in your betslip; check every leg and the price before you bet.</p>
 <section class="parlay" id="parlay-c1">
 <div class="parlay-head"><h3>Parlay C1</h3><span class="tag">Last-5 streak</span></div>
-<ul class="legs"><li class="leg"><div class="leg-main"><span class="leg-name">Stefon Diggs</span>
-<span class="leg-sel">30+ Rec Yds</span><span class="leg-sub">Bengals @ Commanders · 8:15 PM · last 5: <span class=num>35 44 38 51 83</span></span></div>
-<span class="odds">-320</span></li>
-<li class="leg"><div class="leg-main"><span class="leg-name">Justin Jefferson</span>
-<span class="leg-sel">Under 84.5 Rec Yds</span><span class="leg-sub">Vikings @ 49ers · 8:20 PM · last 5: <span class=num>79 44 33 58 74</span></span></div>
-<span class="odds">-113</span></li></ul>
+<ul class="legs"><li><details class="leg"><summary><span class="leg-main"><span class="leg-name">Stefon Diggs</span>
+<span class="leg-sel">30+ Rec Yds</span><span class="leg-sub">Bengals @ Commanders · Mon 8:15 PM · last 5 (newest first): <span class=num>83 51 38 44 35</span></span></span>
+<span class="leg-right"><span class="odds">-320</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">71%</b></div>
+<div class="kv"><span>Projection</span><b class="num">46.4</b></div>
+<div class="kv"><span>Value alone</span><b class="num">-7.3%</b></div>
+<div class="kv"><span>Season</span><b class="num">8/8</b></div>
+<div class="kv"><span>Last 10</span><b class="num">8/8</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 29.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 10</td><td>NYG</td><td class=num>83</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 9</td><td>LA</td><td class=num>51</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 8</td><td>PHI</td><td class=num>38</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 6</td><td>SF</td><td class=num>44</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 4</td><td>IND</td><td class=num>35</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 3</td><td>SEA</td><td class=num>33</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 2</td><td>DAL</td><td class=num>47</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 1</td><td>PHI</td><td class=num>55</td><td class="hit">Hit</td></tr></tbody></table><p class="muted small">Newest first. The top 5 rows (shaded) are the last-5 streak.</p>
+<p><b>Why.</b> 30+ receiving yards in all 8 games this season (last 5: 83, 51, 38, 44, 35). Model median 46 yards, about a 71% chance.</p><p><b>Risk.</b> At -320 the price is steeper than his ~71% chance, so this leg is negative value on its own (-7%). Two or three short catches would leave him under 30.</p><p class="flags"><span class="flag">teammate_out</span></p>
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.626338357&amp;selectionId=73565848" target="_blank" rel="noopener">This leg alone in FanDuel</a>
+</div></details></li>
+<li><details class="leg"><summary><span class="leg-main"><span class="leg-name">Justin Jefferson</span>
+<span class="leg-sel">Under 84.5 Rec Yds</span><span class="leg-sub">Vikings @ 49ers · 8:20 PM · last 5 (newest first): <span class=num>74 58 33 44 79</span></span></span>
+<span class="leg-right"><span class="odds">-113</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">59%</b></div>
+<div class="kv"><span>Projection</span><b class="num">64.4</b></div>
+<div class="kv"><span>Value alone</span><b class="num">+10.3%</b></div>
+<div class="kv"><span>Season</span><b class="num">7/8</b></div>
+<div class="kv"><span>Last 10</span><b class="num">7/8</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 84.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 10</td><td>GB</td><td class=num>74</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 9</td><td>BUF</td><td class=num>58</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 8</td><td>DET</td><td class=num>33</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 7</td><td>IND</td><td class=num>44</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 5</td><td>NO</td><td class=num>79</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 3</td><td>TB</td><td class=num>32</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 2</td><td>CHI</td><td class=num>55</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 1</td><td>GB</td><td class=num>92</td><td class="miss">Miss</td></tr></tbody></table><p class="muted small">Newest first. The top 5 rows (shaded) are the last-5 streak.</p>
+<p><b>Why.</b> Under 84.5 in all of his last 5 (74, 58, 33, 44, 79) and 7 of 8 this season, including 74 yards in Cousins&#x27;s first start. Model median 64 yards.</p><p><b>Risk.</b> New QB with only one start, and Addison (WR2) is out, so his targets could climb. One deep catch beats it.</p><p class="flags"><span class="flag">qb_change</span><span class="flag">teammate_out</span></p>
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.626101285&amp;selectionId=36057837" target="_blank" rel="noopener">This leg alone in FanDuel</a>
+</div></details></li></ul>
 <div class="minbox"><span>Bet only at</span><b class="num">+154</b><span>or better</span></div>
 <div class="kvs"><div class="kv"><span>Model chance</span><b class="num">41.3%</b></div>
 <div class="kv"><span>Fair odds</span><b class="num">+142</b></div>
 <div class="kv"><span>Legs multiplied</span><b class="num">+147</b></div></div>
 <p class="pill bad">Thin value: FanDuel's typical +147 is below the +154 safety price. Pass unless FanDuel pays that.</p><a class="btn" href="https://sportsbook.fanduel.com/addToBetslip?marketId[0]=42.626338357&amp;selectionId[0]=73565848&amp;marketId[1]=42.626101285&amp;selectionId[1]=36057837" target="_blank" rel="noopener">Open in FanDuel</a></section></section>
-
-<section id="picks"><h2>Pick details</h2><p class="muted">Tap a pick for the reasoning.</p>
-<div class="picks"><details class="pick">
-<summary><span class="rank num">1</span><span class="pick-main"><span class="pick-name">Justin Jefferson</span>
-<span class="pick-sel">Under 84.5 Rec Yds</span><span class="pick-sub">Vikings @ 49ers · 8:20 PM</span></span>
-<span class="pick-right"><span class="odds">-113</span><span class="tier bet">Bet</span></span></summary>
-<div class="pick-body">
-<div class="kvs"><div class="kv"><span>Chance</span><b class="num">59%</b></div>
-<div class="kv"><span>Value (EV)</span><b class="num">+10.3%</b></div>
-<div class="kv"><span>Projection</span><b class="num">64.4</b></div>
-<div class="kv"><span>Season</span><b class="num">7/8</b></div></div>
-<p class="l5">Last 5 games: <span class="num">79 44 33 58 74</span> <span class="muted">(5/5 would have won)</span></p>
-<p><b>Why.</b> Under 84.5 in all of his last 5 (79, 44, 33, 58, 74) and 7 of 8 this season; model median 64 yards. Still 74 yards in Cousins&#x27;s first start on 13 targets.</p><p><b>Risk.</b> New QB: only one Cousins start, and Addison (WR2) is out, so his targets could climb. One deep catch beats this.</p><p class="flags"><span class="flag">qb_change</span><span class="flag">teammate_out</span></p>
-<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.626101285&amp;selectionId=36057837" target="_blank" rel="noopener">Add to FanDuel betslip</a>
-</div></details><details class="pick">
-<summary><span class="rank num">2</span><span class="pick-main"><span class="pick-name">Jayden Daniels</span>
-<span class="pick-sel">Under 41.5 Rush Yds</span><span class="pick-sub">Bengals @ Commanders · 8:15 PM</span></span>
-<span class="pick-right"><span class="odds">-114</span><span class="tier bet">Bet</span></span></summary>
-<div class="pick-body">
-<div class="kvs"><div class="kv"><span>Chance</span><b class="num">58%</b></div>
-<div class="kv"><span>Value (EV)</span><b class="num">+8.6%</b></div>
-<div class="kv"><span>Projection</span><b class="num">30.2</b></div>
-<div class="kv"><span>Season</span><b class="num">5/7</b></div></div>
-<p class="l5">Last 5 games: <span class="num">103 10 23 16 28</span> <span class="muted">(4/5 would have won)</span></p>
-<p><b>Why.</b> Under 41.5 in 4 of his last 5 (10, 23, 16, 28 after a 103); model median 30 rushing yards.</p><p><b>Risk.</b> One scramble-heavy game (he ran for 103 five games ago) beats it, and RB Croskey-Merritt is questionable, which could mean more designed runs.</p><p class="flags"><span class="flag">teammate_out</span></p>
-<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.626103759&amp;selectionId=41161340" target="_blank" rel="noopener">Add to FanDuel betslip</a>
-</div></details><details class="pick">
-<summary><span class="rank num">3</span><span class="pick-main"><span class="pick-name">Stefon Diggs</span>
-<span class="pick-sel">Under 4.5 Receptions</span><span class="pick-sub">Bengals @ Commanders · 8:15 PM</span></span>
-<span class="pick-right"><span class="odds">-114</span><span class="tier bet">Bet</span></span></summary>
-<div class="pick-body">
-<div class="kvs"><div class="kv"><span>Chance</span><b class="num">56%</b></div>
-<div class="kv"><span>Value (EV)</span><b class="num">+4.6%</b></div>
-<div class="kv"><span>Projection</span><b class="num">4.4</b></div>
-<div class="kv"><span>Season</span><b class="num">4/8</b></div></div>
-<p class="l5">Last 5 games: <span class="num">5 6 3 3 6</span> <span class="muted">(2/5 would have won)</span></p>
-<p><b>Why.</b> Model median 4.4 catches on a 22% target share; CIN&#x27;s defense allows slightly fewer WR yards than expected.</p><p><b>Risk.</b> Thin: he has gone over 4.5 in 3 of his last 5 (5, 6, 6). Washington is a 6-point underdog, which can mean more passing.</p><p class="flags"><span class="flag">teammate_out</span></p>
-<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.626107192&amp;selectionId=11890082" target="_blank" rel="noopener">Add to FanDuel betslip</a>
-</div></details><details class="pick">
-<summary><span class="rank num">4</span><span class="pick-main"><span class="pick-name">Chig Okonkwo</span>
-<span class="pick-sel">Under 4.5 Receptions</span><span class="pick-sub">Bengals @ Commanders · 8:15 PM</span></span>
-<span class="pick-right"><span class="odds">-130</span><span class="tier bet">Bet</span></span></summary>
-<div class="pick-body">
-<div class="kvs"><div class="kv"><span>Chance</span><b class="num">60%</b></div>
-<div class="kv"><span>Value (EV)</span><b class="num">+5.8%</b></div>
-<div class="kv"><span>Projection</span><b class="num">3.5</b></div>
-<div class="kv"><span>Season</span><b class="num">5/7</b></div></div>
-<p class="l5">Last 5 games: <span class="num">4 7 2 6 4</span> <span class="muted">(3/5 would have won)</span></p>
-<p><b>Why.</b> Model median 3.5 catches; under 4.5 in 5 of 7 games this season.</p><p><b>Risk.</b> CIN gives up the most to tight ends of any defense in this sample (matchup factor 1.16), and he had 6 and 7 catches in two of his last 5.</p><p class="flags"><span class="flag">teammate_out</span></p>
-<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.626108116&amp;selectionId=41154199" target="_blank" rel="noopener">Add to FanDuel betslip</a>
-</div></details><details class="pick">
-<summary><span class="rank num">5</span><span class="pick-main"><span class="pick-name">Christian McCaffrey</span>
-<span class="pick-sel">Under 51.5 Rush Yds</span><span class="pick-sub">Vikings @ 49ers · 8:20 PM</span></span>
-<span class="pick-right"><span class="odds">-113</span><span class="tier bet">Bet</span></span></summary>
-<div class="pick-body">
-<div class="kvs"><div class="kv"><span>Chance</span><b class="num">56%</b></div>
-<div class="kv"><span>Value (EV)</span><b class="num">+6.4%</b></div>
-<div class="kv"><span>Projection</span><b class="num">41.4</b></div>
-<div class="kv"><span>Season</span><b class="num">2/9</b></div></div>
-<p class="l5">Last 5 games: <span class="num">68 64 39 68 62</span> <span class="muted">(1/5 would have won)</span></p>
-<p><b>Why.</b> Model median 41 rushing yards: his snap share fell from ~85% to ~60% as Kaelon Black takes 11-12 carries a game.</p><p><b>Risk.</b> Weakest pick: his history says over (7 of 9 games, 4 of last 5 between 62 and 68). The model leans on its rushing calibration, which is known to run low on overs.</p>
-<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.626101699&amp;selectionId=14807736" target="_blank" rel="noopener">Add to FanDuel betslip</a>
-</div></details></div></section>
+<section id="singles"><h2>Streak legs that didn't fit a parlay</h2><p class="muted">They qualify by streak, but every parlay already has a player from that game. Tap for the data.</p><ul class="legs card"><li><details class="leg"><summary><span class="leg-main"><span class="leg-name">Chase Brown</span>
+<span class="leg-sel">30+ Rush Yds</span><span class="leg-sub">Bengals @ Commanders · Mon 8:15 PM · last 5 (newest first): <span class=num>44 57 55 39 39</span></span></span>
+<span class="leg-right"><span class="odds">-350</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">71%</b></div>
+<div class="kv"><span>Projection</span><b class="num">44.1</b></div>
+<div class="kv"><span>Value alone</span><b class="num">-8.3%</b></div>
+<div class="kv"><span>Season</span><b class="num">8/9</b></div>
+<div class="kv"><span>Last 10</span><b class="num">8/9</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 29.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 10</td><td>PIT</td><td class=num>44</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 9</td><td>ATL</td><td class=num>57</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 8</td><td>TEN</td><td class=num>55</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 7</td><td>BAL</td><td class=num>39</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 5</td><td>MIA</td><td class=num>39</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 4</td><td>JAX</td><td class=num>10</td><td class="miss">Miss</td></tr><tr class=""><td class=num>Wk 3</td><td>PIT</td><td class=num>61</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 2</td><td>HOU</td><td class=num>80</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 1</td><td>TB</td><td class=num>56</td><td class="hit">Hit</td></tr></tbody></table><p class="muted small">Newest first. The top 5 rows (shaded) are the last-5 streak.</p>
+<p><b>Why.</b> 30+ rushing yards in each of his last 5 (44, 57, 55, 39, 39). Model gives about a 71% chance.</p><p><b>Risk.</b> At -350 this is negative value on its own (-8%). It can&#x27;t join a parlay because every parlay already has a player from this game.</p>
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.626338355&amp;selectionId=73619978" target="_blank" rel="noopener">This leg alone in FanDuel</a>
+</div></details></li>
+<li><details class="leg"><summary><span class="leg-main"><span class="leg-name">Treylon Burks</span>
+<span class="leg-sel">25+ Rec Yds</span><span class="leg-sub">Bengals @ Commanders · Mon 8:15 PM · last 5 (newest first): <span class=num>27 81 66 26 47</span></span></span>
+<span class="leg-right"><span class="odds">-166</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">55%</b></div>
+<div class="kv"><span>Projection</span><b class="num">25</b></div>
+<div class="kv"><span>Value alone</span><b class="num">-12.4%</b></div>
+<div class="kv"><span>Season</span><b class="num">5/7</b></div>
+<div class="kv"><span>Last 10</span><b class="num">5/7</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 24.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 10</td><td>NYG</td><td class=num>27</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 8</td><td>PHI</td><td class=num>81</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 6</td><td>SF</td><td class=num>66</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 5</td><td>NYG</td><td class=num>26</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 4</td><td>IND</td><td class=num>47</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 3</td><td>SEA</td><td class=num>13</td><td class="miss">Miss</td></tr><tr class=""><td class=num>Wk 2</td><td>DAL</td><td class=num>0</td><td class="miss">Miss</td></tr></tbody></table><p class="muted small">Newest first. The top 5 rows (shaded) are the last-5 streak.</p>
+<p><b>Why.</b> 25+ receiving yards in each of his last 5 (27, 81, 66, 26, 47).</p><p><b>Risk.</b> Two of those were 26 and 27, right at the line. The model gives about 55%, negative value at -166 (-12%).</p><p class="flags"><span class="flag">teammate_out</span></p>
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.627080997&amp;selectionId=48337167" target="_blank" rel="noopener">This leg alone in FanDuel</a>
+</div></details></li></ul></section>
+<section id="copy"><div class="row"><h2>Copy list</h2><button class="btn ghost small" id="copy-btn" type="button">Copy</button></div>
+<div class="copy"><pre id="copy-text">Parlay C1 (bet only at +154 or better)
+- Stefon Diggs 30+ Rec Yds (-320)
+- Justin Jefferson Under 84.5 Rec Yds (-113)</pre></div></section>
 
 <section id="checks"><h2>Before kickoff</h2><ul class="plain"><li><span class=num>6:50 PM</span> for the 8:20 PM games</li><li><span class=num>6:45 PM</span> for the 8:15 PM games</li>
 <li>Re-check every price in the app; these are from 6:04 PM ET.</li></ul></section>
 
 <section id="context"><h2>Today's context</h2>
 <p class="eyebrow">Starting QB changes</p><ul class="plain"><li><b>MIN</b> Kirk Cousins</li><li><b>SF</b> Brock Purdy</li><li><b>CIN</b> Joe Burrow</li><li><b>WAS</b> Jayden Daniels</li></ul>
-<p class="eyebrow">Avoided (popular props with negative value)</p><ul class="plain"><li><b>Joe Burrow</b> Over 302.5 Pass Yds <span class=num>(-114)</span> <span class=muted>EV -8.7%</span></li></ul>
 <p class="eyebrow">Removed by the analyst</p><ul class="plain"><li><b>Justin Jefferson|receptions</b> <span class=muted>role/QB change: Kirk Cousins has one MIN start (Wk10: Jefferson 13 tgt, 9 rec with Addison and Hockenson out). The model&#x27;s catch rate comes from the previous QB&#x27;s games, so it can&#x27;t price receptions with Cousins yet; FanDuel prices Over 6.5 at -172.</span></li><li><b>T.J. Hockenson|receptions</b> <span class=muted>role/QB change: Hockenson missed Cousins&#x27;s only MIN start, so there is no data with this QB, and Addison (WR2) is out tonight, which frees targets.</span></li><li><b>Brock Purdy|pass_yds</b> <span class=muted>model limitation: projects ~6.8 yds/att vs Purdy&#x27;s 9.0 this season with the same starter; receiver-level shrinkage pulls an elite-efficiency QB down. Median 197 vs his season median 264.</span></li></ul>
 </section>
 

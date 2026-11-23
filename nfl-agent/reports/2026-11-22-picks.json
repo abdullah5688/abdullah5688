@@ -115,7 +115,49 @@
    "last5_values": "79 44 33 58 74",
    "def_factor": 0.964,
    "target_share": 0.33,
-   "carry_share": 0.004
+   "carry_share": 0.004,
+   "history": [
+    {
+     "wk": 1,
+     "opp": "GB",
+     "v": 92.0
+    },
+    {
+     "wk": 2,
+     "opp": "CHI",
+     "v": 55.0
+    },
+    {
+     "wk": 3,
+     "opp": "TB",
+     "v": 32.0
+    },
+    {
+     "wk": 5,
+     "opp": "NO",
+     "v": 79.0
+    },
+    {
+     "wk": 7,
+     "opp": "IND",
+     "v": 44.0
+    },
+    {
+     "wk": 8,
+     "opp": "DET",
+     "v": 33.0
+    },
+    {
+     "wk": 9,
+     "opp": "BUF",
+     "v": 58.0
+    },
+    {
+     "wk": 10,
+     "opp": "GB",
+     "v": 74.0
+    }
+   ]
   },
   {
    "game": "Cincinnati Bengals @ Washington Commanders",
@@ -158,7 +200,44 @@
    "last5_values": "103 10 23 16 28",
    "def_factor": 1.073,
    "target_share": 0.0,
-   "carry_share": 0.261
+   "carry_share": 0.261,
+   "history": [
+    {
+     "wk": 1,
+     "opp": "PHI",
+     "v": 31.0
+    },
+    {
+     "wk": 2,
+     "opp": "DAL",
+     "v": 69.0
+    },
+    {
+     "wk": 5,
+     "opp": "NYG",
+     "v": 103.0
+    },
+    {
+     "wk": 6,
+     "opp": "SF",
+     "v": 10.0
+    },
+    {
+     "wk": 8,
+     "opp": "PHI",
+     "v": 23.0
+    },
+    {
+     "wk": 9,
+     "opp": "LA",
+     "v": 16.0
+    },
+    {
+     "wk": 10,
+     "opp": "NYG",
+     "v": 28.0
+    }
+   ]
   },
   {
    "game": "Cincinnati Bengals @ Washington Commanders",
@@ -201,7 +280,49 @@
    "last5_values": "5 6 3 3 6",
    "def_factor": 0.971,
    "target_share": 0.217,
-   "carry_share": 0.0
+   "carry_share": 0.0,
+   "history": [
+    {
+     "wk": 1,
+     "opp": "PHI",
+     "v": 4.0
+    },
+    {
+     "wk": 2,
+     "opp": "DAL",
+     "v": 5.0
+    },
+    {
+     "wk": 3,
+     "opp": "SEA",
+     "v": 4.0
+    },
+    {
+     "wk": 4,
+     "opp": "IND",
+     "v": 5.0
+    },
+    {
+     "wk": 6,
+     "opp": "SF",
+     "v": 6.0
+    },
+    {
+     "wk": 8,
+     "opp": "PHI",
+     "v": 3.0
+    },
+    {
+     "wk": 9,
+     "opp": "LA",
+     "v": 3.0
+    },
+    {
+     "wk": 10,
+     "opp": "NYG",
+     "v": 6.0
+    }
+   ]
   },
   {
    "game": "Cincinnati Bengals @ Washington Commanders",
@@ -244,7 +365,44 @@
    "last5_values": "4 7 2 6 4",
    "def_factor": 1.157,
    "target_share": 0.194,
-   "carry_share": 0.0
+   "carry_share": 0.0,
+   "history": [
+    {
+     "wk": 1,
+     "opp": "PHI",
+     "v": 2.0
+    },
+    {
+     "wk": 4,
+     "opp": "IND",
+     "v": 2.0
+    },
+    {
+     "wk": 5,
+     "opp": "NYG",
+     "v": 4.0
+    },
+    {
+     "wk": 6,
+     "opp": "SF",
+     "v": 7.0
+    },
+    {
+     "wk": 8,
+     "opp": "PHI",
+     "v": 2.0
+    },
+    {
+     "wk": 9,
+     "opp": "LA",
+     "v": 6.0
+    },
+    {
+     "wk": 10,
+     "opp": "NYG",
+     "v": 4.0
+    }
+   ]
   },
   {
    "game": "Minnesota Vikings @ San Francisco 49ers",
@@ -287,7 +445,54 @@
    "last5_values": "68 64 39 68 62",
    "def_factor": 1.0,
    "target_share": 0.122,
-   "carry_share": 0.427
+   "carry_share": 0.427,
+   "history": [
+    {
+     "wk": 1,
+     "opp": "LA",
+     "v": 68.0
+    },
+    {
+     "wk": 2,
+     "opp": "MIA",
+     "v": 23.0
+    },
+    {
+     "wk": 3,
+     "opp": "ARI",
+     "v": 75.0
+    },
+    {
+     "wk": 4,
+     "opp": "DEN",
+     "v": 52.0
+    },
+    {
+     "wk": 5,
+     "opp": "SEA",
+     "v": 68.0
+    },
+    {
+     "wk": 6,
+     "opp": "WAS",
+     "v": 64.0
+    },
+    {
+     "wk": 7,
+     "opp": "ATL",
+     "v": 39.0
+    },
+    {
+     "wk": 9,
+     "opp": "LV",
+     "v": 68.0
+    },
+    {
+     "wk": 10,
+     "opp": "DAL",
+     "v": 62.0
+    }
+   ]
   }
  ],
  "parlays_c": [
@@ -334,7 +539,49 @@
      "last5_values": "35 44 38 51 83",
      "def_factor": 0.971,
      "target_share": 0.217,
-     "carry_share": 0.0
+     "carry_share": 0.0,
+     "history": [
+      {
+       "wk": 1,
+       "opp": "PHI",
+       "v": 55.0
+      },
+      {
+       "wk": 2,
+       "opp": "DAL",
+       "v": 47.0
+      },
+      {
+       "wk": 3,
+       "opp": "SEA",
+       "v": 33.0
+      },
+      {
+       "wk": 4,
+       "opp": "IND",
+       "v": 35.0
+      },
+      {
+       "wk": 6,
+       "opp": "SF",
+       "v": 44.0
+      },
+      {
+       "wk": 8,
+       "opp": "PHI",
+       "v": 38.0
+      },
+      {
+       "wk": 9,
+       "opp": "LA",
+       "v": 51.0
+      },
+      {
+       "wk": 10,
+       "opp": "NYG",
+       "v": 83.0
+      }
+     ]
     },
     {
      "game": "Minnesota Vikings @ San Francisco 49ers",
@@ -377,7 +624,49 @@
      "last5_values": "79 44 33 58 74",
      "def_factor": 0.964,
      "target_share": 0.33,
-     "carry_share": 0.004
+     "carry_share": 0.004,
+     "history": [
+      {
+       "wk": 1,
+       "opp": "GB",
+       "v": 92.0
+      },
+      {
+       "wk": 2,
+       "opp": "CHI",
+       "v": 55.0
+      },
+      {
+       "wk": 3,
+       "opp": "TB",
+       "v": 32.0
+      },
+      {
+       "wk": 5,
+       "opp": "NO",
+       "v": 79.0
+      },
+      {
+       "wk": 7,
+       "opp": "IND",
+       "v": 44.0
+      },
+      {
+       "wk": 8,
+       "opp": "DET",
+       "v": 33.0
+      },
+      {
+       "wk": 9,
+       "opp": "BUF",
+       "v": 58.0
+      },
+      {
+       "wk": 10,
+       "opp": "GB",
+       "v": 74.0
+      }
+     ]
     }
    ],
    "n_legs": 2,
@@ -433,7 +722,49 @@
    "last5_values": "35 44 38 51 83",
    "def_factor": 0.971,
    "target_share": 0.217,
-   "carry_share": 0.0
+   "carry_share": 0.0,
+   "history": [
+    {
+     "wk": 1,
+     "opp": "PHI",
+     "v": 55.0
+    },
+    {
+     "wk": 2,
+     "opp": "DAL",
+     "v": 47.0
+    },
+    {
+     "wk": 3,
+     "opp": "SEA",
+     "v": 33.0
+    },
+    {
+     "wk": 4,
+     "opp": "IND",
+     "v": 35.0
+    },
+    {
+     "wk": 6,
+     "opp": "SF",
+     "v": 44.0
+    },
+    {
+     "wk": 8,
+     "opp": "PHI",
+     "v": 38.0
+    },
+    {
+     "wk": 9,
+     "opp": "LA",
+     "v": 51.0
+    },
+    {
+     "wk": 10,
+     "opp": "NYG",
+     "v": 83.0
+    }
+   ]
   },
   {
    "game": "Cincinnati Bengals @ Washington Commanders",
@@ -476,7 +807,54 @@
    "last5_values": "39 39 55 57 44",
    "def_factor": 0.973,
    "target_share": 0.173,
-   "carry_share": 0.535
+   "carry_share": 0.535,
+   "history": [
+    {
+     "wk": 1,
+     "opp": "TB",
+     "v": 56.0
+    },
+    {
+     "wk": 2,
+     "opp": "HOU",
+     "v": 80.0
+    },
+    {
+     "wk": 3,
+     "opp": "PIT",
+     "v": 61.0
+    },
+    {
+     "wk": 4,
+     "opp": "JAX",
+     "v": 10.0
+    },
+    {
+     "wk": 5,
+     "opp": "MIA",
+     "v": 39.0
+    },
+    {
+     "wk": 7,
+     "opp": "BAL",
+     "v": 39.0
+    },
+    {
+     "wk": 8,
+     "opp": "TEN",
+     "v": 55.0
+    },
+    {
+     "wk": 9,
+     "opp": "ATL",
+     "v": 57.0
+    },
+    {
+     "wk": 10,
+     "opp": "PIT",
+     "v": 44.0
+    }
+   ]
   },
   {
    "game": "Minnesota Vikings @ San Francisco 49ers",
@@ -519,7 +897,49 @@
    "last5_values": "79 44 33 58 74",
    "def_factor": 0.964,
    "target_share": 0.33,
-   "carry_share": 0.004
+   "carry_share": 0.004,
+   "history": [
+    {
+     "wk": 1,
+     "opp": "GB",
+     "v": 92.0
+    },
+    {
+     "wk": 2,
+     "opp": "CHI",
+     "v": 55.0
+    },
+    {
+     "wk": 3,
+     "opp": "TB",
+     "v": 32.0
+    },
+    {
+     "wk": 5,
+     "opp": "NO",
+     "v": 79.0
+    },
+    {
+     "wk": 7,
+     "opp": "IND",
+     "v": 44.0
+    },
+    {
+     "wk": 8,
+     "opp": "DET",
+     "v": 33.0
+    },
+    {
+     "wk": 9,
+     "opp": "BUF",
+     "v": 58.0
+    },
+    {
+     "wk": 10,
+     "opp": "GB",
+     "v": 74.0
+    }
+   ]
   },
   {
    "game": "Cincinnati Bengals @ Washington Commanders",
@@ -562,7 +982,44 @@
    "last5_values": "47 26 66 81 27",
    "def_factor": 0.971,
    "target_share": 0.13,
-   "carry_share": 0.0
+   "carry_share": 0.0,
+   "history": [
+    {
+     "wk": 2,
+     "opp": "DAL",
+     "v": 0.0
+    },
+    {
+     "wk": 3,
+     "opp": "SEA",
+     "v": 13.0
+    },
+    {
+     "wk": 4,
+     "opp": "IND",
+     "v": 47.0
+    },
+    {
+     "wk": 5,
+     "opp": "NYG",
+     "v": 26.0
+    },
+    {
+     "wk": 6,
+     "opp": "SF",
+     "v": 66.0
+    },
+    {
+     "wk": 8,
+     "opp": "PHI",
+     "v": 81.0
+    },
+    {
+     "wk": 10,
+     "opp": "NYG",
+     "v": 27.0
+    }
+   ]
   }
  ],
  "streak_leftover": [
@@ -607,7 +1064,54 @@
    "last5_values": "39 39 55 57 44",
    "def_factor": 0.973,
    "target_share": 0.173,
-   "carry_share": 0.535
+   "carry_share": 0.535,
+   "history": [
+    {
+     "wk": 1,
+     "opp": "TB",
+     "v": 56.0
+    },
+    {
+     "wk": 2,
+     "opp": "HOU",
+     "v": 80.0
+    },
+    {
+     "wk": 3,
+     "opp": "PIT",
+     "v": 61.0
+    },
+    {
+     "wk": 4,
+     "opp": "JAX",
+     "v": 10.0
+    },
+    {
+     "wk": 5,
+     "opp": "MIA",
+     "v": 39.0
+    },
+    {
+     "wk": 7,
+     "opp": "BAL",
+     "v": 39.0
+    },
+    {
+     "wk": 8,
+     "opp": "TEN",
+     "v": 55.0
+    },
+    {
+     "wk": 9,
+     "opp": "ATL",
+     "v": 57.0
+    },
+    {
+     "wk": 10,
+     "opp": "PIT",
+     "v": 44.0
+    }
+   ]
   },
   {
    "game": "Cincinnati Bengals @ Washington Commanders",
@@ -650,7 +1154,44 @@
    "last5_values": "47 26 66 81 27",
    "def_factor": 0.971,
    "target_share": 0.13,
-   "carry_share": 0.0
+   "carry_share": 0.0,
+   "history": [
+    {
+     "wk": 2,
+     "opp": "DAL",
+     "v": 0.0
+    },
+    {
+     "wk": 3,
+     "opp": "SEA",
+     "v": 13.0
+    },
+    {
+     "wk": 4,
+     "opp": "IND",
+     "v": 47.0
+    },
+    {
+     "wk": 5,
+     "opp": "NYG",
+     "v": 26.0
+    },
+    {
+     "wk": 6,
+     "opp": "SF",
+     "v": 66.0
+    },
+    {
+     "wk": 8,
+     "opp": "PHI",
+     "v": 81.0
+    },
+    {
+     "wk": 10,
+     "opp": "NYG",
+     "v": 27.0
+    }
+   ]
   }
  ],
  "over_under": [

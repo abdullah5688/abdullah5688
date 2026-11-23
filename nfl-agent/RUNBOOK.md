@@ -153,40 +153,45 @@ columns stay empty. Results are still graded next Sunday.
   overs, weather, and that the market blend is 50/50.
 
 ### 8. Quick-read summary: `reports/YYYY-MM-DD-nfl-props-summary.md`
+**The user only bets Parlay C.** User-facing outputs (this summary, the phone page, the PDF and
+the notification) show ONLY the Parlay C set and leftover streak legs. Never show the top-10
+model picks there. They still go in the full research report and the ledger, to track the model.
+
 Use exactly this layout:
-1. `# NFL Props — <Day Mon D, YYYY>`, then ONE line covering:
+1. `# NFL Props — Parlay C — <Day Mon D, YYYY>`, then ONE line covering:
    - whether FanDuel odds were verified, with the final pull time;
    - the inactive recheck times (~90 min before each kickoff);
    - "Research only, not a guarantee."
-2. `## Copy list (Top N)`: a fenced code block, one line per pick:
-   `N. Player Selection (FanDuel odds) · Tier`. Alt rungs are written FanDuel-style, e.g. `Derrick Henry 60+ Rush Yds (-300)`.
-3. `## Parlay C (last-5 streak)`:
-   - Above them: "_Each link opens FanDuel with that parlay's legs already in your betslip.
-     Check every leg and the price before placing the bet._"
-   - For EVERY parlay in `parlays_c`, a `### Parlay C1` (C2, C3...) heading, then:
-   - The legs in a code block, one per line, each with `· last 5: …`.
-   - Then `FanDuel pays ≈X · model fair odds Y · bet only at Z or better`, plus a one-line
-     value warning when the model rates it negative value.
-   - Then `👉 **[Open Parlay C1 in FanDuel](betslip_url)**` (C2, C3... likewise).
-   - After the last parlay, any `streak_leftover` legs as single bets with their own betslip links.
-   - If fewer than 2 legs qualify: "No Parlay C today: not enough streak legs passed the checks."
-4. `## Pick details`: for each pick:
-   - a `### N. Player — Selection (odds)` heading;
-   - `[➕ Add to FanDuel betslip](betslip_link)`;
+2. `## Parlay C (last-5 streak)`: above the parlays, "_Each link opens FanDuel with that
+   parlay's legs already in your betslip. Check every leg and the price before placing the bet._"
+   For EVERY parlay in `parlays_c`, a `### Parlay C1` (C2, C3...) heading, then:
+   - the legs in a code block, one per line: `Player Selection (odds) · last 5 (newest first): …`;
+   - `FanDuel pays ≈X · model fair odds Y · bet only at Z or better`, plus a one-line value
+     warning when the typical price is below the "bet only at" price;
+   - `👉 **[Open Parlay C1 in FanDuel](betslip_url)**`.
+   If fewer than 2 legs qualify: "No Parlay C today: not enough streak legs passed the checks."
+3. `## Leg details`: for EVERY leg of every parlay, then every `streak_leftover` leg:
+   - a `### Player — Selection (odds)` heading, with `(Parlay C1)` or `(single, no parlay fit)`;
    - an italic `matchup · kickoff ET` line;
-   - a one-row table `| Blend p | EV | Season | Last 5 | Last 5 games |`;
-   - exactly two bullets: `- ✅ **Why:** …` and `- ⚠️ **Risk:** …`.
-5. `## Avoided`: at most 5 bullets.
-6. Last line: `Full research: \`YYYY-MM-DD-nfl-props.md\``.
+   - a game-by-game table from the leg's `history` (newest first):
+     `| Week | Opp | Result | vs line |` with Hit/Miss;
+   - `Chance X · projection Y · value alone Z · season A · last 10 B`;
+   - exactly two bullets, written for THIS bet (not another market for the same player):
+     `- ✅ **Why:** …` and `- ⚠️ **Risk:** …`;
+   - `[➕ This leg alone in FanDuel](betslip_link)`.
+4. `## Removed today`: every `exclude` from context.json that affected a streak leg, with its reason.
+5. Last line: `Full research: \`YYYY-MM-DD-nfl-props.md\``.
 
 Every number must match picks.json. Links come only from the final pull. Never make up an ID.
 
 ### 8b. Phone page and PDF
-1. Write `reports/YYYY-MM-DD-notes.json`: `{"Player": {"why": "...", "risk": "..."}}` for every top-10
-   player, the same two sentences used in the summary.
-2. `python3 make_report_html.py YYYY-MM-DD` writes `reports/YYYY-MM-DD-nfl-props.html` (every number
-   comes from picks.json; the record line from ledger/picks.csv).
-3. `node make_pdf.js reports/YYYY-MM-DD-nfl-props.html` writes the PDF with every pick expanded.
+1. Write `reports/YYYY-MM-DD-notes.json` keyed by bet, `{"Player|market": {"why": "...", "risk": "..."}}`
+   (market = reception_yds, receptions, rush_yds, rush_attempts, pass_yds or pass_attempts), for
+   every Parlay C leg and leftover leg. Use the same two sentences as the summary. A note keyed by
+   player alone is ignored, because it could describe a different bet on the same player.
+2. `python3 make_report_html.py YYYY-MM-DD` writes `reports/YYYY-MM-DD-nfl-props.html`. It shows only
+   Parlay C. Each leg expands to its game-by-game history, numbers and note.
+3. `node make_pdf.js reports/YYYY-MM-DD-nfl-props.html` writes the PDF with every leg expanded.
 4. Publish the HTML with the Artifact tool (icon "football") and send the PDF with SendUserFile.
    Put the artifact link in the final message.
 
