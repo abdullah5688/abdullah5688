@@ -1,0 +1,64 @@
+{
+ "qb": {
+  "PHI": "Joe Milton",
+  "DAL": "Dak Prescott",
+  "CHI": "Caleb Williams",
+  "DET": "Jared Goff",
+  "KC": "Patrick Mahomes",
+  "BUF": "Josh Allen"
+ },
+ "out": {
+  "DAL": [
+   "Jake Ferguson"
+  ],
+  "KC": [
+   "Kenneth Walker"
+  ],
+  "PHI": [
+   "Jalen Hurts",
+   "Jonathan Jones",
+   "Arnold Ebiketie"
+  ]
+ },
+ "questionable": {
+  "BUF": [
+   "Christian Benford",
+   "Dalton Kincaid",
+   "T.J. Sanders",
+   "O'Cyrus Torrence",
+   "Dorian Williams"
+  ],
+  "KC": [
+   "Noah Gray",
+   "Peter Woods"
+  ],
+  "DAL": [
+   "Jalen Thompson"
+  ],
+  "DET": [
+   "Chuck Clark",
+   "DJ Wonnum"
+  ]
+ },
+ "exclude": {
+  "Josh Allen|pass_yds": "weather: Orchard Park forecast at kickoff 38F, 15 mph NE wind, steady light rain (94-98%) - runbook rule removes passing/receiving overs in this game.",
+  "Khalil Shakir|reception_yds": "weather: Orchard Park forecast at kickoff 38F, 15 mph NE wind, steady light rain (94-98%) - runbook rule removes passing/receiving overs in this game.",
+  "Patrick Mahomes|pass_yds": "weather: Orchard Park forecast at kickoff 38F, 15 mph NE wind, steady light rain (94-98%) - runbook rule removes passing/receiving overs in this game.",
+  "Ty Johnson|receptions": "weather: Orchard Park forecast at kickoff 38F, 15 mph NE wind, steady light rain (94-98%) - runbook rule removes passing/receiving overs in this game.",
+  "Keon Coleman|receptions": "weather: Orchard Park forecast at kickoff 38F, 15 mph NE wind, steady light rain (94-98%) - runbook rule removes passing/receiving overs in this game.",
+  "Khalil Shakir|receptions": "weather: Orchard Park forecast at kickoff 38F, 15 mph NE wind, steady light rain (94-98%) - runbook rule removes passing/receiving overs in this game.",
+  "Travis Kelce|reception_yds": "weather: Orchard Park forecast at kickoff 38F, 15 mph NE wind, steady light rain (94-98%) - runbook rule removes passing/receiving overs in this game.",
+  "Josh Downs|receptions": "weather: Orchard Park forecast at kickoff 38F, 15 mph NE wind, steady light rain (94-98%) - runbook rule removes passing/receiving overs in this game.",
+  "Noah Gray|receptions": "weather: Orchard Park forecast at kickoff 38F, 15 mph NE wind, steady light rain (94-98%) - runbook rule removes passing/receiving overs in this game.",
+  "Josh Downs|reception_yds": "weather: Orchard Park forecast at kickoff 38F, 15 mph NE wind, steady light rain (94-98%) - runbook rule removes passing/receiving overs in this game.",
+  "Noah Gray|reception_yds": "weather: Orchard Park forecast at kickoff 38F, 15 mph NE wind, steady light rain (94-98%) - runbook rule removes passing/receiving overs in this game.",
+  "Rashee Rice|reception_yds": "weather: Orchard Park forecast at kickoff 38F, 15 mph NE wind, steady light rain (94-98%) - runbook rule removes passing/receiving overs in this game.",
+  "Rashee Rice|receptions": "weather: Orchard Park forecast at kickoff 38F, 15 mph NE wind, steady light rain (94-98%) - runbook rule removes passing/receiving overs in this game.",
+  "Dawson Knox|receptions": "weather: Orchard Park forecast at kickoff 38F, 15 mph NE wind, steady light rain (94-98%) - runbook rule removes passing/receiving overs in this game."
+ },
+ "notes": {
+  "_weather_BUF": "weather: Orchard Park forecast at kickoff 38F, 15 mph NE wind, steady light rain (94-98%) - runbook rule removes passing/receiving overs in this game.",
+  "_domes": "DET (Ford Field) and DAL (AT&T Stadium) are indoors - no weather effect.",
+  "_PHI_QB": "Joe Milton starts (3rd Eagles start); Jalen Hurts on IR."
+ }
+}

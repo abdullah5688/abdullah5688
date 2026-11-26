@@ -1,0 +1,8 @@
+{"Rome Odunze|reception_yds": {"why": "30+ receiving yards in all 10 games this season (last 5: 45, 60, 87, 69, 39). Indoors at Detroit, and the Bears are projected to throw about 37 times.",
+  "risk": "FanDuel's main line is 47.5 while the model projects about 38 yards, so the model is less excited than FanDuel. At -300 this leg is negative value on its own (-13%). Low floor games of 39-40 are close."},
+ "Rome Odunze|receptions": {"why": "3+ catches in 9 of 10 games, including all of his last 5 (4, 4, 4, 4, 3).",
+  "risk": "The model projects only 2.6 catches. Two of his last 6 were exactly 3, so there's little room."},
+ "James Cook|rush_yds": {"why": "80+ rushing yards in 8 of 10 games and all of his last 5 (89, 157, 107, 80, 95). Steady rain and 15 mph wind in Buffalo usually mean more running, and he gets about two thirds of the carries.",
+  "risk": "The model gives 54%, a little under the 57% that -132 needs, so it's slightly negative value alone (-5%). One of those five was exactly 80. If Buffalo falls behind against Kansas City, carries drop."},
+ "Jahmyr Gibbs|rush_yds": {"why": "70+ rushing yards in 8 of 10 games and all of his last 5 (98, 153, 74, 153, 116). Chicago allows more rushing yards than average (matchup factor 1.09).",
+  "risk": "At -310 the price needs a 76% chance; the model gives 69%, so it's negative value alone (-9%). He had 46 and 52 earlier this season, and a 74 in his last five."}}

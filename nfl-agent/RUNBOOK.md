@@ -153,6 +153,8 @@ columns stay empty. Results are still graded next Sunday.
   overs, weather, and that the market blend is 50/50.
 
 ### 8. Quick-read summary: `reports/YYYY-MM-DD-nfl-props-summary.md`
+Generate it with `python3 make_summary.py YYYY-MM-DD` after writing notes.json (step 8b.1); it
+copies every number from picks.json, context.json and notes.json in the layout below.
 **The user only bets Parlay C.** User-facing outputs (this summary, the phone page, the PDF and
 the notification) show ONLY the Parlay C set and leftover streak legs. Never show the top-10
 model picks there. They still go in the full research report and the ledger, to track the model.

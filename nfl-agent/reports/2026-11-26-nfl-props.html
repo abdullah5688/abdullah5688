@@ -1,0 +1,842 @@
+<meta charset="utf-8"><title>NFL Props Nov 26</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: one phone-width column, a ticket-like stack: record, copy list, parlays, details. */
+:root {
+  --bg:#f3f5f2; --surface:#ffffff; --ink:#15201a; --muted:#5d6b62; --line:#dbe2dc;
+  --accent:#1d6b45; --accent-ink:#ffffff; --good:#1d6b45; --bad:#b3261e; --warn:#8a5a00; --chip:#e6ede8;
+  --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif; --body:Inter,system-ui,-apple-system,sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg:#0f1512; --surface:#18211c; --ink:#e7eee9; --muted:#9aa9a0; --line:#2a3630;
+  --accent:#5cc28c; --accent-ink:#08130d; --good:#5cc28c; --bad:#ff8a80; --warn:#f2c46b; --chip:#223029; color-scheme:dark } }
+:root[data-theme="dark"] { --bg:#0f1512; --surface:#18211c; --ink:#e7eee9; --muted:#9aa9a0; --line:#2a3630;
+  --accent:#5cc28c; --accent-ink:#08130d; --good:#5cc28c; --bad:#ff8a80; --warn:#f2c46b; --chip:#223029; color-scheme:dark }
+* { box-sizing:border-box }
+body { background:var(--bg); color:var(--ink); font:15px/1.5 var(--body); padding-left:max(16px, env(safe-area-inset-left,0px)); padding-right:max(16px, env(safe-area-inset-right,0px)); padding-block:20px 48px }
+.wrap { max-width:640px; margin:0 auto; display:flex; flex-direction:column; gap:28px }
+h1,h2,h3 { font-family:var(--display); font-weight:700; letter-spacing:.01em; margin:0; text-wrap:balance }
+h1 { font-size:2.4rem; line-height:1 } h2 { font-size:1.5rem; text-transform:uppercase; letter-spacing:.04em } h3 { font-size:1.35rem }
+p { margin:0 } .muted { color:var(--muted) } .num { font-variant-numeric:tabular-nums }
+section { display:flex; flex-direction:column; gap:12px; min-width:0 }
+.eyebrow { font-size:.75rem; text-transform:uppercase; letter-spacing:.12em; color:var(--muted); font-weight:600 }
+.status { display:flex; flex-wrap:wrap; gap:8px }
+.chip { background:var(--chip); border-radius:999px; padding:4px 10px; font-size:.8rem; font-weight:500 }
+.chip.ok { color:var(--good) }
+.stats { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px } .stat.wide { grid-column:1/-1 }
+.stat { background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:10px 12px; display:flex; flex-direction:column }
+.stat span { font-size:.75rem; color:var(--muted); text-transform:uppercase; letter-spacing:.08em }
+.stat b { font-family:var(--display); font-size:1.8rem; line-height:1.1 } .stat small { color:var(--muted) }
+.copy { background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:12px; overflow-x:auto }
+.copy pre { margin:0; font:13px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace; white-space:pre-wrap; padding-left:1.6em; text-indent:-1.6em }
+.row { display:flex; justify-content:space-between; align-items:center; gap:12px }
+.btn { display:inline-flex; justify-content:center; align-items:center; background:var(--accent); color:var(--accent-ink); text-decoration:none; font-weight:600; border-radius:10px; padding:12px 16px; border:0; font:600 15px var(--body); cursor:pointer }
+.btn.small { padding:8px 12px; font-size:.85rem; align-self:flex-start } .btn.ghost { background:var(--chip); color:var(--ink) }
+.btn:focus-visible, summary:focus-visible { outline:3px solid var(--accent); outline-offset:2px }
+.parlay { background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:16px; gap:14px }
+.parlay-head { display:flex; justify-content:space-between; align-items:baseline; gap:8px; flex-wrap:wrap }
+.tag { font-size:.75rem; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); font-weight:600 }
+.legs { list-style:none; margin:0; padding:0; display:flex; flex-direction:column }
+.legs > li { border-top:1px dashed var(--line) } .legs > li:first-child { border-top:0 }
+.legs.card { background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:4px 16px }
+.leg summary { list-style:none; display:flex; justify-content:space-between; gap:12px; padding:10px 0; cursor:pointer }
+.leg summary::-webkit-details-marker { display:none }
+.leg-main { display:flex; flex-direction:column; min-width:0 }
+.leg-right { display:flex; flex-direction:column; align-items:flex-end; gap:2px }
+.more { font-size:.72rem; font-weight:600; color:var(--accent); text-transform:uppercase; letter-spacing:.08em }
+.more::after { content:" ▾" } .leg[open] .more::after { content:" ▴" }
+.leg-body { display:flex; flex-direction:column; gap:10px; padding:4px 0 14px }
+table.hist { width:100%; border-collapse:collapse; font-size:.85rem }
+table.hist th { text-align:left; font-size:.7rem; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); font-weight:600; padding:4px 6px; border-bottom:1px solid var(--line) }
+table.hist td { padding:4px 6px; border-bottom:1px solid var(--line) }
+table.hist tr.l5 td { background:var(--chip) }
+td.hit { color:var(--good); font-weight:600 } td.miss { color:var(--bad); font-weight:600 }
+.small { font-size:.78rem }
+.status { font-size:.75rem; font-weight:600; margin-top:2px } .status.good { color:var(--good) } .status.bad { color:var(--bad) }
+ul.checks { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:3px; font-size:.85rem }
+ul.checks li span:first-child { display:inline-block; width:1.1em; font-weight:700 }
+ul.checks li.ok span:first-child { color:var(--good) } ul.checks li.no { color:var(--bad) }
+.game-h { font-size:1.1rem; margin-top:6px }
+.leg-name { font-weight:600 } .leg-sel { } .leg-sub { font-size:.8rem; color:var(--muted) }
+.odds { font-family:var(--display); font-size:1.3rem; font-weight:700; font-variant-numeric:tabular-nums; white-space:nowrap }
+.minbox { display:flex; align-items:baseline; gap:8px; justify-content:center; background:var(--chip); border-radius:10px; padding:10px }
+.minbox b { font-family:var(--display); font-size:2rem; color:var(--accent) } .minbox span { font-size:.85rem; color:var(--muted) }
+.kvs { display:grid; grid-template-columns:repeat(auto-fit,minmax(110px,1fr)); gap:8px }
+.kv { display:flex; flex-direction:column } .kv span { font-size:.72rem; color:var(--muted); text-transform:uppercase; letter-spacing:.08em } .kv b { font-size:1rem }
+.pill { font-size:.85rem; font-weight:600 } .pill.good { color:var(--good) } .pill.bad { color:var(--bad) }
+.note.warn { font-size:.85rem; color:var(--warn) }
+.picks { display:flex; flex-direction:column; gap:8px }
+.pick { background:var(--surface); border:1px solid var(--line); border-radius:12px }
+.pick summary { list-style:none; display:flex; gap:12px; align-items:center; padding:12px; cursor:pointer }
+.pick summary::-webkit-details-marker { display:none }
+.rank { font-family:var(--display); font-size:1.4rem; color:var(--muted); width:1.4em; text-align:center; flex:none }
+.pick-main { display:flex; flex-direction:column; flex:1; min-width:0 }
+.pick-name { font-weight:600 } .pick-sub { font-size:.8rem; color:var(--muted) }
+.pick-right { display:flex; flex-direction:column; align-items:flex-end; gap:2px }
+.tier { font-size:.7rem; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--good) }
+.tier.lean { color:var(--warn) }
+.pick-body { padding:0 12px 14px 12px; display:flex; flex-direction:column; gap:10px; border-top:1px solid var(--line); padding-top:12px }
+.flags { display:flex; flex-wrap:wrap; gap:6px } .flag { background:var(--chip); border-radius:6px; padding:2px 6px; font-size:.72rem }
+ul.plain { margin:0; padding-left:18px; display:flex; flex-direction:column; gap:6px }
+.foot { font-size:.8rem; color:var(--muted); border-top:1px solid var(--line); padding-top:14px }
+@media print {
+  body { background:#fff; color:#000; padding:0 } .btn { display:none }
+  .pick, .parlay, .leg { break-inside:avoid } details > .pick-body, details > .leg-body { display:flex }
+}
+@media (prefers-reduced-motion: reduce) { * { transition:none !important } }
+</style>
+<div class="wrap">
+<header style="display:flex;flex-direction:column;gap:12px">
+<span class="eyebrow">NFL player props · Parlay C</span>
+<h1>Thursday, November 26</h1>
+<div class="status"><span class="chip ok">FanDuel odds verified · 7:48 PM ET</span><span class="chip">3 games</span>
+<span class="chip">Research only, not a guarantee</span></div>
+<div class="stats"><div class="stat"><span>Parlay C last week</span><b class="num">0-1</b></div>
+<div class="stat"><span>Parlay C season</span><b class="num">0-1</b></div><div class="stat wide"><span>Recheck inactives</span><b class="num">11:30 AM</b><small>then 3:00 PM · 6:50 PM · 90 min before each kickoff</small></div></div>
+</header>
+
+<section id="parlays"><h2>Parlay C · last-5 streak</h2>
+<p class="muted">Every leg cleared its line in each of the player's last 5 games. Tap a player for his game-by-game data. Each button opens FanDuel with that parlay's legs in your betslip; check every leg and the price before you bet.</p>
+<section class="parlay" id="parlay-c1">
+<div class="parlay-head"><h3>Parlay C1</h3><span class="tag">Last-5 streak</span></div>
+<ul class="legs"><li><details class="leg"><summary><span class="leg-main"><span class="leg-name">Rome Odunze</span>
+<span class="leg-sel">30+ Rec Yds</span><span class="leg-sub">Bears @ Lions · 1 PM · last 5 (newest first): <span class=num>45 60 87 69 39</span></span></span>
+<span class="leg-right"><span class="odds">-300</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">65%</b></div>
+<div class="kv"><span>Projection</span><b class="num">37.8</b></div>
+<div class="kv"><span>Value alone</span><b class="num">-13.4%</b></div>
+<div class="kv"><span>Season</span><b class="num">10/10</b></div>
+<div class="kv"><span>Last 10</span><b class="num">10/10</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 29.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 11</td><td>NO</td><td class=num>45</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 9</td><td>TB</td><td class=num>60</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 8</td><td>SEA</td><td class=num>87</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 7</td><td>NE</td><td class=num>69</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 6</td><td>ATL</td><td class=num>39</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 5</td><td>GB</td><td class=num>40</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 4</td><td>NYJ</td><td class=num>94</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 3</td><td>PHI</td><td class=num>44</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 2</td><td>MIN</td><td class=num>43</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 1</td><td>CAR</td><td class=num>52</td><td class="hit">Hit</td></tr></tbody></table><p class="muted small">Newest first. The top 5 rows (shaded) are the last-5 streak.</p>
+<p><b>Why.</b> 30+ receiving yards in all 10 games this season (last 5: 45, 60, 87, 69, 39). Indoors at Detroit, and the Bears are projected to throw about 37 times.</p><p><b>Risk.</b> FanDuel&#x27;s main line is 47.5 while the model projects about 38 yards, so the model is less excited than FanDuel. At -300 this leg is negative value on its own (-13%). Low floor games of 39-40 are close.</p>
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.627942548&amp;selectionId=73445031" target="_blank" rel="noopener">This leg alone in FanDuel</a>
+</div></details></li>
+<li><details class="leg"><summary><span class="leg-main"><span class="leg-name">James Cook</span>
+<span class="leg-sel">80+ Rush Yds</span><span class="leg-sub">Chiefs @ Bills · 8:20 PM · last 5 (newest first): <span class=num>89 157 107 80 95</span></span></span>
+<span class="leg-right"><span class="odds">-132</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">54%</b></div>
+<div class="kv"><span>Projection</span><b class="num">84.9</b></div>
+<div class="kv"><span>Value alone</span><b class="num">-4.6%</b></div>
+<div class="kv"><span>Season</span><b class="num">8/10</b></div>
+<div class="kv"><span>Last 10</span><b class="num">8/10</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 79.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 11</td><td>MIA</td><td class=num>89</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 10</td><td>NYJ</td><td class=num>157</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 9</td><td>MIN</td><td class=num>107</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 8</td><td>BAL</td><td class=num>80</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 6</td><td>LV</td><td class=num>95</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 5</td><td>LA</td><td class=num>111</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 4</td><td>NE</td><td class=num>75</td><td class="miss">Miss</td></tr><tr class=""><td class=num>Wk 3</td><td>LAC</td><td class=num>154</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 2</td><td>DET</td><td class=num>135</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 1</td><td>HOU</td><td class=num>57</td><td class="miss">Miss</td></tr></tbody></table><p class="muted small">Newest first. The top 5 rows (shaded) are the last-5 streak.</p>
+<p><b>Why.</b> 80+ rushing yards in 8 of 10 games and all of his last 5 (89, 157, 107, 80, 95). Steady rain and 15 mph wind in Buffalo usually mean more running, and he gets about two thirds of the carries.</p><p><b>Risk.</b> The model gives 54%, a little under the 57% that -132 needs, so it&#x27;s slightly negative value alone (-5%). One of those five was exactly 80. If Buffalo falls behind against Kansas City, carries drop.</p>
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.627951134&amp;selectionId=42291327" target="_blank" rel="noopener">This leg alone in FanDuel</a>
+</div></details></li></ul>
+<div class="minbox"><span>Bet only at</span><b class="num">+198</b><span>or better</span></div>
+<div class="kvs"><div class="kv"><span>Model chance</span><b class="num">35.3%</b></div>
+<div class="kv"><span>Fair odds</span><b class="num">+183</b></div>
+<div class="kv"><span>Legs multiplied</span><b class="num">+134</b></div></div>
+<p class="pill bad">Model sees negative value at FanDuel's typical price</p><p class="note warn">Every leg hit in each of the player's last 5 games. Books price streaks steeply, so keep stakes small.</p><a class="btn" href="https://sportsbook.fanduel.com/addToBetslip?marketId[0]=42.627942548&amp;selectionId[0]=73445031&amp;marketId[1]=42.627951134&amp;selectionId[1]=42291327" target="_blank" rel="noopener">Open in FanDuel</a></section></section>
+<section id="singles"><h2>Streak legs that didn't fit a parlay</h2><p class="muted">They qualify by streak, but every parlay already has a player from that game. Tap for the data.</p><ul class="legs card"><li><details class="leg"><summary><span class="leg-main"><span class="leg-name">Jahmyr Gibbs</span>
+<span class="leg-sel">70+ Rush Yds</span><span class="leg-sub">Bears @ Lions · 1 PM · last 5 (newest first): <span class=num>98 153 74 153 116</span></span></span>
+<span class="leg-right"><span class="odds">-310</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">69%</b></div>
+<div class="kv"><span>Projection</span><b class="num">87.2</b></div>
+<div class="kv"><span>Value alone</span><b class="num">-8.6%</b></div>
+<div class="kv"><span>Season</span><b class="num">8/10</b></div>
+<div class="kv"><span>Last 10</span><b class="num">8/10</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 69.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 11</td><td>TB</td><td class=num>98</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 10</td><td>NE</td><td class=num>153</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 9</td><td>MIA</td><td class=num>74</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 8</td><td>MIN</td><td class=num>153</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 7</td><td>GB</td><td class=num>116</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 5</td><td>ARI</td><td class=num>151</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 4</td><td>CAR</td><td class=num>46</td><td class="miss">Miss</td></tr><tr class=""><td class=num>Wk 3</td><td>NYJ</td><td class=num>99</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 2</td><td>BUF</td><td class=num>52</td><td class="miss">Miss</td></tr><tr class=""><td class=num>Wk 1</td><td>NO</td><td class=num>156</td><td class="hit">Hit</td></tr></tbody></table><p class="muted small">Newest first. The top 5 rows (shaded) are the last-5 streak.</p>
+<p><b>Why.</b> 70+ rushing yards in 8 of 10 games and all of his last 5 (98, 153, 74, 153, 116). Chicago allows more rushing yards than average (matchup factor 1.09).</p><p><b>Risk.</b> At -310 the price needs a 76% chance; the model gives 69%, so it&#x27;s negative value alone (-9%). He had 46 and 52 earlier this season, and a 74 in his last five.</p>
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.627940621&amp;selectionId=48309378" target="_blank" rel="noopener">This leg alone in FanDuel</a>
+</div></details></li></ul></section>
+<section id="all-streaks"><h2>All last-5 streaks</h2><p class="muted">Every player who cleared a FanDuel line in each of his last 5 games: 45 lines, 4 pass every Parlay C check. Green = passes (or already in a parlay); red = the checks it failed. Tap for the checklist and game-by-game data, then bet it straight or build your own parlay.</p><h3 class="game-h">Bears @ Lions · 1 PM</h3><ul class="legs card"><li><details class="leg"><summary><span class="leg-main"><span class="leg-name">Rome Odunze</span>
+<span class="leg-sel">30+ Rec Yds</span><span class="leg-sub">Bears @ Lions · 1 PM</span>
+<span class="status good">Parlay C1</span></span>
+<span class="leg-right"><span class="odds">-300</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<ul class="checks"><li class="ok"><span>✓</span> Odds -350 or better <span class=muted>· -300</span></li><li class="ok"><span>✓</span> Model chance 50%+ <span class=muted>· 65%</span></li><li class="ok"><span>✓</span> Not questionable</li><li class="ok"><span>✓</span> 4+ games with his team</li><li class="ok"><span>✓</span> QB situation known</li><li class="ok"><span>✓</span> Projection near FanDuel&#x27;s line</li><li class="ok"><span>✓</span> Projection in the model&#x27;s tested range</li><li class="ok"><span>✓</span> Snap trend not against it</li><li class="ok"><span>✓</span> Not removed after news check</li><li class="ok"><span>✓</span> Has a model projection</li></ul>
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">65%</b></div>
+<div class="kv"><span>Projection</span><b class="num">37.8</b></div>
+<div class="kv"><span>Value alone</span><b class="num">-13.4%</b></div>
+<div class="kv"><span>Season</span><b class="num">10/10</b></div>
+<div class="kv"><span>Last 10</span><b class="num">10/10</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 29.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 11</td><td>NO</td><td class=num>45</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 9</td><td>TB</td><td class=num>60</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 8</td><td>SEA</td><td class=num>87</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 7</td><td>NE</td><td class=num>69</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 6</td><td>ATL</td><td class=num>39</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 5</td><td>GB</td><td class=num>40</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 4</td><td>NYJ</td><td class=num>94</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 3</td><td>PHI</td><td class=num>44</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 2</td><td>MIN</td><td class=num>43</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 1</td><td>CAR</td><td class=num>52</td><td class="hit">Hit</td></tr></tbody></table><p class="muted small">Newest first. Shaded rows = last 5.</p>
+<p class="small"><b>Other lines he cleared all 5:</b> 25+ Rec Yds (-420), 20+ Rec Yds (-600), 15+ Rec Yds (-1000)</p>
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.627942548&amp;selectionId=73445031" target="_blank" rel="noopener">Bet this line in FanDuel</a>
+</div></details></li>
+<li><details class="leg"><summary><span class="leg-main"><span class="leg-name">Jahmyr Gibbs</span>
+<span class="leg-sel">70+ Rush Yds</span><span class="leg-sub">Bears @ Lions · 1 PM</span>
+<span class="status good">Single (no parlay fit)</span></span>
+<span class="leg-right"><span class="odds">-310</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<ul class="checks"><li class="ok"><span>✓</span> Odds -350 or better <span class=muted>· -310</span></li><li class="ok"><span>✓</span> Model chance 50%+ <span class=muted>· 69%</span></li><li class="ok"><span>✓</span> Not questionable</li><li class="ok"><span>✓</span> 4+ games with his team</li><li class="ok"><span>✓</span> QB situation known</li><li class="ok"><span>✓</span> Projection near FanDuel&#x27;s line</li><li class="ok"><span>✓</span> Projection in the model&#x27;s tested range</li><li class="ok"><span>✓</span> Snap trend not against it</li><li class="ok"><span>✓</span> Not removed after news check</li><li class="ok"><span>✓</span> Has a model projection</li></ul>
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">69%</b></div>
+<div class="kv"><span>Projection</span><b class="num">87.2</b></div>
+<div class="kv"><span>Value alone</span><b class="num">-8.6%</b></div>
+<div class="kv"><span>Season</span><b class="num">8/10</b></div>
+<div class="kv"><span>Last 10</span><b class="num">8/10</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 69.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 11</td><td>TB</td><td class=num>98</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 10</td><td>NE</td><td class=num>153</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 9</td><td>MIA</td><td class=num>74</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 8</td><td>MIN</td><td class=num>153</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 7</td><td>GB</td><td class=num>116</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 5</td><td>ARI</td><td class=num>151</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 4</td><td>CAR</td><td class=num>46</td><td class="miss">Miss</td></tr><tr class=""><td class=num>Wk 3</td><td>NYJ</td><td class=num>99</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 2</td><td>BUF</td><td class=num>52</td><td class="miss">Miss</td></tr><tr class=""><td class=num>Wk 1</td><td>NO</td><td class=num>156</td><td class="hit">Hit</td></tr></tbody></table><p class="muted small">Newest first. Shaded rows = last 5.</p>
+<p class="small"><b>Other lines he cleared all 5:</b> 60+ Rush Yds (-500), 50+ Rush Yds (-1100)</p>
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.627940621&amp;selectionId=48309378" target="_blank" rel="noopener">Bet this line in FanDuel</a>
+</div></details></li>
+<li><details class="leg"><summary><span class="leg-main"><span class="leg-name">Rome Odunze</span>
+<span class="leg-sel">3+ Receptions</span><span class="leg-sub">Bears @ Lions · 1 PM</span>
+<span class="status good">Qualifies (he&#x27;s already in Parlay C1 with another bet)</span></span>
+<span class="leg-right"><span class="odds">-225</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<ul class="checks"><li class="ok"><span>✓</span> Odds -350 or better <span class=muted>· -225</span></li><li class="ok"><span>✓</span> Model chance 50%+ <span class=muted>· 63%</span></li><li class="ok"><span>✓</span> Not questionable</li><li class="ok"><span>✓</span> 4+ games with his team</li><li class="ok"><span>✓</span> QB situation known</li><li class="ok"><span>✓</span> Projection near FanDuel&#x27;s line</li><li class="ok"><span>✓</span> Projection in the model&#x27;s tested range</li><li class="ok"><span>✓</span> Snap trend not against it</li><li class="ok"><span>✓</span> Not removed after news check</li><li class="ok"><span>✓</span> Has a model projection</li></ul>
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">63%</b></div>
+<div class="kv"><span>Projection</span><b class="num">2.6</b></div>
+<div class="kv"><span>Value alone</span><b class="num">-9.3%</b></div>
+<div class="kv"><span>Season</span><b class="num">9/10</b></div>
+<div class="kv"><span>Last 10</span><b class="num">9/10</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 2.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 11</td><td>NO</td><td class=num>4</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 9</td><td>TB</td><td class=num>4</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 8</td><td>SEA</td><td class=num>4</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 7</td><td>NE</td><td class=num>4</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 6</td><td>ATL</td><td class=num>3</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 5</td><td>GB</td><td class=num>3</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 4</td><td>NYJ</td><td class=num>6</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 3</td><td>PHI</td><td class=num>3</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 2</td><td>MIN</td><td class=num>3</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 1</td><td>CAR</td><td class=num>2</td><td class="miss">Miss</td></tr></tbody></table><p class="muted small">Newest first. Shaded rows = last 5.</p>
+<p class="small"><b>Other lines he cleared all 5:</b> 2+ Receptions (-750)</p>
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.627942558&amp;selectionId=73379144" target="_blank" rel="noopener">Bet this line in FanDuel</a>
+</div></details></li>
+<li><details class="leg"><summary><span class="leg-main"><span class="leg-name">Caleb Williams</span>
+<span class="leg-sel">175+ Pass Yds</span><span class="leg-sub">Bears @ Lions · 1 PM</span>
+<span class="status bad">Doesn&#x27;t pass: odds worse than -350</span></span>
+<span class="leg-right"><span class="odds">-1200</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<ul class="checks"><li class="no"><span>✗</span> Odds -350 or better <span class=muted>· -1200</span></li><li class="ok"><span>✓</span> Model chance 50%+ <span class=muted>· 88%</span></li><li class="ok"><span>✓</span> Not questionable</li><li class="ok"><span>✓</span> 4+ games with his team</li><li class="ok"><span>✓</span> QB situation known</li><li class="ok"><span>✓</span> Projection near FanDuel&#x27;s line</li><li class="ok"><span>✓</span> Projection in the model&#x27;s tested range</li><li class="ok"><span>✓</span> Snap trend not against it</li><li class="ok"><span>✓</span> Not removed after news check</li><li class="ok"><span>✓</span> Has a model projection</li></ul>
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">88%</b></div>
+<div class="kv"><span>Projection</span><b class="num">269.6</b></div>
+<div class="kv"><span>Value alone</span><b class="num">-4.2%</b></div>
+<div class="kv"><span>Season</span><b class="num">6/7</b></div>
+<div class="kv"><span>Last 10</span><b class="num">6/7</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 174.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 11</td><td>NO</td><td class=num>181</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 9</td><td>TB</td><td class=num>279</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 8</td><td>SEA</td><td class=num>247</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 7</td><td>NE</td><td class=num>308</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 6</td><td>ATL</td><td class=num>305</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 2</td><td>MIN</td><td class=num>138</td><td class="miss">Miss</td></tr><tr class=""><td class=num>Wk 1</td><td>CAR</td><td class=num>269</td><td class="hit">Hit</td></tr></tbody></table><p class="muted small">Newest first. Shaded rows = last 5.</p>
+
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.627938593&amp;selectionId=73379112" target="_blank" rel="noopener">Bet this line in FanDuel</a>
+</div></details></li>
+<li><details class="leg"><summary><span class="leg-main"><span class="leg-name">Sam LaPorta</span>
+<span class="leg-sel">15+ Rec Yds</span><span class="leg-sub">Bears @ Lions · 1 PM</span>
+<span class="status bad">Doesn&#x27;t pass: odds worse than -350</span></span>
+<span class="leg-right"><span class="odds">-1450</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<ul class="checks"><li class="no"><span>✗</span> Odds -350 or better <span class=muted>· -1450</span></li><li class="ok"><span>✓</span> Model chance 50%+ <span class=muted>· 83%</span></li><li class="ok"><span>✓</span> Not questionable</li><li class="ok"><span>✓</span> 4+ games with his team</li><li class="ok"><span>✓</span> QB situation known</li><li class="ok"><span>✓</span> Projection near FanDuel&#x27;s line</li><li class="ok"><span>✓</span> Projection in the model&#x27;s tested range</li><li class="ok"><span>✓</span> Snap trend not against it</li><li class="ok"><span>✓</span> Not removed after news check</li><li class="ok"><span>✓</span> Has a model projection</li></ul>
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">83%</b></div>
+<div class="kv"><span>Projection</span><b class="num">33.9</b></div>
+<div class="kv"><span>Value alone</span><b class="num">-11.5%</b></div>
+<div class="kv"><span>Season</span><b class="num">10/10</b></div>
+<div class="kv"><span>Last 10</span><b class="num">10/10</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 14.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 11</td><td>TB</td><td class=num>62</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 10</td><td>NE</td><td class=num>16</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 9</td><td>MIA</td><td class=num>32</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 8</td><td>MIN</td><td class=num>33</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 7</td><td>GB</td><td class=num>18</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 5</td><td>ARI</td><td class=num>88</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 4</td><td>CAR</td><td class=num>84</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 3</td><td>NYJ</td><td class=num>44</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 2</td><td>BUF</td><td class=num>52</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 1</td><td>NO</td><td class=num>48</td><td class="hit">Hit</td></tr></tbody></table><p class="muted small">Newest first. Shaded rows = last 5.</p>
+
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.627942870&amp;selectionId=73139268" target="_blank" rel="noopener">Bet this line in FanDuel</a>
+</div></details></li>
+<li><details class="leg"><summary><span class="leg-main"><span class="leg-name">Colston Loveland</span>
+<span class="leg-sel">25+ Rec Yds</span><span class="leg-sub">Bears @ Lions · 1 PM</span>
+<span class="status bad">Doesn&#x27;t pass: odds worse than -350</span></span>
+<span class="leg-right"><span class="odds">-800</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<ul class="checks"><li class="no"><span>✗</span> Odds -350 or better <span class=muted>· -800</span></li><li class="ok"><span>✓</span> Model chance 50%+ <span class=muted>· 79%</span></li><li class="ok"><span>✓</span> Not questionable</li><li class="ok"><span>✓</span> 4+ games with his team</li><li class="ok"><span>✓</span> QB situation known</li><li class="ok"><span>✓</span> Projection near FanDuel&#x27;s line</li><li class="ok"><span>✓</span> Projection in the model&#x27;s tested range</li><li class="ok"><span>✓</span> Snap trend not against it</li><li class="ok"><span>✓</span> Not removed after news check</li><li class="ok"><span>✓</span> Has a model projection</li></ul>
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">79%</b></div>
+<div class="kv"><span>Projection</span><b class="num">45.3</b></div>
+<div class="kv"><span>Value alone</span><b class="num">-10.8%</b></div>
+<div class="kv"><span>Season</span><b class="num">7/10</b></div>
+<div class="kv"><span>Last 10</span><b class="num">7/10</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 24.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 11</td><td>NO</td><td class=num>29</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 9</td><td>TB</td><td class=num>54</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 8</td><td>SEA</td><td class=num>65</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 7</td><td>NE</td><td class=num>69</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 6</td><td>ATL</td><td class=num>65</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 5</td><td>GB</td><td class=num>19</td><td class="miss">Miss</td></tr><tr class=""><td class=num>Wk 4</td><td>NYJ</td><td class=num>57</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 3</td><td>PHI</td><td class=num>31</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 2</td><td>MIN</td><td class=num>3</td><td class="miss">Miss</td></tr><tr class=""><td class=num>Wk 1</td><td>CAR</td><td class=num>0</td><td class="miss">Miss</td></tr></tbody></table><p class="muted small">Newest first. Shaded rows = last 5.</p>
+<p class="small"><b>Other lines he cleared all 5:</b> 20+ Rec Yds (-1450)</p>
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.627942550&amp;selectionId=60048527" target="_blank" rel="noopener">Bet this line in FanDuel</a>
+</div></details></li>
+<li><details class="leg"><summary><span class="leg-main"><span class="leg-name">Colston Loveland</span>
+<span class="leg-sel">3+ Receptions</span><span class="leg-sub">Bears @ Lions · 1 PM</span>
+<span class="status bad">Doesn&#x27;t pass: odds worse than -350</span></span>
+<span class="leg-right"><span class="odds">-1400</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<ul class="checks"><li class="no"><span>✗</span> Odds -350 or better <span class=muted>· -1400</span></li><li class="ok"><span>✓</span> Model chance 50%+ <span class=muted>· 77%</span></li><li class="ok"><span>✓</span> Not questionable</li><li class="ok"><span>✓</span> 4+ games with his team</li><li class="ok"><span>✓</span> QB situation known</li><li class="ok"><span>✓</span> Projection near FanDuel&#x27;s line</li><li class="ok"><span>✓</span> Projection in the model&#x27;s tested range</li><li class="ok"><span>✓</span> Snap trend not against it</li><li class="ok"><span>✓</span> Not removed after news check</li><li class="ok"><span>✓</span> Has a model projection</li></ul>
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">77%</b></div>
+<div class="kv"><span>Projection</span><b class="num">4.4</b></div>
+<div class="kv"><span>Value alone</span><b class="num">-18.0%</b></div>
+<div class="kv"><span>Season</span><b class="num">7/10</b></div>
+<div class="kv"><span>Last 10</span><b class="num">7/10</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 2.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 11</td><td>NO</td><td class=num>3</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 9</td><td>TB</td><td class=num>4</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 8</td><td>SEA</td><td class=num>7</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 7</td><td>NE</td><td class=num>7</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 6</td><td>ATL</td><td class=num>6</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 5</td><td>GB</td><td class=num>2</td><td class="miss">Miss</td></tr><tr class=""><td class=num>Wk 4</td><td>NYJ</td><td class=num>6</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 3</td><td>PHI</td><td class=num>4</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 2</td><td>MIN</td><td class=num>1</td><td class="miss">Miss</td></tr><tr class=""><td class=num>Wk 1</td><td>CAR</td><td class=num>0</td><td class="miss">Miss</td></tr></tbody></table><p class="muted small">Newest first. Shaded rows = last 5.</p>
+
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.627942560&amp;selectionId=87693359" target="_blank" rel="noopener">Bet this line in FanDuel</a>
+</div></details></li>
+<li><details class="leg"><summary><span class="leg-main"><span class="leg-name">Kyle Monangai</span>
+<span class="leg-sel">15+ Rush Yds</span><span class="leg-sub">Bears @ Lions · 1 PM</span>
+<span class="status bad">Doesn&#x27;t pass: odds worse than -350</span></span>
+<span class="leg-right"><span class="odds">-650</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<ul class="checks"><li class="no"><span>✗</span> Odds -350 or better <span class=muted>· -650</span></li><li class="ok"><span>✓</span> Model chance 50%+ <span class=muted>· 76%</span></li><li class="ok"><span>✓</span> Not questionable</li><li class="ok"><span>✓</span> 4+ games with his team</li><li class="ok"><span>✓</span> QB situation known</li><li class="ok"><span>✓</span> Projection near FanDuel&#x27;s line</li><li class="ok"><span>✓</span> Projection in the model&#x27;s tested range</li><li class="ok"><span>✓</span> Snap trend not against it</li><li class="ok"><span>✓</span> Not removed after news check</li><li class="ok"><span>✓</span> Has a model projection</li></ul>
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">76%</b></div>
+<div class="kv"><span>Projection</span><b class="num">26.1</b></div>
+<div class="kv"><span>Value alone</span><b class="num">-12.2%</b></div>
+<div class="kv"><span>Season</span><b class="num">5/5</b></div>
+<div class="kv"><span>Last 10</span><b class="num">5/5</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 14.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 11</td><td>NO</td><td class=num>18</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 4</td><td>NYJ</td><td class=num>146</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 3</td><td>PHI</td><td class=num>31</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 2</td><td>MIN</td><td class=num>47</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 1</td><td>CAR</td><td class=num>100</td><td class="hit">Hit</td></tr></tbody></table><p class="muted small">Newest first. Shaded rows = last 5.</p>
+<p class="small"><b>Other lines he cleared all 5:</b> 10+ Rush Yds (-1450)</p>
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.627940624&amp;selectionId=89921376" target="_blank" rel="noopener">Bet this line in FanDuel</a>
+</div></details></li>
+<li><details class="leg"><summary><span class="leg-main"><span class="leg-name">D&#x27;Andre Swift</span>
+<span class="leg-sel">30+ Rush Yds</span><span class="leg-sub">Bears @ Lions · 1 PM</span>
+<span class="status bad">Doesn&#x27;t pass: odds worse than -350</span></span>
+<span class="leg-right"><span class="odds">-380</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<ul class="checks"><li class="no"><span>✗</span> Odds -350 or better <span class=muted>· -380</span></li><li class="ok"><span>✓</span> Model chance 50%+ <span class=muted>· 75%</span></li><li class="ok"><span>✓</span> Not questionable</li><li class="ok"><span>✓</span> 4+ games with his team</li><li class="ok"><span>✓</span> QB situation known</li><li class="ok"><span>✓</span> Projection near FanDuel&#x27;s line</li><li class="ok"><span>✓</span> Projection in the model&#x27;s tested range</li><li class="ok"><span>✓</span> Snap trend not against it</li><li class="ok"><span>✓</span> Not removed after news check</li><li class="ok"><span>✓</span> Has a model projection</li></ul>
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">75%</b></div>
+<div class="kv"><span>Projection</span><b class="num">48.9</b></div>
+<div class="kv"><span>Value alone</span><b class="num">-5.8%</b></div>
+<div class="kv"><span>Season</span><b class="num">10/10</b></div>
+<div class="kv"><span>Last 10</span><b class="num">10/10</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 29.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 11</td><td>NO</td><td class=num>51</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 9</td><td>TB</td><td class=num>31</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 8</td><td>SEA</td><td class=num>69</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 7</td><td>NE</td><td class=num>78</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 6</td><td>ATL</td><td class=num>44</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 5</td><td>GB</td><td class=num>43</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 4</td><td>NYJ</td><td class=num>58</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 3</td><td>PHI</td><td class=num>84</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 2</td><td>MIN</td><td class=num>45</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 1</td><td>CAR</td><td class=num>124</td><td class="hit">Hit</td></tr></tbody></table><p class="muted small">Newest first. Shaded rows = last 5.</p>
+<p class="small"><b>Other lines he cleared all 5:</b> 25+ Rush Yds (-600), 20+ Rush Yds (-1100)</p>
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.627940623&amp;selectionId=73445034" target="_blank" rel="noopener">Bet this line in FanDuel</a>
+</div></details></li>
+<li><details class="leg"><summary><span class="leg-main"><span class="leg-name">Jameson Williams</span>
+<span class="leg-sel">30+ Rec Yds</span><span class="leg-sub">Bears @ Lions · 1 PM</span>
+<span class="status bad">Doesn&#x27;t pass: odds worse than -350</span></span>
+<span class="leg-right"><span class="odds">-490</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<ul class="checks"><li class="no"><span>✗</span> Odds -350 or better <span class=muted>· -490</span></li><li class="ok"><span>✓</span> Model chance 50%+ <span class=muted>· 71%</span></li><li class="ok"><span>✓</span> Not questionable</li><li class="ok"><span>✓</span> 4+ games with his team</li><li class="ok"><span>✓</span> QB situation known</li><li class="ok"><span>✓</span> Projection near FanDuel&#x27;s line</li><li class="ok"><span>✓</span> Projection in the model&#x27;s tested range</li><li class="ok"><span>✓</span> Snap trend not against it</li><li class="ok"><span>✓</span> Not removed after news check</li><li class="ok"><span>✓</span> Has a model projection</li></ul>
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">71%</b></div>
+<div class="kv"><span>Projection</span><b class="num">43.4</b></div>
+<div class="kv"><span>Value alone</span><b class="num">-14.5%</b></div>
+<div class="kv"><span>Season</span><b class="num">10/10</b></div>
+<div class="kv"><span>Last 10</span><b class="num">10/10</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 29.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 11</td><td>TB</td><td class=num>93</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 10</td><td>NE</td><td class=num>50</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 9</td><td>MIA</td><td class=num>31</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 8</td><td>MIN</td><td class=num>70</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 7</td><td>GB</td><td class=num>91</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 5</td><td>ARI</td><td class=num>47</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 4</td><td>CAR</td><td class=num>102</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 3</td><td>NYJ</td><td class=num>49</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 2</td><td>BUF</td><td class=num>33</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 1</td><td>NO</td><td class=num>45</td><td class="hit">Hit</td></tr></tbody></table><p class="muted small">Newest first. Shaded rows = last 5.</p>
+<p class="small"><b>Other lines he cleared all 5:</b> 25+ Rec Yds (-700), 20+ Rec Yds (-1200)</p>
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.627942868&amp;selectionId=73139234" target="_blank" rel="noopener">Bet this line in FanDuel</a>
+</div></details></li>
+<li><details class="leg"><summary><span class="leg-main"><span class="leg-name">Sam LaPorta</span>
+<span class="leg-sel">Under 4.5 Receptions</span><span class="leg-sub">Bears @ Lions · 1 PM</span>
+<span class="status bad">Doesn&#x27;t pass: projection far from FanDuel&#x27;s line</span></span>
+<span class="leg-right"><span class="odds">-148</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<ul class="checks"><li class="ok"><span>✓</span> Odds -350 or better <span class=muted>· -148</span></li><li class="ok"><span>✓</span> Model chance 50%+ <span class=muted>· 61%</span></li><li class="ok"><span>✓</span> Not questionable</li><li class="ok"><span>✓</span> 4+ games with his team</li><li class="ok"><span>✓</span> QB situation known</li><li class="no"><span>✗</span> Projection near FanDuel&#x27;s line <span class=muted>· model 2.6 vs FanDuel&#x27;s main line 4.5</span></li><li class="ok"><span>✓</span> Projection in the model&#x27;s tested range</li><li class="ok"><span>✓</span> Snap trend not against it</li><li class="ok"><span>✓</span> Not removed after news check</li><li class="ok"><span>✓</span> Has a model projection</li></ul>
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">61%</b></div>
+<div class="kv"><span>Projection</span><b class="num">2.6</b></div>
+<div class="kv"><span>Value alone</span><b class="num">+1.9%</b></div>
+<div class="kv"><span>Season</span><b class="num">6/10</b></div>
+<div class="kv"><span>Last 10</span><b class="num">6/10</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 4.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 11</td><td>TB</td><td class=num>3</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 10</td><td>NE</td><td class=num>1</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 9</td><td>MIA</td><td class=num>4</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 8</td><td>MIN</td><td class=num>3</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 7</td><td>GB</td><td class=num>1</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 5</td><td>ARI</td><td class=num>5</td><td class="miss">Miss</td></tr><tr class=""><td class=num>Wk 4</td><td>CAR</td><td class=num>8</td><td class="miss">Miss</td></tr><tr class=""><td class=num>Wk 3</td><td>NYJ</td><td class=num>3</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 2</td><td>BUF</td><td class=num>6</td><td class="miss">Miss</td></tr><tr class=""><td class=num>Wk 1</td><td>NO</td><td class=num>5</td><td class="miss">Miss</td></tr></tbody></table><p class="muted small">Newest first. Shaded rows = last 5.</p>
+
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.627942875&amp;selectionId=41154224" target="_blank" rel="noopener">Bet this line in FanDuel</a>
+</div></details></li>
+<li><details class="leg"><summary><span class="leg-main"><span class="leg-name">Isaac TeSlaa</span>
+<span class="leg-sel">Under 19.5 Rec Yds</span><span class="leg-sub">Bears @ Lions · 1 PM</span>
+<span class="status bad">Doesn&#x27;t pass: too small for the model to price</span></span>
+<span class="leg-right"><span class="odds">-113</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<ul class="checks"><li class="ok"><span>✓</span> Odds -350 or better <span class=muted>· -113</span></li><li class="ok"><span>✓</span> Model chance 50%+ <span class=muted>· 54%</span></li><li class="ok"><span>✓</span> Not questionable</li><li class="ok"><span>✓</span> 4+ games with his team</li><li class="ok"><span>✓</span> QB situation known</li><li class="ok"><span>✓</span> Projection near FanDuel&#x27;s line</li><li class="no"><span>✗</span> Projection in the model&#x27;s tested range <span class=muted>· too small to model</span></li><li class="ok"><span>✓</span> Snap trend not against it</li><li class="ok"><span>✓</span> Not removed after news check</li><li class="ok"><span>✓</span> Has a model projection</li></ul>
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">54%</b></div>
+<div class="kv"><span>Projection</span><b class="num">14.6</b></div>
+<div class="kv"><span>Value alone</span><b class="num">+1.1%</b></div>
+<div class="kv"><span>Season</span><b class="num">6/9</b></div>
+<div class="kv"><span>Last 10</span><b class="num">6/9</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 19.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 11</td><td>TB</td><td class=num>0</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 10</td><td>NE</td><td class=num>19</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 9</td><td>MIA</td><td class=num>9</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 7</td><td>GB</td><td class=num>10</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 5</td><td>ARI</td><td class=num>0</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 4</td><td>CAR</td><td class=num>95</td><td class="miss">Miss</td></tr><tr class=""><td class=num>Wk 3</td><td>NYJ</td><td class=num>66</td><td class="miss">Miss</td></tr><tr class=""><td class=num>Wk 2</td><td>BUF</td><td class=num>26</td><td class="miss">Miss</td></tr><tr class=""><td class=num>Wk 1</td><td>NO</td><td class=num>0</td><td class="hit">Hit</td></tr></tbody></table><p class="muted small">Newest first. Shaded rows = last 5.</p>
+
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.627942866&amp;selectionId=60529876" target="_blank" rel="noopener">Bet this line in FanDuel</a>
+</div></details></li>
+<li><details class="leg"><summary><span class="leg-main"><span class="leg-name">Caleb Williams</span>
+<span class="leg-sel">Under 22.5 Rush Yds</span><span class="leg-sub">Bears @ Lions · 1 PM</span>
+<span class="status bad">Doesn&#x27;t pass: projection far from FanDuel&#x27;s line; too small for the model to price</span></span>
+<span class="leg-right"><span class="odds">-113</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<ul class="checks"><li class="ok"><span>✓</span> Odds -350 or better <span class=muted>· -113</span></li><li class="ok"><span>✓</span> Model chance 50%+ <span class=muted>· 61%</span></li><li class="ok"><span>✓</span> Not questionable</li><li class="ok"><span>✓</span> 4+ games with his team</li><li class="ok"><span>✓</span> QB situation known</li><li class="no"><span>✗</span> Projection near FanDuel&#x27;s line <span class=muted>· model 10.8 vs FanDuel&#x27;s main line 22.5</span></li><li class="no"><span>✗</span> Projection in the model&#x27;s tested range <span class=muted>· too small to model</span></li><li class="ok"><span>✓</span> Snap trend not against it</li><li class="ok"><span>✓</span> Not removed after news check</li><li class="ok"><span>✓</span> Has a model projection</li></ul>
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">61%</b></div>
+<div class="kv"><span>Projection</span><b class="num">10.8</b></div>
+<div class="kv"><span>Value alone</span><b class="num">+15.7%</b></div>
+<div class="kv"><span>Season</span><b class="num">5/7</b></div>
+<div class="kv"><span>Last 10</span><b class="num">5/7</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 22.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 11</td><td>NO</td><td class=num>11</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 9</td><td>TB</td><td class=num>16</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 8</td><td>SEA</td><td class=num>1</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 7</td><td>NE</td><td class=num>18</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 6</td><td>ATL</td><td class=num>3</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 2</td><td>MIN</td><td class=num>42</td><td class="miss">Miss</td></tr><tr class=""><td class=num>Wk 1</td><td>CAR</td><td class=num>65</td><td class="miss">Miss</td></tr></tbody></table><p class="muted small">Newest first. Shaded rows = last 5.</p>
+
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.627938599&amp;selectionId=41519458" target="_blank" rel="noopener">Bet this line in FanDuel</a>
+</div></details></li>
+<li><details class="leg"><summary><span class="leg-main"><span class="leg-name">Brock Wright</span>
+<span class="leg-sel">Over 0.5 Receptions</span><span class="leg-sub">Bears @ Lions · 1 PM</span>
+<span class="status bad">Doesn&#x27;t pass: model chance under 50%; projection far from FanDuel&#x27;s line; too small for the model to price</span></span>
+<span class="leg-right"><span class="odds">-148</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<ul class="checks"><li class="ok"><span>✓</span> Odds -350 or better <span class=muted>· -148</span></li><li class="no"><span>✗</span> Model chance 50%+ <span class=muted>· 50%</span></li><li class="ok"><span>✓</span> Not questionable</li><li class="ok"><span>✓</span> 4+ games with his team</li><li class="ok"><span>✓</span> QB situation known</li><li class="no"><span>✗</span> Projection near FanDuel&#x27;s line <span class=muted>· model 0.0 vs FanDuel&#x27;s main line 0.5</span></li><li class="no"><span>✗</span> Projection in the model&#x27;s tested range <span class=muted>· too small to model</span></li><li class="ok"><span>✓</span> Snap trend not against it</li><li class="ok"><span>✓</span> Not removed after news check</li><li class="ok"><span>✓</span> Has a model projection</li></ul>
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">50%</b></div>
+<div class="kv"><span>Projection</span><b class="num">0.0</b></div>
+<div class="kv"><span>Value alone</span><b class="num">-16.4%</b></div>
+<div class="kv"><span>Season</span><b class="num">6/7</b></div>
+<div class="kv"><span>Last 10</span><b class="num">6/7</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 0.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 11</td><td>TB</td><td class=num>2</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 10</td><td>NE</td><td class=num>2</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 5</td><td>ARI</td><td class=num>1</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 4</td><td>CAR</td><td class=num>1</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 3</td><td>NYJ</td><td class=num>2</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 2</td><td>BUF</td><td class=num>0</td><td class="miss">Miss</td></tr><tr class=""><td class=num>Wk 1</td><td>NO</td><td class=num>1</td><td class="hit">Hit</td></tr></tbody></table><p class="muted small">Newest first. Shaded rows = last 5.</p>
+<p class="small"><b>Other lines he cleared all 5:</b> 1+ Receptions (-158)</p>
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.628084790&amp;selectionId=41725477" target="_blank" rel="noopener">Bet this line in FanDuel</a>
+</div></details></li>
+<li><details class="leg"><summary><span class="leg-main"><span class="leg-name">Brock Wright</span>
+<span class="leg-sel">5+ Rec Yds</span><span class="leg-sub">Bears @ Lions · 1 PM</span>
+<span class="status bad">Doesn&#x27;t pass: model chance under 50%; projection far from FanDuel&#x27;s line; too small for the model to price</span></span>
+<span class="leg-right"><span class="odds">-106</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<ul class="checks"><li class="ok"><span>✓</span> Odds -350 or better <span class=muted>· -106</span></li><li class="no"><span>✗</span> Model chance 50%+ <span class=muted>· 42%</span></li><li class="ok"><span>✓</span> Not questionable</li><li class="ok"><span>✓</span> 4+ games with his team</li><li class="ok"><span>✓</span> QB situation known</li><li class="no"><span>✗</span> Projection near FanDuel&#x27;s line <span class=muted>· model 0.0 vs FanDuel&#x27;s main line 3.5</span></li><li class="no"><span>✗</span> Projection in the model&#x27;s tested range <span class=muted>· too small to model</span></li><li class="ok"><span>✓</span> Snap trend not against it</li><li class="ok"><span>✓</span> Not removed after news check</li><li class="ok"><span>✓</span> Has a model projection</li></ul>
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">42%</b></div>
+<div class="kv"><span>Projection</span><b class="num">0.0</b></div>
+<div class="kv"><span>Value alone</span><b class="num">-18.6%</b></div>
+<div class="kv"><span>Season</span><b class="num">6/7</b></div>
+<div class="kv"><span>Last 10</span><b class="num">6/7</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 4.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 11</td><td>TB</td><td class=num>42</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 10</td><td>NE</td><td class=num>11</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 5</td><td>ARI</td><td class=num>11</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 4</td><td>CAR</td><td class=num>8</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 3</td><td>NYJ</td><td class=num>7</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 2</td><td>BUF</td><td class=num>0</td><td class="miss">Miss</td></tr><tr class=""><td class=num>Wk 1</td><td>NO</td><td class=num>5</td><td class="hit">Hit</td></tr></tbody></table><p class="muted small">Newest first. Shaded rows = last 5.</p>
+<p class="small"><b>Other lines he cleared all 5:</b> Over 3.5 Rec Yds (-120)</p>
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.628084789&amp;selectionId=73404552" target="_blank" rel="noopener">Bet this line in FanDuel</a>
+</div></details></li></ul><h3 class="game-h">Eagles @ Cowboys · 4:30 PM</h3><ul class="legs card"><li><details class="leg"><summary><span class="leg-main"><span class="leg-name">Dak Prescott</span>
+<span class="leg-sel">175+ Pass Yds</span><span class="leg-sub">Eagles @ Cowboys · 4:30 PM</span>
+<span class="status bad">Doesn&#x27;t pass: odds worse than -350</span></span>
+<span class="leg-right"><span class="odds">-1200</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<ul class="checks"><li class="no"><span>✗</span> Odds -350 or better <span class=muted>· -1200</span></li><li class="ok"><span>✓</span> Model chance 50%+ <span class=muted>· 88%</span></li><li class="ok"><span>✓</span> Not questionable</li><li class="ok"><span>✓</span> 4+ games with his team</li><li class="ok"><span>✓</span> QB situation known</li><li class="ok"><span>✓</span> Projection near FanDuel&#x27;s line</li><li class="ok"><span>✓</span> Projection in the model&#x27;s tested range</li><li class="ok"><span>✓</span> Snap trend not against it</li><li class="ok"><span>✓</span> Not removed after news check</li><li class="ok"><span>✓</span> Has a model projection</li></ul>
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">88%</b></div>
+<div class="kv"><span>Projection</span><b class="num">272.1</b></div>
+<div class="kv"><span>Value alone</span><b class="num">-4.3%</b></div>
+<div class="kv"><span>Season</span><b class="num">11/11</b></div>
+<div class="kv"><span>Last 10</span><b class="num">10/10</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 174.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 11</td><td>TEN</td><td class=num>325</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 10</td><td>SF</td><td class=num>343</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 9</td><td>IND</td><td class=num>335</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 8</td><td>ARI</td><td class=num>195</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 7</td><td>PHI</td><td class=num>212</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 6</td><td>GB</td><td class=num>258</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 5</td><td>TB</td><td class=num>316</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 4</td><td>HOU</td><td class=num>335</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 3</td><td>BAL</td><td class=num>276</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 2</td><td>WAS</td><td class=num>279</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 1</td><td>NYG</td><td class=num>175</td><td class="hit">Hit</td></tr></tbody></table><p class="muted small">Newest first. Shaded rows = last 5.</p>
+
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.627955338&amp;selectionId=64146699" target="_blank" rel="noopener">Bet this line in FanDuel</a>
+</div></details></li>
+<li><details class="leg"><summary><span class="leg-main"><span class="leg-name">CeeDee Lamb</span>
+<span class="leg-sel">50+ Rec Yds</span><span class="leg-sub">Eagles @ Cowboys · 4:30 PM</span>
+<span class="status bad">Doesn&#x27;t pass: odds worse than -350</span></span>
+<span class="leg-right"><span class="odds">-700</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<ul class="checks"><li class="no"><span>✗</span> Odds -350 or better <span class=muted>· -700</span></li><li class="ok"><span>✓</span> Model chance 50%+ <span class=muted>· 81%</span></li><li class="ok"><span>✓</span> Not questionable</li><li class="ok"><span>✓</span> 4+ games with his team</li><li class="ok"><span>✓</span> QB situation known</li><li class="ok"><span>✓</span> Projection near FanDuel&#x27;s line</li><li class="ok"><span>✓</span> Projection in the model&#x27;s tested range</li><li class="ok"><span>✓</span> Snap trend not against it</li><li class="ok"><span>✓</span> Not removed after news check</li><li class="ok"><span>✓</span> Has a model projection</li></ul>
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">81%</b></div>
+<div class="kv"><span>Projection</span><b class="num">88.6</b></div>
+<div class="kv"><span>Value alone</span><b class="num">-7.3%</b></div>
+<div class="kv"><span>Season</span><b class="num">9/11</b></div>
+<div class="kv"><span>Last 10</span><b class="num">9/10</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 49.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 11</td><td>TEN</td><td class=num>132</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 10</td><td>SF</td><td class=num>72</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 9</td><td>IND</td><td class=num>195</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 8</td><td>ARI</td><td class=num>58</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 7</td><td>PHI</td><td class=num>74</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 6</td><td>GB</td><td class=num>70</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 5</td><td>TB</td><td class=num>9</td><td class="miss">Miss</td></tr><tr class=""><td class=num>Wk 4</td><td>HOU</td><td class=num>189</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 3</td><td>BAL</td><td class=num>112</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 2</td><td>WAS</td><td class=num>153</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 1</td><td>NYG</td><td class=num>44</td><td class="miss">Miss</td></tr></tbody></table><p class="muted small">Newest first. Shaded rows = last 5.</p>
+<p class="small"><b>Other lines he cleared all 5:</b> 40+ Rec Yds (-1800)</p>
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.627958054&amp;selectionId=40856354" target="_blank" rel="noopener">Bet this line in FanDuel</a>
+</div></details></li>
+<li><details class="leg"><summary><span class="leg-main"><span class="leg-name">Ryan Flournoy</span>
+<span class="leg-sel">10+ Rec Yds</span><span class="leg-sub">Eagles @ Cowboys · 4:30 PM</span>
+<span class="status bad">Doesn&#x27;t pass: odds worse than -350</span></span>
+<span class="leg-right"><span class="odds">-700</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<ul class="checks"><li class="no"><span>✗</span> Odds -350 or better <span class=muted>· -700</span></li><li class="ok"><span>✓</span> Model chance 50%+ <span class=muted>· 79%</span></li><li class="ok"><span>✓</span> Not questionable</li><li class="ok"><span>✓</span> 4+ games with his team</li><li class="ok"><span>✓</span> QB situation known</li><li class="ok"><span>✓</span> Projection near FanDuel&#x27;s line</li><li class="ok"><span>✓</span> Projection in the model&#x27;s tested range</li><li class="ok"><span>✓</span> Snap trend not against it</li><li class="ok"><span>✓</span> Not removed after news check</li><li class="ok"><span>✓</span> Has a model projection</li></ul>
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">79%</b></div>
+<div class="kv"><span>Projection</span><b class="num">26.3</b></div>
+<div class="kv"><span>Value alone</span><b class="num">-9.8%</b></div>
+<div class="kv"><span>Season</span><b class="num">11/11</b></div>
+<div class="kv"><span>Last 10</span><b class="num">10/10</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 9.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 11</td><td>TEN</td><td class=num>11</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 10</td><td>SF</td><td class=num>71</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 9</td><td>IND</td><td class=num>53</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 8</td><td>ARI</td><td class=num>38</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 7</td><td>PHI</td><td class=num>70</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 6</td><td>GB</td><td class=num>40</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 5</td><td>TB</td><td class=num>90</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 4</td><td>HOU</td><td class=num>37</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 3</td><td>BAL</td><td class=num>22</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 2</td><td>WAS</td><td class=num>23</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 1</td><td>NYG</td><td class=num>22</td><td class="hit">Hit</td></tr></tbody></table><p class="muted small">Newest first. Shaded rows = last 5.</p>
+
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.627958055&amp;selectionId=76868957" target="_blank" rel="noopener">Bet this line in FanDuel</a>
+</div></details></li>
+<li><details class="leg"><summary><span class="leg-main"><span class="leg-name">CeeDee Lamb</span>
+<span class="leg-sel">5+ Receptions</span><span class="leg-sub">Eagles @ Cowboys · 4:30 PM</span>
+<span class="status bad">Doesn&#x27;t pass: odds worse than -350</span></span>
+<span class="leg-right"><span class="odds">-750</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<ul class="checks"><li class="no"><span>✗</span> Odds -350 or better <span class=muted>· -750</span></li><li class="ok"><span>✓</span> Model chance 50%+ <span class=muted>· 78%</span></li><li class="ok"><span>✓</span> Not questionable</li><li class="ok"><span>✓</span> 4+ games with his team</li><li class="ok"><span>✓</span> QB situation known</li><li class="ok"><span>✓</span> Projection near FanDuel&#x27;s line</li><li class="ok"><span>✓</span> Projection in the model&#x27;s tested range</li><li class="ok"><span>✓</span> Snap trend not against it</li><li class="ok"><span>✓</span> Not removed after news check</li><li class="ok"><span>✓</span> Has a model projection</li></ul>
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">78%</b></div>
+<div class="kv"><span>Projection</span><b class="num">7.0</b></div>
+<div class="kv"><span>Value alone</span><b class="num">-12.1%</b></div>
+<div class="kv"><span>Season</span><b class="num">10/11</b></div>
+<div class="kv"><span>Last 10</span><b class="num">9/10</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 4.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 11</td><td>TEN</td><td class=num>11</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 10</td><td>SF</td><td class=num>7</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 9</td><td>IND</td><td class=num>10</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 8</td><td>ARI</td><td class=num>7</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 7</td><td>PHI</td><td class=num>5</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 6</td><td>GB</td><td class=num>9</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 5</td><td>TB</td><td class=num>2</td><td class="miss">Miss</td></tr><tr class=""><td class=num>Wk 4</td><td>HOU</td><td class=num>17</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 3</td><td>BAL</td><td class=num>7</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 2</td><td>WAS</td><td class=num>8</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 1</td><td>NYG</td><td class=num>5</td><td class="hit">Hit</td></tr></tbody></table><p class="muted small">Newest first. Shaded rows = last 5.</p>
+
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.627958062&amp;selectionId=61401590" target="_blank" rel="noopener">Bet this line in FanDuel</a>
+</div></details></li>
+<li><details class="leg"><summary><span class="leg-main"><span class="leg-name">George Pickens</span>
+<span class="leg-sel">40+ Rec Yds</span><span class="leg-sub">Eagles @ Cowboys · 4:30 PM</span>
+<span class="status bad">Doesn&#x27;t pass: odds worse than -350</span></span>
+<span class="leg-right"><span class="odds">-490</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<ul class="checks"><li class="no"><span>✗</span> Odds -350 or better <span class=muted>· -490</span></li><li class="ok"><span>✓</span> Model chance 50%+ <span class=muted>· 77%</span></li><li class="ok"><span>✓</span> Not questionable</li><li class="ok"><span>✓</span> 4+ games with his team</li><li class="ok"><span>✓</span> QB situation known</li><li class="ok"><span>✓</span> Projection near FanDuel&#x27;s line</li><li class="ok"><span>✓</span> Projection in the model&#x27;s tested range</li><li class="ok"><span>✓</span> Snap trend not against it</li><li class="ok"><span>✓</span> Not removed after news check</li><li class="ok"><span>✓</span> Has a model projection</li></ul>
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">77%</b></div>
+<div class="kv"><span>Projection</span><b class="num">69.6</b></div>
+<div class="kv"><span>Value alone</span><b class="num">-7.0%</b></div>
+<div class="kv"><span>Season</span><b class="num">9/10</b></div>
+<div class="kv"><span>Last 10</span><b class="num">9/10</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 39.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 11</td><td>TEN</td><td class=num>102</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 10</td><td>SF</td><td class=num>145</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 8</td><td>ARI</td><td class=num>48</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 7</td><td>PHI</td><td class=num>57</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 6</td><td>GB</td><td class=num>73</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 5</td><td>TB</td><td class=num>130</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 4</td><td>HOU</td><td class=num>75</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 3</td><td>BAL</td><td class=num>82</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 2</td><td>WAS</td><td class=num>40</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 1</td><td>NYG</td><td class=num>28</td><td class="miss">Miss</td></tr></tbody></table><p class="muted small">Newest first. Shaded rows = last 5.</p>
+<p class="small"><b>Other lines he cleared all 5:</b> 30+ Rec Yds (-1100), 25+ Rec Yds (-1800)</p>
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.627958056&amp;selectionId=42291234" target="_blank" rel="noopener">Bet this line in FanDuel</a>
+</div></details></li>
+<li><details class="leg"><summary><span class="leg-main"><span class="leg-name">Javonte Williams</span>
+<span class="leg-sel">50+ Rush Yds</span><span class="leg-sub">Eagles @ Cowboys · 4:30 PM</span>
+<span class="status bad">Doesn&#x27;t pass: odds worse than -350</span></span>
+<span class="leg-right"><span class="odds">-470</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<ul class="checks"><li class="no"><span>✗</span> Odds -350 or better <span class=muted>· -470</span></li><li class="ok"><span>✓</span> Model chance 50%+ <span class=muted>· 73%</span></li><li class="ok"><span>✓</span> Not questionable</li><li class="ok"><span>✓</span> 4+ games with his team</li><li class="ok"><span>✓</span> QB situation known</li><li class="ok"><span>✓</span> Projection near FanDuel&#x27;s line</li><li class="ok"><span>✓</span> Projection in the model&#x27;s tested range</li><li class="ok"><span>✓</span> Snap trend not against it</li><li class="ok"><span>✓</span> Not removed after news check</li><li class="ok"><span>✓</span> Has a model projection</li></ul>
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">73%</b></div>
+<div class="kv"><span>Projection</span><b class="num">66.3</b></div>
+<div class="kv"><span>Value alone</span><b class="num">-11.5%</b></div>
+<div class="kv"><span>Season</span><b class="num">7/11</b></div>
+<div class="kv"><span>Last 10</span><b class="num">7/10</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 49.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 11</td><td>TEN</td><td class=num>67</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 10</td><td>SF</td><td class=num>63</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 9</td><td>IND</td><td class=num>101</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 8</td><td>ARI</td><td class=num>56</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 7</td><td>PHI</td><td class=num>155</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 6</td><td>GB</td><td class=num>41</td><td class="miss">Miss</td></tr><tr class=""><td class=num>Wk 5</td><td>TB</td><td class=num>45</td><td class="miss">Miss</td></tr><tr class=""><td class=num>Wk 4</td><td>HOU</td><td class=num>62</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 3</td><td>BAL</td><td class=num>98</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 2</td><td>WAS</td><td class=num>30</td><td class="miss">Miss</td></tr><tr class=""><td class=num>Wk 1</td><td>NYG</td><td class=num>41</td><td class="miss">Miss</td></tr></tbody></table><p class="muted small">Newest first. Shaded rows = last 5.</p>
+<p class="small"><b>Other lines he cleared all 5:</b> 40+ Rush Yds (-1100)</p>
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.627957179&amp;selectionId=40905556" target="_blank" rel="noopener">Bet this line in FanDuel</a>
+</div></details></li>
+<li><details class="leg"><summary><span class="leg-main"><span class="leg-name">DeVonta Smith</span>
+<span class="leg-sel">3+ Receptions</span><span class="leg-sub">Eagles @ Cowboys · 4:30 PM</span>
+<span class="status bad">Doesn&#x27;t pass: odds worse than -350; snap trend against it</span></span>
+<span class="leg-right"><span class="odds">-1800</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<ul class="checks"><li class="no"><span>✗</span> Odds -350 or better <span class=muted>· -1800</span></li><li class="ok"><span>✓</span> Model chance 50%+ <span class=muted>· 81%</span></li><li class="ok"><span>✓</span> Not questionable</li><li class="ok"><span>✓</span> 4+ games with his team</li><li class="ok"><span>✓</span> QB situation known</li><li class="ok"><span>✓</span> Projection near FanDuel&#x27;s line</li><li class="ok"><span>✓</span> Projection in the model&#x27;s tested range</li><li class="no"><span>✗</span> Snap trend not against it <span class=muted>· snaps falling</span></li><li class="ok"><span>✓</span> Not removed after news check</li><li class="ok"><span>✓</span> Has a model projection</li></ul>
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">81%</b></div>
+<div class="kv"><span>Projection</span><b class="num">4.4</b></div>
+<div class="kv"><span>Value alone</span><b class="num">-14.7%</b></div>
+<div class="kv"><span>Season</span><b class="num">5/5</b></div>
+<div class="kv"><span>Last 10</span><b class="num">5/5</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 2.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 11</td><td>PIT</td><td class=num>5</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 6</td><td>CAR</td><td class=num>7</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 3</td><td>CHI</td><td class=num>6</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 2</td><td>TEN</td><td class=num>10</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 1</td><td>WAS</td><td class=num>3</td><td class="hit">Hit</td></tr></tbody></table><p class="muted small">Newest first. Shaded rows = last 5.</p>
+
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.627958625&amp;selectionId=61407249" target="_blank" rel="noopener">Bet this line in FanDuel</a>
+</div></details></li>
+<li><details class="leg"><summary><span class="leg-main"><span class="leg-name">Darius Cooper</span>
+<span class="leg-sel">5+ Rec Yds</span><span class="leg-sub">Eagles @ Cowboys · 4:30 PM</span>
+<span class="status bad">Doesn&#x27;t pass: odds worse than -350; projection far from FanDuel&#x27;s line</span></span>
+<span class="leg-right"><span class="odds">-1400</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<ul class="checks"><li class="no"><span>✗</span> Odds -350 or better <span class=muted>· -1400</span></li><li class="ok"><span>✓</span> Model chance 50%+ <span class=muted>· 80%</span></li><li class="ok"><span>✓</span> Not questionable</li><li class="ok"><span>✓</span> 4+ games with his team</li><li class="ok"><span>✓</span> QB situation known</li><li class="no"><span>✗</span> Projection near FanDuel&#x27;s line <span class=muted>· model 17.8 vs FanDuel&#x27;s main line 30.5</span></li><li class="ok"><span>✓</span> Projection in the model&#x27;s tested range</li><li class="ok"><span>✓</span> Snap trend not against it</li><li class="ok"><span>✓</span> Not removed after news check</li><li class="ok"><span>✓</span> Has a model projection</li></ul>
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">80%</b></div>
+<div class="kv"><span>Projection</span><b class="num">17.8</b></div>
+<div class="kv"><span>Value alone</span><b class="num">-14.4%</b></div>
+<div class="kv"><span>Season</span><b class="num">8/10</b></div>
+<div class="kv"><span>Last 10</span><b class="num">8/10</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 4.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 11</td><td>PIT</td><td class=num>59</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 9</td><td>NYG</td><td class=num>25</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 8</td><td>WAS</td><td class=num>19</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 7</td><td>DAL</td><td class=num>17</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 6</td><td>CAR</td><td class=num>9</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 5</td><td>JAX</td><td class=num>71</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 4</td><td>LA</td><td class=num>33</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 3</td><td>CHI</td><td class=num>0</td><td class="miss">Miss</td></tr><tr class=""><td class=num>Wk 2</td><td>TEN</td><td class=num>26</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 1</td><td>WAS</td><td class=num>0</td><td class="miss">Miss</td></tr></tbody></table><p class="muted small">Newest first. Shaded rows = last 5.</p>
+
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.627959254&amp;selectionId=103340690" target="_blank" rel="noopener">Bet this line in FanDuel</a>
+</div></details></li>
+<li><details class="leg"><summary><span class="leg-main"><span class="leg-name">DeVonta Smith</span>
+<span class="leg-sel">40+ Rec Yds</span><span class="leg-sub">Eagles @ Cowboys · 4:30 PM</span>
+<span class="status bad">Doesn&#x27;t pass: odds worse than -350; snap trend against it</span></span>
+<span class="leg-right"><span class="odds">-400</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<ul class="checks"><li class="no"><span>✗</span> Odds -350 or better <span class=muted>· -400</span></li><li class="ok"><span>✓</span> Model chance 50%+ <span class=muted>· 74%</span></li><li class="ok"><span>✓</span> Not questionable</li><li class="ok"><span>✓</span> 4+ games with his team</li><li class="ok"><span>✓</span> QB situation known</li><li class="ok"><span>✓</span> Projection near FanDuel&#x27;s line</li><li class="ok"><span>✓</span> Projection in the model&#x27;s tested range</li><li class="no"><span>✗</span> Snap trend not against it <span class=muted>· snaps falling</span></li><li class="ok"><span>✓</span> Not removed after news check</li><li class="ok"><span>✓</span> Has a model projection</li></ul>
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">74%</b></div>
+<div class="kv"><span>Projection</span><b class="num">62.1</b></div>
+<div class="kv"><span>Value alone</span><b class="num">-8.1%</b></div>
+<div class="kv"><span>Season</span><b class="num">5/5</b></div>
+<div class="kv"><span>Last 10</span><b class="num">5/5</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 39.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 11</td><td>PIT</td><td class=num>41</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 6</td><td>CAR</td><td class=num>75</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 3</td><td>CHI</td><td class=num>65</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 2</td><td>TEN</td><td class=num>117</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 1</td><td>WAS</td><td class=num>53</td><td class="hit">Hit</td></tr></tbody></table><p class="muted small">Newest first. Shaded rows = last 5.</p>
+<p class="small"><b>Other lines he cleared all 5:</b> 30+ Rec Yds (-800), 25+ Rec Yds (-1400)</p>
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.627958623&amp;selectionId=40905828" target="_blank" rel="noopener">Bet this line in FanDuel</a>
+</div></details></li>
+<li><details class="leg"><summary><span class="leg-main"><span class="leg-name">Brevyn Spann-Ford</span>
+<span class="leg-sel">5+ Rec Yds</span><span class="leg-sub">Eagles @ Cowboys · 4:30 PM</span>
+<span class="status bad">Doesn&#x27;t pass: odds worse than -350; too small for the model to price</span></span>
+<span class="leg-right"><span class="odds">-420</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<ul class="checks"><li class="no"><span>✗</span> Odds -350 or better <span class=muted>· -420</span></li><li class="ok"><span>✓</span> Model chance 50%+ <span class=muted>· 70%</span></li><li class="ok"><span>✓</span> Not questionable</li><li class="ok"><span>✓</span> 4+ games with his team</li><li class="ok"><span>✓</span> QB situation known</li><li class="ok"><span>✓</span> Projection near FanDuel&#x27;s line</li><li class="no"><span>✗</span> Projection in the model&#x27;s tested range <span class=muted>· too small to model</span></li><li class="ok"><span>✓</span> Snap trend not against it</li><li class="ok"><span>✓</span> Not removed after news check</li><li class="ok"><span>✓</span> Has a model projection</li></ul>
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">70%</b></div>
+<div class="kv"><span>Projection</span><b class="num">10.1</b></div>
+<div class="kv"><span>Value alone</span><b class="num">-13.6%</b></div>
+<div class="kv"><span>Season</span><b class="num">8/11</b></div>
+<div class="kv"><span>Last 10</span><b class="num">7/10</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 4.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 11</td><td>TEN</td><td class=num>5</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 10</td><td>SF</td><td class=num>26</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 9</td><td>IND</td><td class=num>20</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 8</td><td>ARI</td><td class=num>31</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 7</td><td>PHI</td><td class=num>11</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 6</td><td>GB</td><td class=num>35</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 5</td><td>TB</td><td class=num>0</td><td class="miss">Miss</td></tr><tr class=""><td class=num>Wk 4</td><td>HOU</td><td class=num>0</td><td class="miss">Miss</td></tr><tr class=""><td class=num>Wk 3</td><td>BAL</td><td class=num>19</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 2</td><td>WAS</td><td class=num>0</td><td class="miss">Miss</td></tr><tr class=""><td class=num>Wk 1</td><td>NYG</td><td class=num>14</td><td class="hit">Hit</td></tr></tbody></table><p class="muted small">Newest first. Shaded rows = last 5.</p>
+
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.628136392&amp;selectionId=103677919" target="_blank" rel="noopener">Bet this line in FanDuel</a>
+</div></details></li>
+<li><details class="leg"><summary><span class="leg-main"><span class="leg-name">Dallas Goedert</span>
+<span class="leg-sel">30+ Rec Yds</span><span class="leg-sub">Eagles @ Cowboys · 4:30 PM</span>
+<span class="status bad">Doesn&#x27;t pass: model chance under 50%; projection far from FanDuel&#x27;s line</span></span>
+<span class="leg-right"><span class="odds">-125</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<ul class="checks"><li class="ok"><span>✓</span> Odds -350 or better <span class=muted>· -125</span></li><li class="no"><span>✗</span> Model chance 50%+ <span class=muted>· 44%</span></li><li class="ok"><span>✓</span> Not questionable</li><li class="ok"><span>✓</span> 4+ games with his team</li><li class="ok"><span>✓</span> QB situation known</li><li class="no"><span>✗</span> Projection near FanDuel&#x27;s line <span class=muted>· model 19.4 vs FanDuel&#x27;s main line 30.5</span></li><li class="ok"><span>✓</span> Projection in the model&#x27;s tested range</li><li class="ok"><span>✓</span> Snap trend not against it</li><li class="ok"><span>✓</span> Not removed after news check</li><li class="ok"><span>✓</span> Has a model projection</li></ul>
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">44%</b></div>
+<div class="kv"><span>Projection</span><b class="num">19.4</b></div>
+<div class="kv"><span>Value alone</span><b class="num">-21.4%</b></div>
+<div class="kv"><span>Season</span><b class="num">7/8</b></div>
+<div class="kv"><span>Last 10</span><b class="num">7/8</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 29.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 11</td><td>PIT</td><td class=num>38</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 9</td><td>NYG</td><td class=num>50</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 8</td><td>WAS</td><td class=num>30</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 7</td><td>DAL</td><td class=num>48</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 6</td><td>CAR</td><td class=num>61</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 5</td><td>JAX</td><td class=num>38</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 2</td><td>TEN</td><td class=num>4</td><td class="miss">Miss</td></tr><tr class=""><td class=num>Wk 1</td><td>WAS</td><td class=num>77</td><td class="hit">Hit</td></tr></tbody></table><p class="muted small">Newest first. Shaded rows = last 5.</p>
+<p class="small"><b>Other lines he cleared all 5:</b> 25+ Rec Yds (-182), 20+ Rec Yds (-280), 15+ Rec Yds (-470), 10+ Rec Yds (-1000)</p>
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.627959253&amp;selectionId=73222177" target="_blank" rel="noopener">Bet this line in FanDuel</a>
+</div></details></li>
+<li><details class="leg"><summary><span class="leg-main"><span class="leg-name">Brevyn Spann-Ford</span>
+<span class="leg-sel">1+ Receptions</span><span class="leg-sub">Eagles @ Cowboys · 4:30 PM</span>
+<span class="status bad">Doesn&#x27;t pass: odds worse than -350; projection far from FanDuel&#x27;s line; too small for the model to price</span></span>
+<span class="leg-right"><span class="odds">-850</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<ul class="checks"><li class="no"><span>✗</span> Odds -350 or better <span class=muted>· -850</span></li><li class="ok"><span>✓</span> Model chance 50%+ <span class=muted>· 78%</span></li><li class="ok"><span>✓</span> Not questionable</li><li class="ok"><span>✓</span> 4+ games with his team</li><li class="ok"><span>✓</span> QB situation known</li><li class="no"><span>✗</span> Projection near FanDuel&#x27;s line <span class=muted>· model 0.9 vs FanDuel&#x27;s main line 1.5</span></li><li class="no"><span>✗</span> Projection in the model&#x27;s tested range <span class=muted>· too small to model</span></li><li class="ok"><span>✓</span> Snap trend not against it</li><li class="ok"><span>✓</span> Not removed after news check</li><li class="ok"><span>✓</span> Has a model projection</li></ul>
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">78%</b></div>
+<div class="kv"><span>Projection</span><b class="num">0.9</b></div>
+<div class="kv"><span>Value alone</span><b class="num">-12.4%</b></div>
+<div class="kv"><span>Season</span><b class="num">8/11</b></div>
+<div class="kv"><span>Last 10</span><b class="num">7/10</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 0.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 11</td><td>TEN</td><td class=num>2</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 10</td><td>SF</td><td class=num>1</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 9</td><td>IND</td><td class=num>2</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 8</td><td>ARI</td><td class=num>4</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 7</td><td>PHI</td><td class=num>2</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 6</td><td>GB</td><td class=num>4</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 5</td><td>TB</td><td class=num>0</td><td class="miss">Miss</td></tr><tr class=""><td class=num>Wk 4</td><td>HOU</td><td class=num>0</td><td class="miss">Miss</td></tr><tr class=""><td class=num>Wk 3</td><td>BAL</td><td class=num>1</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 2</td><td>WAS</td><td class=num>0</td><td class="miss">Miss</td></tr><tr class=""><td class=num>Wk 1</td><td>NYG</td><td class=num>2</td><td class="hit">Hit</td></tr></tbody></table><p class="muted small">Newest first. Shaded rows = last 5.</p>
+
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.628136394&amp;selectionId=77129606" target="_blank" rel="noopener">Bet this line in FanDuel</a>
+</div></details></li>
+<li><details class="leg"><summary><span class="leg-main"><span class="leg-name">Luke Schoonmaker</span>
+<span class="leg-sel">Over 0.5 Receptions</span><span class="leg-sub">Eagles @ Cowboys · 4:30 PM</span>
+<span class="status bad">Doesn&#x27;t pass: model chance under 50%; projection far from FanDuel&#x27;s line; too small for the model to price</span></span>
+<span class="leg-right"><span class="odds">-162</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<ul class="checks"><li class="ok"><span>✓</span> Odds -350 or better <span class=muted>· -162</span></li><li class="no"><span>✗</span> Model chance 50%+ <span class=muted>· 44%</span></li><li class="ok"><span>✓</span> Not questionable</li><li class="ok"><span>✓</span> 4+ games with his team</li><li class="ok"><span>✓</span> QB situation known</li><li class="no"><span>✗</span> Projection near FanDuel&#x27;s line <span class=muted>· model 0.0 vs FanDuel&#x27;s main line 0.5</span></li><li class="no"><span>✗</span> Projection in the model&#x27;s tested range <span class=muted>· too small to model</span></li><li class="ok"><span>✓</span> Snap trend not against it</li><li class="ok"><span>✓</span> Not removed after news check</li><li class="ok"><span>✓</span> Has a model projection</li></ul>
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">44%</b></div>
+<div class="kv"><span>Projection</span><b class="num">0.0</b></div>
+<div class="kv"><span>Value alone</span><b class="num">-29.3%</b></div>
+<div class="kv"><span>Season</span><b class="num">5/5</b></div>
+<div class="kv"><span>Last 10</span><b class="num">5/5</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 0.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 11</td><td>TEN</td><td class=num>1</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 10</td><td>SF</td><td class=num>1</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 5</td><td>TB</td><td class=num>1</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 3</td><td>BAL</td><td class=num>1</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 1</td><td>NYG</td><td class=num>1</td><td class="hit">Hit</td></tr></tbody></table><p class="muted small">Newest first. Shaded rows = last 5.</p>
+
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.628653206&amp;selectionId=41433614" target="_blank" rel="noopener">Bet this line in FanDuel</a>
+</div></details></li>
+<li><details class="leg"><summary><span class="leg-main"><span class="leg-name">Luke Schoonmaker</span>
+<span class="leg-sel">Over 2.5 Rec Yds</span><span class="leg-sub">Eagles @ Cowboys · 4:30 PM</span>
+<span class="status bad">Doesn&#x27;t pass: model chance under 50%; projection far from FanDuel&#x27;s line; too small for the model to price</span></span>
+<span class="leg-right"><span class="odds">-113</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<ul class="checks"><li class="ok"><span>✓</span> Odds -350 or better <span class=muted>· -113</span></li><li class="no"><span>✗</span> Model chance 50%+ <span class=muted>· 38%</span></li><li class="ok"><span>✓</span> Not questionable</li><li class="ok"><span>✓</span> 4+ games with his team</li><li class="ok"><span>✓</span> QB situation known</li><li class="no"><span>✗</span> Projection near FanDuel&#x27;s line <span class=muted>· model 0.0 vs FanDuel&#x27;s main line 2.5</span></li><li class="no"><span>✗</span> Projection in the model&#x27;s tested range <span class=muted>· too small to model</span></li><li class="ok"><span>✓</span> Snap trend not against it</li><li class="ok"><span>✓</span> Not removed after news check</li><li class="ok"><span>✓</span> Has a model projection</li></ul>
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">38%</b></div>
+<div class="kv"><span>Projection</span><b class="num">0.0</b></div>
+<div class="kv"><span>Value alone</span><b class="num">-28.2%</b></div>
+<div class="kv"><span>Season</span><b class="num">5/5</b></div>
+<div class="kv"><span>Last 10</span><b class="num">5/5</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 2.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 11</td><td>TEN</td><td class=num>6</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 10</td><td>SF</td><td class=num>12</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 5</td><td>TB</td><td class=num>9</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 3</td><td>BAL</td><td class=num>9</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 1</td><td>NYG</td><td class=num>12</td><td class="hit">Hit</td></tr></tbody></table><p class="muted small">Newest first. Shaded rows = last 5.</p>
+
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.628653202&amp;selectionId=41433614" target="_blank" rel="noopener">Bet this line in FanDuel</a>
+</div></details></li></ul><h3 class="game-h">Chiefs @ Bills · 8:20 PM</h3><ul class="legs card"><li><details class="leg"><summary><span class="leg-main"><span class="leg-name">James Cook</span>
+<span class="leg-sel">80+ Rush Yds</span><span class="leg-sub">Chiefs @ Bills · 8:20 PM</span>
+<span class="status good">Parlay C1</span></span>
+<span class="leg-right"><span class="odds">-132</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<ul class="checks"><li class="ok"><span>✓</span> Odds -350 or better <span class=muted>· -132</span></li><li class="ok"><span>✓</span> Model chance 50%+ <span class=muted>· 54%</span></li><li class="ok"><span>✓</span> Not questionable</li><li class="ok"><span>✓</span> 4+ games with his team</li><li class="ok"><span>✓</span> QB situation known</li><li class="ok"><span>✓</span> Projection near FanDuel&#x27;s line</li><li class="ok"><span>✓</span> Projection in the model&#x27;s tested range</li><li class="ok"><span>✓</span> Snap trend not against it</li><li class="ok"><span>✓</span> Not removed after news check</li><li class="ok"><span>✓</span> Has a model projection</li></ul>
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">54%</b></div>
+<div class="kv"><span>Projection</span><b class="num">84.9</b></div>
+<div class="kv"><span>Value alone</span><b class="num">-4.6%</b></div>
+<div class="kv"><span>Season</span><b class="num">8/10</b></div>
+<div class="kv"><span>Last 10</span><b class="num">8/10</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 79.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 11</td><td>MIA</td><td class=num>89</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 10</td><td>NYJ</td><td class=num>157</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 9</td><td>MIN</td><td class=num>107</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 8</td><td>BAL</td><td class=num>80</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 6</td><td>LV</td><td class=num>95</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 5</td><td>LA</td><td class=num>111</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 4</td><td>NE</td><td class=num>75</td><td class="miss">Miss</td></tr><tr class=""><td class=num>Wk 3</td><td>LAC</td><td class=num>154</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 2</td><td>DET</td><td class=num>135</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 1</td><td>HOU</td><td class=num>57</td><td class="miss">Miss</td></tr></tbody></table><p class="muted small">Newest first. Shaded rows = last 5.</p>
+<p class="small"><b>Other lines he cleared all 5:</b> 70+ Rush Yds (-215), 60+ Rush Yds (-360), 50+ Rush Yds (-700)</p>
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.627951134&amp;selectionId=42291327" target="_blank" rel="noopener">Bet this line in FanDuel</a>
+</div></details></li>
+<li><details class="leg"><summary><span class="leg-main"><span class="leg-name">Josh Allen</span>
+<span class="leg-sel">175+ Pass Yds</span><span class="leg-sub">Chiefs @ Bills · 8:20 PM</span>
+<span class="status bad">Doesn&#x27;t pass: removed after news check</span></span>
+<span class="leg-right"><span class="odds">-340</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<ul class="checks"><li class="ok"><span>✓</span> Odds -350 or better <span class=muted>· -340</span></li><li class="ok"><span>✓</span> Model chance 50%+ <span class=muted>· 77%</span></li><li class="ok"><span>✓</span> Not questionable</li><li class="ok"><span>✓</span> 4+ games with his team</li><li class="ok"><span>✓</span> QB situation known</li><li class="ok"><span>✓</span> Projection near FanDuel&#x27;s line</li><li class="ok"><span>✓</span> Projection in the model&#x27;s tested range</li><li class="ok"><span>✓</span> Snap trend not against it</li><li class="no"><span>✗</span> Not removed after news check <span class=muted>· removed (see context)</span></li><li class="ok"><span>✓</span> Has a model projection</li></ul>
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">77%</b></div>
+<div class="kv"><span>Projection</span><b class="num">239.8</b></div>
+<div class="kv"><span>Value alone</span><b class="num">+0.1%</b></div>
+<div class="kv"><span>Season</span><b class="num">10/10</b></div>
+<div class="kv"><span>Last 10</span><b class="num">10/10</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 174.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 11</td><td>MIA</td><td class=num>304</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 10</td><td>NYJ</td><td class=num>196</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 9</td><td>MIN</td><td class=num>234</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 8</td><td>BAL</td><td class=num>289</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 6</td><td>LV</td><td class=num>255</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 5</td><td>LA</td><td class=num>210</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 4</td><td>NE</td><td class=num>253</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 3</td><td>LAC</td><td class=num>204</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 2</td><td>DET</td><td class=num>248</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 1</td><td>HOU</td><td class=num>334</td><td class="hit">Hit</td></tr></tbody></table><p class="muted small">Newest first. Shaded rows = last 5.</p>
+<p class="small"><b>Other lines he cleared all 5:</b> 150+ Pass Yds (-750)</p>
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.627950257&amp;selectionId=64189256" target="_blank" rel="noopener">Bet this line in FanDuel</a>
+</div></details></li>
+<li><details class="leg"><summary><span class="leg-main"><span class="leg-name">Josh Allen</span>
+<span class="leg-sel">Under 38.5 Rush Yds</span><span class="leg-sub">Chiefs @ Bills · 8:20 PM</span>
+<span class="status bad">Doesn&#x27;t pass: projection far from FanDuel&#x27;s line</span></span>
+<span class="leg-right"><span class="odds">-114</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<ul class="checks"><li class="ok"><span>✓</span> Odds -350 or better <span class=muted>· -114</span></li><li class="ok"><span>✓</span> Model chance 50%+ <span class=muted>· 66%</span></li><li class="ok"><span>✓</span> Not questionable</li><li class="ok"><span>✓</span> 4+ games with his team</li><li class="ok"><span>✓</span> QB situation known</li><li class="no"><span>✗</span> Projection near FanDuel&#x27;s line <span class=muted>· model 16.4 vs FanDuel&#x27;s main line 38.5</span></li><li class="ok"><span>✓</span> Projection in the model&#x27;s tested range</li><li class="ok"><span>✓</span> Snap trend not against it</li><li class="ok"><span>✓</span> Not removed after news check</li><li class="ok"><span>✓</span> Has a model projection</li></ul>
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">66%</b></div>
+<div class="kv"><span>Projection</span><b class="num">16.4</b></div>
+<div class="kv"><span>Value alone</span><b class="num">+24.4%</b></div>
+<div class="kv"><span>Season</span><b class="num">8/10</b></div>
+<div class="kv"><span>Last 10</span><b class="num">8/10</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 38.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 11</td><td>MIA</td><td class=num>0</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 10</td><td>NYJ</td><td class=num>5</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 9</td><td>MIN</td><td class=num>15</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 8</td><td>BAL</td><td class=num>30</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 6</td><td>LV</td><td class=num>1</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 5</td><td>LA</td><td class=num>121</td><td class="miss">Miss</td></tr><tr class=""><td class=num>Wk 4</td><td>NE</td><td class=num>4</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 3</td><td>LAC</td><td class=num>22</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 2</td><td>DET</td><td class=num>69</td><td class="miss">Miss</td></tr><tr class=""><td class=num>Wk 1</td><td>HOU</td><td class=num>23</td><td class="hit">Hit</td></tr></tbody></table><p class="muted small">Newest first. Shaded rows = last 5.</p>
+
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.627951130&amp;selectionId=16503661" target="_blank" rel="noopener">Bet this line in FanDuel</a>
+</div></details></li>
+<li><details class="leg"><summary><span class="leg-main"><span class="leg-name">Khalil Shakir</span>
+<span class="leg-sel">25+ Rec Yds</span><span class="leg-sub">Chiefs @ Bills · 8:20 PM</span>
+<span class="status bad">Doesn&#x27;t pass: removed after news check</span></span>
+<span class="leg-right"><span class="odds">-300</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<ul class="checks"><li class="ok"><span>✓</span> Odds -350 or better <span class=muted>· -300</span></li><li class="ok"><span>✓</span> Model chance 50%+ <span class=muted>· 65%</span></li><li class="ok"><span>✓</span> Not questionable</li><li class="ok"><span>✓</span> 4+ games with his team</li><li class="ok"><span>✓</span> QB situation known</li><li class="ok"><span>✓</span> Projection near FanDuel&#x27;s line</li><li class="ok"><span>✓</span> Projection in the model&#x27;s tested range</li><li class="ok"><span>✓</span> Snap trend not against it</li><li class="no"><span>✗</span> Not removed after news check <span class=muted>· removed (see context)</span></li><li class="ok"><span>✓</span> Has a model projection</li></ul>
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">65%</b></div>
+<div class="kv"><span>Projection</span><b class="num">31.1</b></div>
+<div class="kv"><span>Value alone</span><b class="num">-13.6%</b></div>
+<div class="kv"><span>Season</span><b class="num">9/10</b></div>
+<div class="kv"><span>Last 10</span><b class="num">9/10</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 24.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 11</td><td>MIA</td><td class=num>101</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 10</td><td>NYJ</td><td class=num>26</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 9</td><td>MIN</td><td class=num>58</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 8</td><td>BAL</td><td class=num>64</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 6</td><td>LV</td><td class=num>34</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 5</td><td>LA</td><td class=num>80</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 4</td><td>NE</td><td class=num>82</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 3</td><td>LAC</td><td class=num>6</td><td class="miss">Miss</td></tr><tr class=""><td class=num>Wk 2</td><td>DET</td><td class=num>38</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 1</td><td>HOU</td><td class=num>50</td><td class="hit">Hit</td></tr></tbody></table><p class="muted small">Newest first. Shaded rows = last 5.</p>
+<p class="small"><b>Other lines he cleared all 5:</b> 20+ Rec Yds (-450), 15+ Rec Yds (-750), 10+ Rec Yds (-1450)</p>
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.627951506&amp;selectionId=51729172" target="_blank" rel="noopener">Bet this line in FanDuel</a>
+</div></details></li>
+<li><details class="leg"><summary><span class="leg-main"><span class="leg-name">Patrick Mahomes</span>
+<span class="leg-sel">150+ Pass Yds</span><span class="leg-sub">Chiefs @ Bills · 8:20 PM</span>
+<span class="status bad">Doesn&#x27;t pass: odds worse than -350; removed after news check</span></span>
+<span class="leg-right"><span class="odds">-1450</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<ul class="checks"><li class="no"><span>✗</span> Odds -350 or better <span class=muted>· -1450</span></li><li class="ok"><span>✓</span> Model chance 50%+ <span class=muted>· 91%</span></li><li class="ok"><span>✓</span> Not questionable</li><li class="ok"><span>✓</span> 4+ games with his team</li><li class="ok"><span>✓</span> QB situation known</li><li class="ok"><span>✓</span> Projection near FanDuel&#x27;s line</li><li class="ok"><span>✓</span> Projection in the model&#x27;s tested range</li><li class="ok"><span>✓</span> Snap trend not against it</li><li class="no"><span>✗</span> Not removed after news check <span class=muted>· removed (see context)</span></li><li class="ok"><span>✓</span> Has a model projection</li></ul>
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">91%</b></div>
+<div class="kv"><span>Projection</span><b class="num">252.1</b></div>
+<div class="kv"><span>Value alone</span><b class="num">-2.9%</b></div>
+<div class="kv"><span>Season</span><b class="num">10/10</b></div>
+<div class="kv"><span>Last 10</span><b class="num">10/10</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 149.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 11</td><td>ARI</td><td class=num>324</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 10</td><td>ATL</td><td class=num>348</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 9</td><td>NYJ</td><td class=num>242</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 8</td><td>DEN</td><td class=num>321</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 7</td><td>SEA</td><td class=num>165</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 6</td><td>LAC</td><td class=num>272</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 4</td><td>LV</td><td class=num>225</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 3</td><td>MIA</td><td class=num>246</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 2</td><td>IND</td><td class=num>382</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 1</td><td>DEN</td><td class=num>184</td><td class="hit">Hit</td></tr></tbody></table><p class="muted small">Newest first. Shaded rows = last 5.</p>
+
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.627950258&amp;selectionId=38245806" target="_blank" rel="noopener">Bet this line in FanDuel</a>
+</div></details></li>
+<li><details class="leg"><summary><span class="leg-main"><span class="leg-name">Ty Johnson</span>
+<span class="leg-sel">1+ Receptions</span><span class="leg-sub">Chiefs @ Bills · 8:20 PM</span>
+<span class="status bad">Doesn&#x27;t pass: odds worse than -350; removed after news check</span></span>
+<span class="leg-right"><span class="odds">-1400</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<ul class="checks"><li class="no"><span>✗</span> Odds -350 or better <span class=muted>· -1400</span></li><li class="ok"><span>✓</span> Model chance 50%+ <span class=muted>· 86%</span></li><li class="ok"><span>✓</span> Not questionable</li><li class="ok"><span>✓</span> 4+ games with his team</li><li class="ok"><span>✓</span> QB situation known</li><li class="ok"><span>✓</span> Projection near FanDuel&#x27;s line</li><li class="ok"><span>✓</span> Projection in the model&#x27;s tested range</li><li class="ok"><span>✓</span> Snap trend not against it</li><li class="no"><span>✗</span> Not removed after news check <span class=muted>· removed (see context)</span></li><li class="ok"><span>✓</span> Has a model projection</li></ul>
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">86%</b></div>
+<div class="kv"><span>Projection</span><b class="num">1.8</b></div>
+<div class="kv"><span>Value alone</span><b class="num">-7.4%</b></div>
+<div class="kv"><span>Season</span><b class="num">8/8</b></div>
+<div class="kv"><span>Last 10</span><b class="num">8/8</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 0.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 11</td><td>MIA</td><td class=num>7</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 10</td><td>NYJ</td><td class=num>1</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 9</td><td>MIN</td><td class=num>2</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 8</td><td>BAL</td><td class=num>3</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 6</td><td>LV</td><td class=num>2</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 5</td><td>LA</td><td class=num>4</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 4</td><td>NE</td><td class=num>2</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 3</td><td>LAC</td><td class=num>4</td><td class="hit">Hit</td></tr></tbody></table><p class="muted small">Newest first. Shaded rows = last 5.</p>
+
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.627951518&amp;selectionId=75046562" target="_blank" rel="noopener">Bet this line in FanDuel</a>
+</div></details></li>
+<li><details class="leg"><summary><span class="leg-main"><span class="leg-name">Keon Coleman</span>
+<span class="leg-sel">1+ Receptions</span><span class="leg-sub">Chiefs @ Bills · 8:20 PM</span>
+<span class="status bad">Doesn&#x27;t pass: odds worse than -350; removed after news check</span></span>
+<span class="leg-right"><span class="odds">-1000</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<ul class="checks"><li class="no"><span>✗</span> Odds -350 or better <span class=muted>· -1000</span></li><li class="ok"><span>✓</span> Model chance 50%+ <span class=muted>· 85%</span></li><li class="ok"><span>✓</span> Not questionable</li><li class="ok"><span>✓</span> 4+ games with his team</li><li class="ok"><span>✓</span> QB situation known</li><li class="ok"><span>✓</span> Projection near FanDuel&#x27;s line</li><li class="ok"><span>✓</span> Projection in the model&#x27;s tested range</li><li class="ok"><span>✓</span> Snap trend not against it</li><li class="no"><span>✗</span> Not removed after news check <span class=muted>· removed (see context)</span></li><li class="ok"><span>✓</span> Has a model projection</li></ul>
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">85%</b></div>
+<div class="kv"><span>Projection</span><b class="num">1.8</b></div>
+<div class="kv"><span>Value alone</span><b class="num">-6.8%</b></div>
+<div class="kv"><span>Season</span><b class="num">10/10</b></div>
+<div class="kv"><span>Last 10</span><b class="num">10/10</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 0.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 11</td><td>MIA</td><td class=num>2</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 10</td><td>NYJ</td><td class=num>1</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 9</td><td>MIN</td><td class=num>3</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 8</td><td>BAL</td><td class=num>1</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 6</td><td>LV</td><td class=num>4</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 5</td><td>LA</td><td class=num>1</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 4</td><td>NE</td><td class=num>6</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 3</td><td>LAC</td><td class=num>1</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 2</td><td>DET</td><td class=num>6</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 1</td><td>HOU</td><td class=num>1</td><td class="hit">Hit</td></tr></tbody></table><p class="muted small">Newest first. Shaded rows = last 5.</p>
+
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.627951519&amp;selectionId=73473930" target="_blank" rel="noopener">Bet this line in FanDuel</a>
+</div></details></li>
+<li><details class="leg"><summary><span class="leg-main"><span class="leg-name">Khalil Shakir</span>
+<span class="leg-sel">2+ Receptions</span><span class="leg-sub">Chiefs @ Bills · 8:20 PM</span>
+<span class="status bad">Doesn&#x27;t pass: odds worse than -350; removed after news check</span></span>
+<span class="leg-right"><span class="odds">-1000</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<ul class="checks"><li class="no"><span>✗</span> Odds -350 or better <span class=muted>· -1000</span></li><li class="ok"><span>✓</span> Model chance 50%+ <span class=muted>· 82%</span></li><li class="ok"><span>✓</span> Not questionable</li><li class="ok"><span>✓</span> 4+ games with his team</li><li class="ok"><span>✓</span> QB situation known</li><li class="ok"><span>✓</span> Projection near FanDuel&#x27;s line</li><li class="ok"><span>✓</span> Projection in the model&#x27;s tested range</li><li class="ok"><span>✓</span> Snap trend not against it</li><li class="no"><span>✗</span> Not removed after news check <span class=muted>· removed (see context)</span></li><li class="ok"><span>✓</span> Has a model projection</li></ul>
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">82%</b></div>
+<div class="kv"><span>Projection</span><b class="num">2.6</b></div>
+<div class="kv"><span>Value alone</span><b class="num">-9.3%</b></div>
+<div class="kv"><span>Season</span><b class="num">9/10</b></div>
+<div class="kv"><span>Last 10</span><b class="num">9/10</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 1.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 11</td><td>MIA</td><td class=num>5</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 10</td><td>NYJ</td><td class=num>2</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 9</td><td>MIN</td><td class=num>4</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 8</td><td>BAL</td><td class=num>5</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 6</td><td>LV</td><td class=num>4</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 5</td><td>LA</td><td class=num>3</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 4</td><td>NE</td><td class=num>7</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 3</td><td>LAC</td><td class=num>1</td><td class="miss">Miss</td></tr><tr class=""><td class=num>Wk 2</td><td>DET</td><td class=num>3</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 1</td><td>HOU</td><td class=num>4</td><td class="hit">Hit</td></tr></tbody></table><p class="muted small">Newest first. Shaded rows = last 5.</p>
+
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.627951516&amp;selectionId=62442306" target="_blank" rel="noopener">Bet this line in FanDuel</a>
+</div></details></li>
+<li><details class="leg"><summary><span class="leg-main"><span class="leg-name">Travis Kelce</span>
+<span class="leg-sel">30+ Rec Yds</span><span class="leg-sub">Chiefs @ Bills · 8:20 PM</span>
+<span class="status bad">Doesn&#x27;t pass: snap trend against it; removed after news check</span></span>
+<span class="leg-right"><span class="odds">-320</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<ul class="checks"><li class="ok"><span>✓</span> Odds -350 or better <span class=muted>· -320</span></li><li class="ok"><span>✓</span> Model chance 50%+ <span class=muted>· 67%</span></li><li class="ok"><span>✓</span> Not questionable</li><li class="ok"><span>✓</span> 4+ games with his team</li><li class="ok"><span>✓</span> QB situation known</li><li class="ok"><span>✓</span> Projection near FanDuel&#x27;s line</li><li class="ok"><span>✓</span> Projection in the model&#x27;s tested range</li><li class="no"><span>✗</span> Snap trend not against it <span class=muted>· snaps falling</span></li><li class="no"><span>✗</span> Not removed after news check <span class=muted>· removed (see context)</span></li><li class="ok"><span>✓</span> Has a model projection</li></ul>
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">67%</b></div>
+<div class="kv"><span>Projection</span><b class="num">39.1</b></div>
+<div class="kv"><span>Value alone</span><b class="num">-12.3%</b></div>
+<div class="kv"><span>Season</span><b class="num">9/10</b></div>
+<div class="kv"><span>Last 10</span><b class="num">9/10</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 29.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 11</td><td>ARI</td><td class=num>74</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 10</td><td>ATL</td><td class=num>30</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 9</td><td>NYJ</td><td class=num>72</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 8</td><td>DEN</td><td class=num>67</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 7</td><td>SEA</td><td class=num>44</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 6</td><td>LAC</td><td class=num>53</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 4</td><td>LV</td><td class=num>15</td><td class="miss">Miss</td></tr><tr class=""><td class=num>Wk 3</td><td>MIA</td><td class=num>59</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 2</td><td>IND</td><td class=num>101</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 1</td><td>DEN</td><td class=num>71</td><td class="hit">Hit</td></tr></tbody></table><p class="muted small">Newest first. Shaded rows = last 5.</p>
+<p class="small"><b>Other lines he cleared all 5:</b> 25+ Rec Yds (-470), 20+ Rec Yds (-750), 15+ Rec Yds (-1450)</p>
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.627952150&amp;selectionId=73458226" target="_blank" rel="noopener">Bet this line in FanDuel</a>
+</div></details></li>
+<li><details class="leg"><summary><span class="leg-main"><span class="leg-name">Josh Downs</span>
+<span class="leg-sel">2+ Receptions</span><span class="leg-sub">Chiefs @ Bills · 8:20 PM</span>
+<span class="status bad">Doesn&#x27;t pass: odds worse than -350; fewer than 4 games with his team; removed after news check</span></span>
+<span class="leg-right"><span class="odds">-700</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<ul class="checks"><li class="no"><span>✗</span> Odds -350 or better <span class=muted>· -700</span></li><li class="ok"><span>✓</span> Model chance 50%+ <span class=muted>· 79%</span></li><li class="ok"><span>✓</span> Not questionable</li><li class="no"><span>✗</span> 4+ games with his team <span class=muted>· fewer than 4</span></li><li class="ok"><span>✓</span> QB situation known</li><li class="ok"><span>✓</span> Projection near FanDuel&#x27;s line</li><li class="ok"><span>✓</span> Projection in the model&#x27;s tested range</li><li class="ok"><span>✓</span> Snap trend not against it</li><li class="no"><span>✗</span> Not removed after news check <span class=muted>· removed (see context)</span></li><li class="ok"><span>✓</span> Has a model projection</li></ul>
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">79%</b></div>
+<div class="kv"><span>Projection</span><b class="num">2.6</b></div>
+<div class="kv"><span>Value alone</span><b class="num">-9.6%</b></div>
+<div class="kv"><span>Season</span><b class="num">11/11</b></div>
+<div class="kv"><span>Last 10</span><b class="num">10/10</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 1.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 11</td><td>ARI</td><td class=num>4</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 10</td><td>ATL</td><td class=num>4</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 9</td><td>DAL</td><td class=num>3</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 8</td><td>JAX</td><td class=num>4</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 7</td><td>MIN</td><td class=num>2</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 6</td><td>TEN</td><td class=num>4</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 5</td><td>PIT</td><td class=num>3</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 4</td><td>WAS</td><td class=num>3</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 3</td><td>HOU</td><td class=num>5</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 2</td><td>KC</td><td class=num>7</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 1</td><td>BAL</td><td class=num>2</td><td class="hit">Hit</td></tr></tbody></table><p class="muted small">Newest first. Shaded rows = last 5.</p>
+
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.627952418&amp;selectionId=61448170" target="_blank" rel="noopener">Bet this line in FanDuel</a>
+</div></details></li>
+<li><details class="leg"><summary><span class="leg-main"><span class="leg-name">Noah Gray</span>
+<span class="leg-sel">1+ Receptions</span><span class="leg-sub">Chiefs @ Bills · 8:20 PM</span>
+<span class="status bad">Doesn&#x27;t pass: odds worse than -350; listed questionable; removed after news check</span></span>
+<span class="leg-right"><span class="odds">-500</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<ul class="checks"><li class="no"><span>✗</span> Odds -350 or better <span class=muted>· -500</span></li><li class="ok"><span>✓</span> Model chance 50%+ <span class=muted>· 79%</span></li><li class="no"><span>✗</span> Not questionable <span class=muted>· listed questionable</span></li><li class="ok"><span>✓</span> 4+ games with his team</li><li class="ok"><span>✓</span> QB situation known</li><li class="ok"><span>✓</span> Projection near FanDuel&#x27;s line</li><li class="ok"><span>✓</span> Projection in the model&#x27;s tested range</li><li class="ok"><span>✓</span> Snap trend not against it</li><li class="no"><span>✗</span> Not removed after news check <span class=muted>· removed (see context)</span></li><li class="ok"><span>✓</span> Has a model projection</li></ul>
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">79%</b></div>
+<div class="kv"><span>Projection</span><b class="num">1.8</b></div>
+<div class="kv"><span>Value alone</span><b class="num">-5.6%</b></div>
+<div class="kv"><span>Season</span><b class="num">9/10</b></div>
+<div class="kv"><span>Last 10</span><b class="num">9/10</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 0.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 11</td><td>ARI</td><td class=num>3</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 10</td><td>ATL</td><td class=num>1</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 9</td><td>NYJ</td><td class=num>1</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 8</td><td>DEN</td><td class=num>2</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 7</td><td>SEA</td><td class=num>3</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 6</td><td>LAC</td><td class=num>3</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 4</td><td>LV</td><td class=num>2</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 3</td><td>MIA</td><td class=num>3</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 2</td><td>IND</td><td class=num>0</td><td class="miss">Miss</td></tr><tr class=""><td class=num>Wk 1</td><td>DEN</td><td class=num>1</td><td class="hit">Hit</td></tr></tbody></table><p class="muted small">Newest first. Shaded rows = last 5.</p>
+
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.628651105&amp;selectionId=62396132" target="_blank" rel="noopener">Bet this line in FanDuel</a>
+</div></details></li>
+<li><details class="leg"><summary><span class="leg-main"><span class="leg-name">Josh Downs</span>
+<span class="leg-sel">15+ Rec Yds</span><span class="leg-sub">Chiefs @ Bills · 8:20 PM</span>
+<span class="status bad">Doesn&#x27;t pass: odds worse than -350; fewer than 4 games with his team; removed after news check</span></span>
+<span class="leg-right"><span class="odds">-600</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<ul class="checks"><li class="no"><span>✗</span> Odds -350 or better <span class=muted>· -600</span></li><li class="ok"><span>✓</span> Model chance 50%+ <span class=muted>· 75%</span></li><li class="ok"><span>✓</span> Not questionable</li><li class="no"><span>✗</span> 4+ games with his team <span class=muted>· fewer than 4</span></li><li class="ok"><span>✓</span> QB situation known</li><li class="ok"><span>✓</span> Projection near FanDuel&#x27;s line</li><li class="ok"><span>✓</span> Projection in the model&#x27;s tested range</li><li class="ok"><span>✓</span> Snap trend not against it</li><li class="no"><span>✗</span> Not removed after news check <span class=muted>· removed (see context)</span></li><li class="ok"><span>✓</span> Has a model projection</li></ul>
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">75%</b></div>
+<div class="kv"><span>Projection</span><b class="num">26.2</b></div>
+<div class="kv"><span>Value alone</span><b class="num">-12.6%</b></div>
+<div class="kv"><span>Season</span><b class="num">11/11</b></div>
+<div class="kv"><span>Last 10</span><b class="num">10/10</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 14.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 11</td><td>ARI</td><td class=num>59</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 10</td><td>ATL</td><td class=num>53</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 9</td><td>DAL</td><td class=num>24</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 8</td><td>JAX</td><td class=num>23</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 7</td><td>MIN</td><td class=num>18</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 6</td><td>TEN</td><td class=num>40</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 5</td><td>PIT</td><td class=num>47</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 4</td><td>WAS</td><td class=num>16</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 3</td><td>HOU</td><td class=num>77</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 2</td><td>KC</td><td class=num>72</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 1</td><td>BAL</td><td class=num>37</td><td class="hit">Hit</td></tr></tbody></table><p class="muted small">Newest first. Shaded rows = last 5.</p>
+<p class="small"><b>Other lines he cleared all 5:</b> 10+ Rec Yds (-1200)</p>
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.627952414&amp;selectionId=74159037" target="_blank" rel="noopener">Bet this line in FanDuel</a>
+</div></details></li>
+<li><details class="leg"><summary><span class="leg-main"><span class="leg-name">Noah Gray</span>
+<span class="leg-sel">5+ Rec Yds</span><span class="leg-sub">Chiefs @ Bills · 8:20 PM</span>
+<span class="status bad">Doesn&#x27;t pass: listed questionable; too small for the model to price; removed after news check</span></span>
+<span class="leg-right"><span class="odds">-320</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<ul class="checks"><li class="ok"><span>✓</span> Odds -350 or better <span class=muted>· -320</span></li><li class="ok"><span>✓</span> Model chance 50%+ <span class=muted>· 70%</span></li><li class="no"><span>✗</span> Not questionable <span class=muted>· listed questionable</span></li><li class="ok"><span>✓</span> 4+ games with his team</li><li class="ok"><span>✓</span> QB situation known</li><li class="ok"><span>✓</span> Projection near FanDuel&#x27;s line</li><li class="no"><span>✗</span> Projection in the model&#x27;s tested range <span class=muted>· too small to model</span></li><li class="ok"><span>✓</span> Snap trend not against it</li><li class="no"><span>✗</span> Not removed after news check <span class=muted>· removed (see context)</span></li><li class="ok"><span>✓</span> Has a model projection</li></ul>
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">70%</b></div>
+<div class="kv"><span>Projection</span><b class="num">13.0</b></div>
+<div class="kv"><span>Value alone</span><b class="num">-7.5%</b></div>
+<div class="kv"><span>Season</span><b class="num">9/10</b></div>
+<div class="kv"><span>Last 10</span><b class="num">9/10</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 4.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 11</td><td>ARI</td><td class=num>21</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 10</td><td>ATL</td><td class=num>6</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 9</td><td>NYJ</td><td class=num>11</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 8</td><td>DEN</td><td class=num>15</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 7</td><td>SEA</td><td class=num>44</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 6</td><td>LAC</td><td class=num>53</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 4</td><td>LV</td><td class=num>17</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 3</td><td>MIA</td><td class=num>39</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 2</td><td>IND</td><td class=num>0</td><td class="miss">Miss</td></tr><tr class=""><td class=num>Wk 1</td><td>DEN</td><td class=num>5</td><td class="hit">Hit</td></tr></tbody></table><p class="muted small">Newest first. Shaded rows = last 5.</p>
+
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.628651101&amp;selectionId=73482243" target="_blank" rel="noopener">Bet this line in FanDuel</a>
+</div></details></li>
+<li><details class="leg"><summary><span class="leg-main"><span class="leg-name">Rashee Rice</span>
+<span class="leg-sel">Over 47.5 Rec Yds</span><span class="leg-sub">Chiefs @ Bills · 8:20 PM</span>
+<span class="status bad">Doesn&#x27;t pass: model chance under 50%; snap trend against it; removed after news check</span></span>
+<span class="leg-right"><span class="odds">-114</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<ul class="checks"><li class="ok"><span>✓</span> Odds -350 or better <span class=muted>· -114</span></li><li class="no"><span>✗</span> Model chance 50%+ <span class=muted>· 44%</span></li><li class="ok"><span>✓</span> Not questionable</li><li class="ok"><span>✓</span> 4+ games with his team</li><li class="ok"><span>✓</span> QB situation known</li><li class="ok"><span>✓</span> Projection near FanDuel&#x27;s line</li><li class="ok"><span>✓</span> Projection in the model&#x27;s tested range</li><li class="no"><span>✗</span> Snap trend not against it <span class=muted>· snaps falling</span></li><li class="no"><span>✗</span> Not removed after news check <span class=muted>· removed (see context)</span></li><li class="ok"><span>✓</span> Has a model projection</li></ul>
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">44%</b></div>
+<div class="kv"><span>Projection</span><b class="num">38.3</b></div>
+<div class="kv"><span>Value alone</span><b class="num">-16.5%</b></div>
+<div class="kv"><span>Season</span><b class="num">6/7</b></div>
+<div class="kv"><span>Last 10</span><b class="num">6/7</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 47.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 11</td><td>ARI</td><td class=num>53</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 10</td><td>ATL</td><td class=num>82</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 9</td><td>NYJ</td><td class=num>49</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 8</td><td>DEN</td><td class=num>53</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 3</td><td>MIA</td><td class=num>88</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 2</td><td>IND</td><td class=num>83</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 1</td><td>DEN</td><td class=num>19</td><td class="miss">Miss</td></tr></tbody></table><p class="muted small">Newest first. Shaded rows = last 5.</p>
+<p class="small"><b>Other lines he cleared all 5:</b> 40+ Rec Yds (-180), 30+ Rec Yds (-340), 25+ Rec Yds (-500), 20+ Rec Yds (-850), 15+ Rec Yds (-1600)</p>
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.627952149&amp;selectionId=48551005" target="_blank" rel="noopener">Bet this line in FanDuel</a>
+</div></details></li>
+<li><details class="leg"><summary><span class="leg-main"><span class="leg-name">Rashee Rice</span>
+<span class="leg-sel">Over 4.5 Receptions</span><span class="leg-sub">Chiefs @ Bills · 8:20 PM</span>
+<span class="status bad">Doesn&#x27;t pass: model chance under 50%; snap trend against it; removed after news check</span></span>
+<span class="leg-right"><span class="odds">-114</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<ul class="checks"><li class="ok"><span>✓</span> Odds -350 or better <span class=muted>· -114</span></li><li class="no"><span>✗</span> Model chance 50%+ <span class=muted>· 41%</span></li><li class="ok"><span>✓</span> Not questionable</li><li class="ok"><span>✓</span> 4+ games with his team</li><li class="ok"><span>✓</span> QB situation known</li><li class="ok"><span>✓</span> Projection near FanDuel&#x27;s line</li><li class="ok"><span>✓</span> Projection in the model&#x27;s tested range</li><li class="no"><span>✗</span> Snap trend not against it <span class=muted>· snaps falling</span></li><li class="no"><span>✗</span> Not removed after news check <span class=muted>· removed (see context)</span></li><li class="ok"><span>✓</span> Has a model projection</li></ul>
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">41%</b></div>
+<div class="kv"><span>Projection</span><b class="num">3.5</b></div>
+<div class="kv"><span>Value alone</span><b class="num">-22.9%</b></div>
+<div class="kv"><span>Season</span><b class="num">5/7</b></div>
+<div class="kv"><span>Last 10</span><b class="num">5/7</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 4.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 11</td><td>ARI</td><td class=num>6</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 10</td><td>ATL</td><td class=num>5</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 9</td><td>NYJ</td><td class=num>5</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 8</td><td>DEN</td><td class=num>7</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 3</td><td>MIA</td><td class=num>7</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 2</td><td>IND</td><td class=num>4</td><td class="miss">Miss</td></tr><tr class=""><td class=num>Wk 1</td><td>DEN</td><td class=num>2</td><td class="miss">Miss</td></tr></tbody></table><p class="muted small">Newest first. Shaded rows = last 5.</p>
+<p class="small"><b>Other lines he cleared all 5:</b> 5+ Receptions (-114), 4+ Receptions (-260), 3+ Receptions (-670)</p>
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.627952153&amp;selectionId=48551005" target="_blank" rel="noopener">Bet this line in FanDuel</a>
+</div></details></li>
+<li><details class="leg"><summary><span class="leg-main"><span class="leg-name">Dawson Knox</span>
+<span class="leg-sel">1+ Receptions</span><span class="leg-sub">Chiefs @ Bills · 8:20 PM</span>
+<span class="status bad">Doesn&#x27;t pass: odds worse than -350; projection far from FanDuel&#x27;s line; too small for the model to price; removed after news check</span></span>
+<span class="leg-right"><span class="odds">-440</span><span class="more">Data</span></span></summary>
+<div class="leg-body">
+<ul class="checks"><li class="no"><span>✗</span> Odds -350 or better <span class=muted>· -440</span></li><li class="ok"><span>✓</span> Model chance 50%+ <span class=muted>· 75%</span></li><li class="ok"><span>✓</span> Not questionable</li><li class="ok"><span>✓</span> 4+ games with his team</li><li class="ok"><span>✓</span> QB situation known</li><li class="no"><span>✗</span> Projection near FanDuel&#x27;s line <span class=muted>· model 0.9 vs FanDuel&#x27;s main line 1.5</span></li><li class="no"><span>✗</span> Projection in the model&#x27;s tested range <span class=muted>· too small to model</span></li><li class="ok"><span>✓</span> Snap trend not against it</li><li class="no"><span>✗</span> Not removed after news check <span class=muted>· removed (see context)</span></li><li class="ok"><span>✓</span> Has a model projection</li></ul>
+<div class="kvs"><div class="kv"><span>Chance</span><b class="num">75%</b></div>
+<div class="kv"><span>Projection</span><b class="num">0.9</b></div>
+<div class="kv"><span>Value alone</span><b class="num">-8.2%</b></div>
+<div class="kv"><span>Season</span><b class="num">10/10</b></div>
+<div class="kv"><span>Last 10</span><b class="num">10/10</b></div></div>
+<table class=hist><thead><tr><th>Week</th><th>Opp</th><th>Result</th><th>vs 0.5</th></tr></thead><tbody><tr class="l5"><td class=num>Wk 11</td><td>MIA</td><td class=num>2</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 10</td><td>NYJ</td><td class=num>1</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 9</td><td>MIN</td><td class=num>4</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 8</td><td>BAL</td><td class=num>1</td><td class="hit">Hit</td></tr><tr class="l5"><td class=num>Wk 6</td><td>LV</td><td class=num>1</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 5</td><td>LA</td><td class=num>1</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 4</td><td>NE</td><td class=num>2</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 3</td><td>LAC</td><td class=num>1</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 2</td><td>DET</td><td class=num>2</td><td class="hit">Hit</td></tr><tr class=""><td class=num>Wk 1</td><td>HOU</td><td class=num>1</td><td class="hit">Hit</td></tr></tbody></table><p class="muted small">Newest first. Shaded rows = last 5.</p>
+
+<a class="btn small" href="https://sportsbook.fanduel.com/addToBetslip?marketId=42.628651104&amp;selectionId=61953084" target="_blank" rel="noopener">Bet this line in FanDuel</a>
+</div></details></li></ul></section>
+<section id="copy"><div class="row"><h2>Copy list</h2><button class="btn ghost small" id="copy-btn" type="button">Copy</button></div>
+<div class="copy"><pre id="copy-text">Parlay C1 (bet only at +198 or better)
+- Rome Odunze 30+ Rec Yds (-300)
+- James Cook 80+ Rush Yds (-132)</pre></div></section>
+
+<section id="checks"><h2>Before kickoff</h2><ul class="plain"><li><span class=num>11:30 AM</span> for the 1 PM games</li><li><span class=num>3:00 PM</span> for the 4:30 PM games</li><li><span class=num>6:50 PM</span> for the 8:20 PM games</li>
+<li>Re-check every price in the app; these are from 7:48 PM ET.</li></ul></section>
+
+<section id="context"><h2>Today's context</h2>
+<p class="eyebrow">Starting QB changes</p><ul class="plain"><li><b>PHI</b> Joe Milton</li><li><b>DAL</b> Dak Prescott</li><li><b>CHI</b> Caleb Williams</li><li><b>DET</b> Jared Goff</li><li><b>KC</b> Patrick Mahomes</li><li><b>BUF</b> Josh Allen</li></ul>
+<p class="eyebrow">Removed by the analyst</p><ul class="plain"><li><b>Josh Allen|pass_yds</b> <span class=muted>weather: Orchard Park forecast at kickoff 38F, 15 mph NE wind, steady light rain (94-98%) - runbook rule removes passing/receiving overs in this game.</span></li><li><b>Khalil Shakir|reception_yds</b> <span class=muted>weather: Orchard Park forecast at kickoff 38F, 15 mph NE wind, steady light rain (94-98%) - runbook rule removes passing/receiving overs in this game.</span></li><li><b>Patrick Mahomes|pass_yds</b> <span class=muted>weather: Orchard Park forecast at kickoff 38F, 15 mph NE wind, steady light rain (94-98%) - runbook rule removes passing/receiving overs in this game.</span></li><li><b>Ty Johnson|receptions</b> <span class=muted>weather: Orchard Park forecast at kickoff 38F, 15 mph NE wind, steady light rain (94-98%) - runbook rule removes passing/receiving overs in this game.</span></li><li><b>Keon Coleman|receptions</b> <span class=muted>weather: Orchard Park forecast at kickoff 38F, 15 mph NE wind, steady light rain (94-98%) - runbook rule removes passing/receiving overs in this game.</span></li><li><b>Khalil Shakir|receptions</b> <span class=muted>weather: Orchard Park forecast at kickoff 38F, 15 mph NE wind, steady light rain (94-98%) - runbook rule removes passing/receiving overs in this game.</span></li><li><b>Travis Kelce|reception_yds</b> <span class=muted>weather: Orchard Park forecast at kickoff 38F, 15 mph NE wind, steady light rain (94-98%) - runbook rule removes passing/receiving overs in this game.</span></li><li><b>Josh Downs|receptions</b> <span class=muted>weather: Orchard Park forecast at kickoff 38F, 15 mph NE wind, steady light rain (94-98%) - runbook rule removes passing/receiving overs in this game.</span></li><li><b>Noah Gray|receptions</b> <span class=muted>weather: Orchard Park forecast at kickoff 38F, 15 mph NE wind, steady light rain (94-98%) - runbook rule removes passing/receiving overs in this game.</span></li><li><b>Josh Downs|reception_yds</b> <span class=muted>weather: Orchard Park forecast at kickoff 38F, 15 mph NE wind, steady light rain (94-98%) - runbook rule removes passing/receiving overs in this game.</span></li><li><b>Noah Gray|reception_yds</b> <span class=muted>weather: Orchard Park forecast at kickoff 38F, 15 mph NE wind, steady light rain (94-98%) - runbook rule removes passing/receiving overs in this game.</span></li><li><b>Rashee Rice|reception_yds</b> <span class=muted>weather: Orchard Park forecast at kickoff 38F, 15 mph NE wind, steady light rain (94-98%) - runbook rule removes passing/receiving overs in this game.</span></li><li><b>Rashee Rice|receptions</b> <span class=muted>weather: Orchard Park forecast at kickoff 38F, 15 mph NE wind, steady light rain (94-98%) - runbook rule removes passing/receiving overs in this game.</span></li><li><b>Dawson Knox|receptions</b> <span class=muted>weather: Orchard Park forecast at kickoff 38F, 15 mph NE wind, steady light rain (94-98%) - runbook rule removes passing/receiving overs in this game.</span></li></ul>
+</section>
+
+<p class="foot">Probabilities blend the projection model with FanDuel's no-vig price. "Bet only at" is the model's fair price plus 5%. Parlay prices are not FanDuel quotes. Generated 12:49 AM ET from odds-20261125-1948.csv. Research and decision support only.</p>
+</div>
+<script>
+document.getElementById('copy-btn').addEventListener('click', async (e) => {
+  const t = document.getElementById('copy-text').innerText;
+  try { await navigator.clipboard.writeText(t); e.target.textContent = 'Copied'; }
+  catch (err) { const r = document.createRange(); r.selectNodeContents(document.getElementById('copy-text'));
+    const s = getSelection(); s.removeAllRanges(); s.addRange(r); e.target.textContent = 'Selected, copy now'; }
+});
+</script>

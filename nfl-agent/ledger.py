@@ -76,7 +76,8 @@ def cmd_add(a):
     for src, rows in (("top", o.get("top", [])), ("longshot", o.get("longshots", [])),
                       ("avoid", o.get("avoid", [])),
                       ("streak", [l for pc in (o.get("parlays_c") or ([o["parlay_c"]] if o.get("parlay_c") else []))
-                                  for l in pc.get("legs", [])])):
+                                  for l in pc.get("legs", [])]),
+                      ("single", o.get("streak_leftover", []))):
         for i, r in enumerate(rows, 1):
             pid = pick_id(date, r)
             if pid in have:
@@ -284,7 +285,7 @@ def cmd_summary(a):
            "CLV and calibration first, profit last.", "", "## Overall", "", H,
            block(g[g.source == "top"], "Top picks"), block(g[g.source == "longshot"], "Long shots"),
            block(g[g.source == "avoid"], "Avoided (not bet)"),
-           block(g[g.source == "streak"], "Parlay C legs"), "", "## Top picks by tier", "", H]
+           block(g[g.source == "streak"], "Parlay C legs"), block(g[g.source == "single"], "Streak singles (no parlay fit)"), "", "## Top picks by tier", "", H]
     t = g[g.source == "top"]
     for k, x in t.groupby(t.tier.fillna("v1 (pre-model)")):
         out.append(block(x, k))

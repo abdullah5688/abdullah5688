@@ -108,7 +108,8 @@ def streak_checks(r):
         ("QB situation known", not ({"qb_debut", "qb_unknown"} & f),
          "QB debut/unknown" if {"qb_debut", "qb_unknown"} & f else "ok"),
         ("Projection near FanDuel's line", "line_gap" not in f,
-         f"model {r.get('proj_median')} vs line {r['line']:g}" if "line_gap" in f else "ok"),
+         (f"model {r.get('proj_median')} vs FanDuel's main line {r['main_line']:g}"
+          if r.get("main_line") is not None else f"model {r.get('proj_median')}") if "line_gap" in f else "ok"),
         ("Projection in the model's tested range", "outside_calibrated_range" not in f,
          "too small to model" if "outside_calibrated_range" in f else "ok"),
         ("Snap trend not against it", not ((not over and "snap_rise" in f) or (over and "snap_decline" in f)),
@@ -303,7 +304,8 @@ def main():
                                 for h in hist.itertuples()],
                        score_parts=dict(consistency=round(consistency), workload=round(float(np.clip(workload, 0, 100))),
                                         matchup=round(matchup), value=round(value), quality=round(quality)),
-                       def_factor=round(float(dfac), 3), target_share=round(pr["ts"], 3), carry_share=round(pr["cs"], 3))
+                       def_factor=round(float(dfac), 3), target_share=round(pr["ts"], 3), carry_share=round(pr["cs"], 3),
+                       main_line=ref[0] if ref else None)
             row["selection"] = selection_text(row)
             cand.append(row)
             key = (game, r.nname, r.mkt, r.side, L)
@@ -465,7 +467,7 @@ def clean(r):
             "selection", "odds", "book_last_update", "betslip_link", "proj_median", "proj_mean", "p_model",
             "p_market", "market_ref_book", "p_blend", "breakeven", "edge", "ev", "tier", "flags",
             "evidence_score", "score_parts", "season_hits", "last5", "last10", "last5_values", "def_factor",
-            "target_share", "carry_share", "history"]
+            "target_share", "carry_share", "history", "main_line"]
     return {k: (None if isinstance(r.get(k), float) and math.isnan(r.get(k)) else r.get(k)) for k in keep}
 
 
